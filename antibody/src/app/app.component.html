@@ -1,6 +1,15 @@
-<button mat-button>Hello</button>
+<app-navbar></app-navbar>
 
 <router-outlet></router-outlet>
 
+<mat-sidenav-container hasBackdrop="false" class="fill-body">
+  <mat-sidenav mode="side" opened>
+    <app-newsticker></app-newsticker>
+  </mat-sidenav>
+  <mat-sidenav-content class="fill-bar">
+    <app-main-view></app-main-view>
+    <app-hand></app-hand>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 <app-debug-view></app-debug-view>

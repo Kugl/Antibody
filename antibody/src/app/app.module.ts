@@ -12,6 +12,7 @@ import { StatusComponent } from './main-view/status/status.component';
 import { NewstickerComponent } from './newsticker/newsticker.component';
 import { CardComponent } from './hand/card/card.component';
 import { DebugViewComponent } from './debug-view/debug-view.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DebugViewComponent } from './debug-view/debug-view.component';
     NewstickerComponent,
     CardComponent,
     DebugViewComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

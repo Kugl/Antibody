@@ -1,0 +1,11 @@
+$antibody-primary: mat-palette($mat-indigo, 700, 300, 900);
+$antibody-accent: mat-palette($mat-light-blue);
+$antibody-warn: mat-palette($mat-deep-orange, A200);
+
+$antibody-theme: mat-dark-theme(
+  $antibody-primary,
+  $antibody-accent,
+  $antibody-warn
+);
+
+@include angular-material-theme($antibody-theme);
