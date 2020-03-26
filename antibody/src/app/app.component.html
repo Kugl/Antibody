@@ -2,13 +2,32 @@
 
 <router-outlet></router-outlet>
 
-<mat-sidenav-container hasBackdrop="false" class="fill-body">
-  <mat-sidenav mode="side" opened>
+
+<div fxLayout>
+  <div fxFlex="1 1 20em" class="p-2" style="overflow-y: scroll; overflow-x: hidden">
     <app-newsticker></app-newsticker>
-  </mat-sidenav>
-  <mat-sidenav-content class="fill-bar">
+  </div>
+  <mat-divider vertical></mat-divider>
+  <div fxFlex="7 7 0" fxLayout="column" fxLayoutAlign="start center" class="p-2">
     <app-main-view></app-main-view>
     <app-hand></app-hand>
+
+  </div>
+</div>
+
+<!--<mat-sidenav-container hasBackdrop="false" class="fill-body">-->
+<!--  <mat-sidenav mode="side" opened>-->
+<!--  </mat-sidenav>-->
+<!--  <mat-sidenav-content class="fill-bar">-->
+
+<!--  </mat-sidenav-content>-->
+<!--</mat-sidenav-container>-->
+
+<div>
+  <mat-divider></mat-divider>
+
+  <div class="mt-5">
     <app-debug-view></app-debug-view>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </div>
+</div>
+

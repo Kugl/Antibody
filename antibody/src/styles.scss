@@ -4,6 +4,12 @@
 // import custom theme
 @import "antibody-theme.scss";
 
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+@import "~bootstrap/scss/utilities";
+
 // specify theme class eg: <body class="my-theme"> ... </body>
 .antibody-theme {
   // use our theme with angular-material-theme mixin
@@ -13,8 +19,12 @@
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
+
+  background-color: #232323;
+  color: white;
+
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+

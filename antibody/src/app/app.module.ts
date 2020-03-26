@@ -13,6 +13,7 @@ import { NewstickerComponent } from './newsticker/newsticker.component';
 import { CardComponent } from './hand/card/card.component';
 import { DebugViewComponent } from './debug-view/debug-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
