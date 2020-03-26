@@ -11,6 +11,30 @@ export class HandComponent implements OnInit {
 
   constructor() {
     //for tetsing only
+    this.cards.push(
+      new Card(
+        "Hello",
+        "assets/pictures/corona.jpg",
+        "This is the text of the Card",
+        []
+      )
+    );
+    this.cards.push(
+      new Card(
+        "Card Two",
+        "assets/pictures/corona.jpg",
+        "This is the text of the Card two",
+        []
+      )
+    );
+    this.cards.push(
+      new Card(
+        "Card three",
+        "assets/pictures/corona.jpg",
+        "This is the text of the Card three",
+        []
+      )
+    );
   }
 
   ngOnInit(): void {}
@@ -18,20 +42,24 @@ export class HandComponent implements OnInit {
   drawCard() {
     //get card from Deck
     //REMOVE later:
-    let card = new Card("Hello", "aaa", "asdads", []);
+    let card = new Card(
+      "Card drawn",
+      "assets/pictures/corona.jpg",
+      "This is the text of the Card draw",
+      []
+    );
     this.cards.push(card);
   }
 
-  playCard(id: number) {
+  playCard(index: number) {
     //trigger effects
     //Card ohne id
     //discard
-    this.discardCard(id);
+    this.discardCard(index);
   }
 
-  discardCard(id: number) {
-    this.cards = this.cards.filter(function(obj) {
-      // return obj.id !== id;
-    });
+  discardCard(index: number) {
+    console.log(index);
+    this.cards.splice(index, 1);
   }
 }
