@@ -1,12 +1,9 @@
 import { Card } from "./card";
 
 export class Deck {
-  cards: Card[];
   graveyard: Card[];
 
-  constructor(cards: Card[]) {
-    this.cards = cards;
-  }
+  constructor(private cards: Card[]) {}
   //returns a card
   drawCard() {
     let card = this.cards[0];
