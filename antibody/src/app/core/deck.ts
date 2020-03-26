@@ -4,11 +4,15 @@ export class Deck {
   cards: Card[];
   graveyard: Card[];
 
-  constructor(cards) {
+  constructor(cards: Card[]) {
     this.cards = cards;
   }
   //returns a card
-  drawCard() {}
+  drawCard() {
+    let card = this.cards[0];
+    this.cards.splice(0, 1);
+    return card;
+  }
   //shuffels the deck and the graveyard
   shuffle() {}
 }
