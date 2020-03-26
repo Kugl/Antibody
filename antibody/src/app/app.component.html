@@ -1,4 +1,8 @@
-<div fxLayout="column" fxLayoutAlign="space-between" style="height: 100%">
+<div class="position-absolute w-100 h-100" style="top: 0; left: 0;">
+  <app-backdrop></app-backdrop>
+</div>
+
+<div class="position-relative" fxLayout="column" fxLayoutAlign="space-between" style="height: 100%">
   <app-navbar></app-navbar>
 
   <!--<router-outlet></router-outlet>-->
@@ -8,7 +12,7 @@
       <app-newsticker></app-newsticker>
     </div>
     <mat-divider vertical></mat-divider>
-    <div fxFlex="7 7 0" fxLayout="column" fxLayoutAlign="space-between center" class="p-2">
+    <div fxFlex="7 7 0" fxLayout="column" fxLayoutAlign="space-between stretch" class="p-2">
       <app-main-view fxFlex="1 0 0"></app-main-view>
       <app-hand fxFlex="0 1 0"></app-hand>
     </div>
