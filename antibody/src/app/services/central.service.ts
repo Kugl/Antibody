@@ -14,15 +14,24 @@ export class CentralService {
     let that = this
     setInterval(function() {
       that.game.tick();
-      if (that.game.tickCount == 20) { // for testing only
-        that.game.playCard(that.game.deck.cards[0])
-      }
     },
     60)
   }
 
   getGame() {
     return this.game
+  }
+
+  drawCard() {
+    this.game.drawCard()
+  }
+
+  playCard(card) {
+    this.game.playCard(card)
+  }
+
+  discardCard(card) {
+    this.game.discardCard(card)
   }
 
 }
