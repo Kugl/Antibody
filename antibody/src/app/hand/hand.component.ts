@@ -56,12 +56,17 @@ export class HandComponent implements OnInit {
     this.cards.push(card);
   }
 
-  playCard(){
+  playCard(id: number){
+    //trigger effects
 
+    //discard
+    this.discardCard(id);
   }
 
-  discardCard(){
-
+  discardCard(id: number){
+    this.cards = this.cards.filter(function( obj ) {
+      return obj.id !== id;
+  });
   }
 
 }

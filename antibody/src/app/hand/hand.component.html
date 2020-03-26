@@ -5,18 +5,14 @@
         Draw
       </button>
     </div>
-    <div>
-      <button mat-raised-button color="primary" (click)="playCard()">
-        Play
-      </button>
-    </div>
-    <div>
-      <button mat-raised-button color="primary" (click)="discardCard()">
-        Discard
-      </button>
-    </div>
   </div>
   <div *ngFor="let card of cards">
     <app-card [card]="card"></app-card>
+    <button mat-raised-button color="primary" (click)="playCard(card.id)">
+      Play
+    </button>
+    <button mat-raised-button color="primary" (click)="discardCard(card.id)">
+      Discard
+    </button>
   </div>
 </div>
