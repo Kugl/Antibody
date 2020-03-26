@@ -6,20 +6,22 @@
 
     <div
       *ngFor="let item of layer.items"
-      class="position-absolute"
+      class="position-absolute virus-wrapper"
       [style.right]="'calc(' + (item.baseX*1.2-15) + '% + ' + (e.x/8)/layer.moveDepth + 'px)'"
       [style.bottom]="'calc(' + (item.baseY*1.2-15) + '% + ' + (e.y/8)/layer.moveDepth + 'px)'"
     >
 
 
-      <img
+      <div class="virus-span">
+        <img
         src="assets/virus2_sm.png"
-        class="virus-rotate"
+        class="virus virus-rotate"
         [style.opacity]="2/(layer.displayDepth/2)"
         [style.margin-right]="-imageBaseSize / layer.displayDepth / 2 + 'px'"
         [style.margin-bottom]="-imageBaseSize / layer.displayDepth / 2 + 'px'"
         [style.width]="imageBaseSize / layer.displayDepth + 'px'"
         alt="">
+      </div>
     </div>
 
 

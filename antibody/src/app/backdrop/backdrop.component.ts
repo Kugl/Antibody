@@ -23,7 +23,7 @@ export class BackdropComponent implements OnInit {
 
   @HostListener('window:mousemove', ['$event'])
   handleMouseMove(event: MouseEvent) {
-    this.e = event
+    // this.e = event
   }
 
 
@@ -37,25 +37,25 @@ export class BackdropComponent implements OnInit {
     {
       amount: 50,
       moveDepth: 8,
-      displayDepth: 12,
+      displayDepth: 10,
       items: []
     },
     {
       amount: 20,
       moveDepth: 6,
-      displayDepth: 9,
+      displayDepth: 8,
       items: []
     },
     {
       amount: 15,
       moveDepth: 5,
-      displayDepth: 7,
+      displayDepth: 6,
       items: []
     },
     {
       amount: 8,
       moveDepth: 4,
-      displayDepth: 5,
+      displayDepth: 4,
       items: []
     },
     {
