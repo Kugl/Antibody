@@ -8,7 +8,7 @@
   </div>
   <div *ngFor="let card of cards; let i = index">
     <app-card [card]="card"></app-card>
-    <button mat-raised-button color="primary" (click)="playCard(i)">
+    <button mat-raised-button color="primary" (click)="playCard(i, card)">
       Play
     </button>
     <button mat-raised-button color="primary" (click)="discardCard(i)">

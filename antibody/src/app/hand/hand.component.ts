@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Card } from "../core/card";
+import { CentralService } from "../services/central.service";
+import { Game } from "../core/game";
 
 @Component({
   selector: "app-hand",
@@ -8,8 +10,10 @@ import { Card } from "../core/card";
 })
 export class HandComponent implements OnInit {
   cards: Card[] = [];
+  currentGame: Game;
+  constructor(private centServ: CentralService) {
+    this.currentGame = this.centServ.getGame();
 
-  constructor() {
     //for tetsing only
     this.cards.push(
       new Card(
@@ -51,9 +55,10 @@ export class HandComponent implements OnInit {
     this.cards.push(card);
   }
 
-  playCard(index: number) {
+  playCard(index: number, card: Card) {
     //trigger effects
     //Card ohne id
+    this.currentGame.playCard(card);
     //discard
     this.discardCard(index);
   }
