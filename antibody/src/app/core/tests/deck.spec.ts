@@ -8,13 +8,19 @@ describe("Deck", () => {
   beforeAll(() => {});
 
   beforeEach(() => {
+    //Genreate Deck with random cards
     let cards = [];
     for (let i = 0; i <= 10; i++) {
       let card = random.getRandomCard();
       cards.push(card);
     }
     deck = new Deck(cards);
-    deck.graveyard = [];
+    let grave = [];
+    for (let i = 0; i <= 5; i++) {
+      let card = random.getRandomCard();
+      grave.push(card);
+    }
+    deck.graveyard = grave;
   });
 
   it("Should properly draw a card", () => {
