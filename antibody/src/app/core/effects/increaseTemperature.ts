@@ -6,11 +6,11 @@ export class IncreaseTemperature implements Effect {
   action = ""
   duration = 20
 
-  apply(game: Game) {
-    game.body.fever = true
+  activate(game: Game) {
+    game.body.temperature += 1
   }
 
   deactivate(game: Game) {
-    game.body.fever = false
+    game.body.temperature -= 1
   }
 }

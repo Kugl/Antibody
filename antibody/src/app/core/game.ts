@@ -2,10 +2,15 @@ import { Deck } from "./deck";
 import { Card } from "./card";
 import { Body } from "./body";
 import { Effect } from "./effects/effect";
+import { Hand } from "./hand"
+import { Graveyard } from './graveyard';
 
 export class Game {
   deck: Deck;
+  hand: Hand;
+  graveyard: Graveyard;
   body: Body;
+
 
   effects: Effect[] = [];
 
@@ -22,12 +27,9 @@ export class Game {
   tick() {
     this.tickCount += 1;
     for (let effect of this.effects) {
-      effect.apply(this);
       effect.duration -= 1;
-    }
-    for (let effect of this.effects) {
-      if (effect.duration == 0) {
-        effect.deactivate(this);
+      if(effect.duration == 0) {
+        effect.deactivate(this)
       }
     }
     this.effects = this.effects.filter(effect => effect.duration > 0);
@@ -35,7 +37,12 @@ export class Game {
 
   playCard(card: Card) {
     console.log("played ", card.title);
+    for(let effect of card.effects) {
+      effect.activate(this)
+    }
     this.effects = this.effects.concat(card.effects);
+    this.hand.remove(card)
+    this.graveyard.add(card)
   }
 
   get Deck() {
