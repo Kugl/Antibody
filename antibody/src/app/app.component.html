@@ -1,6 +1,11 @@
 <app-navbar></app-navbar>
 
-<button mat-raised-button color="primary">Hello</button>
-<button mat-raised-button color="secondary">Hello</button>
-<button mat-raised-button color="accent">Hello</button>
-<router-outlet></router-outlet>
+<mat-sidenav-container hasBackdrop="false" class="fill-body">
+  <mat-sidenav mode="side" opened>
+    <app-newsticker></app-newsticker>
+  </mat-sidenav>
+  <mat-sidenav-content class="fill-bar">
+    <app-main-view></app-main-view>
+    <app-hand></app-hand>
+  </mat-sidenav-content>
+</mat-sidenav-container>
