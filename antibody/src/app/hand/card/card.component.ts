@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Card } from 'src/app/models/card.model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-card',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  constructor() { }
+  card = new Card();
+
+  constructor() {
+    //Nur zum testen
+    this.card.Title = "The Card";
+    //this.card.PictureURL ="https://i.ytimg.com/vi/6OBnOOVSVXo/maxresdefault.jpg";
+    this.card.PictureURL ="assets/pictures/corona.jpg";
+    this.card.Text = "This is the Text";
+
+   }
 
   ngOnInit(): void {
   }
