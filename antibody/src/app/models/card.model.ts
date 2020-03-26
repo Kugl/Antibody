@@ -1,8 +1,4 @@
-export interface Effect{
-  DisplayText: string;
-  Action: string;
-}
-
+import { Effect } from '../core/effects/effect';
 
 export class Card {
     id: number = 0;
