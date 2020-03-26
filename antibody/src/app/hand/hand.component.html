@@ -6,12 +6,12 @@
       </button>
     </div>
   </div>
-  <div *ngFor="let card of cards">
+  <div *ngFor="let card of cards; let i = index">
     <app-card [card]="card"></app-card>
-    <button mat-raised-button color="primary" (click)="playCard(card.id)">
+    <button mat-raised-button color="primary" (click)="playCard(5)">
       Play
     </button>
-    <button mat-raised-button color="primary" (click)="discardCard(card.id)">
+    <button mat-raised-button color="primary" (click)="discardCard(5)">
       Discard
     </button>
   </div>

@@ -6,10 +6,11 @@ export class Card {
   text: string ="";
   effects: Effect[] =[];
 
-  constructor(title, pictureURL, text, effects) {
+  constructor(title?, pictureURL?, text?, effects?) {
     this.title = title
     this.pictureURL = pictureURL
     this.text = text
     this.effects = effects
   }
+
 }

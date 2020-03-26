@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Card } from 'src/app/models/card.model';
+
 import { Title } from '@angular/platform-browser';
+import { Card } from 'src/app/core/card';
 
 @Component({
   selector: 'app-card',
@@ -20,7 +21,7 @@ export class CardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void{
-    
+
   }
 
 }
