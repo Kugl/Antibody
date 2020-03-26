@@ -1,5 +1,22 @@
 <div class="container">
+  <div class="column">
+    <div>
+      <button mat-raised-button color="primary" (click)="drawCard()">
+        Draw
+      </button>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="playCard()">
+        Play
+      </button>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="discardCard()">
+        Discard
+      </button>
+    </div>
+  </div>
   <div *ngFor="let card of cards">
-    <app-card></app-card>
+    <app-card [card]="card"></app-card>
   </div>
 </div>

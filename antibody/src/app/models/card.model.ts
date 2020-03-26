@@ -5,6 +5,7 @@ export interface Effect{
 
 
 export class Card {
+    id: number = 0;
     Title: string = "";
     PictureURL: string ="";
     Text: string ="";

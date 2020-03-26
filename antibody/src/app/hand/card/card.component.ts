@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 import { Title } from '@angular/platform-browser';
 
@@ -7,20 +7,20 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
-
-  card = new Card();
+export class CardComponent implements OnInit, OnChanges {
+@Input() card: Card;
+  emptycard = new Card();
 
   constructor() {
     //Nur zum testen
-    this.card.Title = "The Card";
-    //this.card.PictureURL ="https://i.ytimg.com/vi/6OBnOOVSVXo/maxresdefault.jpg";
-    this.card.PictureURL ="assets/pictures/corona.jpg";
-    this.card.Text = "This is the Text";
-
+    this.card = this.emptycard;
    }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void{
+    
   }
 
 }
