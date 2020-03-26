@@ -22,7 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     StatusComponent,
     NewstickerComponent,
     CardComponent,
-    DebugViewComponent
+    DebugViewComponent,
     NavbarComponent
   ],
   imports: [

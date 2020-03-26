@@ -44,7 +44,16 @@ export class HandComponent implements OnInit {
   }
 
   drawCard(){
-
+    //get card from Deck
+    //REMOVE later:
+    let card: Card = {
+      id: 4,
+      Title: "Number Four",
+      PictureURL: "assets/pictures/corona.jpg",
+      Text: "The text of card four",
+      Effects : [] 
+    };
+    this.cards.push(card);
   }
 
   playCard(){
