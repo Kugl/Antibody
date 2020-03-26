@@ -1,19 +1,19 @@
-<div fxLayout="column" fxLayoutAlign="space-between" style="height: 100%">
-  <app-navbar></app-navbar>
+<div class="position-relative" fxLayout="column" fxLayoutAlign="space-between" style="max-height: 100%; height: 100%">
+  <app-navbar fxFlex="0 0 0"></app-navbar>
 
   <!--<router-outlet></router-outlet>-->
 
-  <div fxLayout fxFlex="1 0 0">
+  <div fxLayout fxFlex="1 0 600px">
     <div fxFlex="1 1 20em" class="p-2" style="overflow-y: scroll; overflow-x: hidden">
       <app-newsticker></app-newsticker>
     </div>
     <mat-divider vertical></mat-divider>
-    <div fxFlex="7 7 0" fxLayout="column" fxLayoutAlign="space-between center" class="p-2">
+    <div fxFlex="7 7 auto" fxLayout="column" fxLayoutAlign="space-between stretch" class="p-2">
       <app-main-view fxFlex="1 0 0"></app-main-view>
       <app-hand fxFlex="0 1 0"></app-hand>
     </div>
   </div>
-  <div fxFlex="0 1 0">
+  <div fxFlex="0 0 0">
     <mat-divider></mat-divider>
 
     <div>
