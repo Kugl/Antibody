@@ -13,7 +13,8 @@ import { NewstickerComponent } from './newsticker/newsticker.component';
 import { CardComponent } from './hand/card/card.component';
 import { DebugViewComponent } from './debug-view/debug-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FlexLayoutModule } from '@angular/flex-layout'
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { BackdropComponent } from './backdrop/backdrop.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     NewstickerComponent,
     CardComponent,
     DebugViewComponent,
-    NavbarComponent
+    NavbarComponent,
+    BackdropComponent
   ],
   imports: [
     BrowserModule,
