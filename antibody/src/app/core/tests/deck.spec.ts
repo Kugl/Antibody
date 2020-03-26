@@ -14,6 +14,7 @@ describe("Deck", () => {
       cards.push(card);
     }
     deck = new Deck(cards);
+    deck.graveyard = [];
   });
 
   it("Should properly draw a card", () => {
@@ -23,5 +24,14 @@ describe("Deck", () => {
     let theCard = deck.drawCard();
     expect(deck.cards.length).toEqual(initialSize - 1);
     expect(theCard).toBe(firstCard);
+  });
+
+  it("Should properly shuffle", () => {
+    console.log(deck.cards);
+    let initialSize = deck.cards.length + deck.graveyard.length;
+    let firstCard = deck.cards[0];
+    deck.shuffle();
+    expect(deck.cards.length).toEqual(initialSize);
+    expect(deck.cards[0]).not.toBe(firstCard);
   });
 });
