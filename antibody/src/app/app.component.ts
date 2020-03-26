@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DebugViewComponent } from './debug-view/debug-view.component'
 
 @Component({
   selector: 'app-root',
