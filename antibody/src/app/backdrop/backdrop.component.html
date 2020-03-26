@@ -7,8 +7,8 @@
     <div
       *ngFor="let item of layer.items"
       class="position-absolute"
-      [style.right]="'calc(' + (item.baseX*1.2-15) + '% + ' + (e.x/2)/layer.moveDepth + 'px)'"
-      [style.bottom]="'calc(' + (item.baseY*1.2-15) + '% + ' + (e.y/2)/layer.moveDepth + 'px)'"
+      [style.right]="'calc(' + (item.baseX*1.2-15) + '% + ' + (e.x/8)/layer.moveDepth + 'px)'"
+      [style.bottom]="'calc(' + (item.baseY*1.2-15) + '% + ' + (e.y/8)/layer.moveDepth + 'px)'"
     >
 
 
