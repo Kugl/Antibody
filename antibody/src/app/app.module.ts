@@ -11,6 +11,7 @@ import { MainViewComponent } from './main-view/main-view.component';
 import { StatusComponent } from './main-view/status/status.component';
 import { NewstickerComponent } from './newsticker/newsticker.component';
 import { CardComponent } from './hand/card/card.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CardComponent } from './hand/card/card.component';
     MainViewComponent,
     StatusComponent,
     NewstickerComponent,
-    CardComponent
+    CardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
