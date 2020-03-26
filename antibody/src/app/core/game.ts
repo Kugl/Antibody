@@ -19,6 +19,28 @@ export class Game {
   constructor(deck: Deck, body: Body) {
     this.deck = deck;
     this.body = body;
+    this.hand = new Hand();
+    this.deck.shuffle();
+    while(this.hand.cards.length < 3 && this.deck.cards.length > 0) {
+      this.drawCard()
+    }
+  }
+
+  drawCard() {
+    if (this.deck.cards.length < 1) {
+      this.deck.shuffle();
+    }
+    if (this.deck.cards.length < 1) {
+      alert("NO CARDS IN DECK AND GRAVEYARD");
+      return
+    }
+    const drawnCard = this.deck.drawCard()
+    this.hand.cards.push(drawnCard)
+  }
+
+  discardCard(card: Card) {
+    this.hand.remove(card)
+    this.deck.graveyard.push(card)
   }
 
   /**
@@ -41,8 +63,7 @@ export class Game {
       effect.activate(this)
     }
     this.effects = this.effects.concat(card.effects);
-    this.hand.remove(card)
-    this.graveyard.add(card)
+    this.discardCard(card)
   }
 
   get Deck() {
