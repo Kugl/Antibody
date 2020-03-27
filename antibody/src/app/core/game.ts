@@ -5,8 +5,7 @@ import { Effect } from "./effects/effect";
 import { Hand } from "./hand";
 import { Graveyard } from "./graveyard";
 
-import { TicksPerDay, MillisecondsPerDay } from "./constants"
-
+import { TicksPerDay, MillisecondsPerDay } from "./constants";
 import { NewsMessage } from "./newsMessage";
 
 export class Game {
@@ -66,9 +65,8 @@ export class Game {
   }
 
   publishNews(content: string) {
-    this.news.push(new NewsMessage(this.date, content))
+    this.news.push(new NewsMessage(this.date, content));
   }
-
 
   playCard(card: Card) {
     console.log("played ", card.title);
