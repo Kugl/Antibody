@@ -97,7 +97,7 @@ export class Game {
     this.whiteCellsBattleDisease();
     this.effects = this.effects.filter(effect => effect.duration > 0);
   }
-
+  //OO
   //FIGHT!
   whiteCellsBattleDisease() {
     this.whiteCells.doBattle(this.bacteria);
