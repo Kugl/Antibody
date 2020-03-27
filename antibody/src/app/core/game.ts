@@ -4,33 +4,16 @@ import { Body } from "./body";
 import { Effect } from "./effects/effect";
 import { Hand } from "./hand";
 import { Graveyard } from "./graveyard";
-import {
-  makeVirusArray,
-  makeBacteriaArray,
-  Virus,
-  Bacteria,
-  Disease
-} from "./diseases/diseases";
-import { VirusInfection, BacteriaInfection } from "./infection";
+
+import { TicksPerDay, MillisecondsPerDay } from "./constants"
 
 import { NewsMessage } from "./newsMessage";
-import { WhiteBloodcell, TCell } from "./immune-system/antibodys";
-
-const TicksPerDay = 15 * 24;
-const MillisecondsPerDay = 1000 * 60 * 60 * 24;
 
 export class Game {
   deck: Deck;
   hand: Hand;
   graveyard: Graveyard;
   body: Body;
-  viruses: Virus[];
-  bacteria: Bacteria[];
-  virusInfections: VirusInfection[];
-  bacterialInfections: BacteriaInfection[];
-  // Added this to the game, as it is the same level as diseases. Move to Body?
-  whiteCells: WhiteBloodcell;
-  tCells: TCell[];
 
   effects: Effect[] = [];
 
@@ -41,13 +24,6 @@ export class Game {
   constructor(deck: Deck, body: Body) {
     this.deck = deck;
     this.body = body;
-    this.viruses = makeVirusArray();
-    this.bacteria = makeBacteriaArray();
-
-    //Added Michael
-    this.whiteCells = new WhiteBloodcell();
-    //Game starts without TCells
-    this.tCells = [];
 
     this.hand = new Hand();
     this.deck.shuffle();
@@ -84,42 +60,14 @@ export class Game {
         effect.deactivate(this);
       }
     }
-    for (let virus of this.viruses) {
-      if (Math.random() < virus.ChanceOfInfection / TicksPerDay + 0.01) {
-        // +0.01 is for testing only, to have more frequent infections
-        this.news.push(
-          new NewsMessage(
-            this.date,
-            "You have been infected with " + virus.Name
-          )
-        );
-        // TODO: 1) check if infection already exists; 2) if not, add infection to list of active infections. 3) handle infections in tick method.
-      }
-    }
-    this.mucusFlushesDiseases(this.bacteria);
-    this.mucusFlushesDiseases(this.viruses);
-    this.tCellsBattleViruses();
-    this.whiteCellsBattleDisease();
     this.effects = this.effects.filter(effect => effect.duration > 0);
-  }
-  //OO
-  //FIGHT!
-  whiteCellsBattleDisease() {
-    this.whiteCells.doBattle(this.bacteria);
-    this.whiteCells.doBattle(this.viruses);
+    this.body.tick(this)
   }
 
-  tCellsBattleViruses() {
-    for (let tCell of this.tCells) {
-      tCell.fightVirus(this.viruses);
-    }
+  publishNews(content: string) {
+    this.news.push(new NewsMessage(this.date, content))
   }
-  //TODO: cahnge to non-hard coded
-  mucusFlushesDiseases(diseases: Disease[]) {
-    for (let dis of diseases) {
-      dis.Count = dis.Count * (1 - this.body.mucusProduction * 0.05);
-    }
-  }
+
 
   playCard(card: Card) {
     console.log("played ", card.title);

@@ -1,10 +1,11 @@
 import { Effect } from './effect'
 import { Game } from '../game'
+import { TicksPerDay } from '../constants'
 
 export class IncreaseTemperature implements Effect {
   displayText = "Increase Temperature"
   action = ""
-  duration = 20
+  duration = TicksPerDay * 1
 
   activate(game: Game) {
     game.body.temperature += 1
