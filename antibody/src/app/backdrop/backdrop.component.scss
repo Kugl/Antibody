@@ -14,8 +14,15 @@
 $virus-move-time: 60s;
 $virus-rotate-time: 80s;
 
-.virus-span {
-  animation: infRotate linear $virus-rotate-time infinite;
+.virus-wrapper:nth-child(2n+1) {
+  .virus-span {
+    animation: infRotate linear $virus-rotate-time infinite;
+  }
+}
+.virus-wrapper:nth-child(2n+2) {
+  .virus-span {
+    animation: infRotate linear $virus-rotate-time infinite reverse;
+  }
 }
 
 
@@ -27,12 +34,12 @@ $virus-rotate-time: 80s;
 }
 .virus-wrapper:nth-child(4n+2) {
   .virus {
-    animation: virusMove2 infinite alternate $virus-move-time ease-in-out;
+    animation: virusMove3 infinite alternate $virus-move-time ease-in-out;
   }
 }
 .virus-wrapper:nth-child(4n+3) {
   .virus {
-    animation: virusMove3 infinite alternate $virus-move-time ease-in-out;
+    animation: virusMove2 infinite alternate $virus-move-time ease-in-out;
   }
 }
 .virus-wrapper:nth-child(4n+4) {
