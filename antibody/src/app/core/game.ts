@@ -94,6 +94,7 @@ export class Game {
         // TODO: 1) check if infection already exists; 2) if not, add infection to list of active infections. 3) handle infections in tick method.
       }
     }
+    this.whiteCellsBattleDisease();
     this.effects = this.effects.filter(effect => effect.duration > 0);
   }
 
