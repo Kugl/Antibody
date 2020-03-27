@@ -71,6 +71,7 @@ export class Game {
     for (let virus of this.viruses) {
       if (Math.random() < virus.ChanceOfInfection / TicksPerDay + 0.01) { // +0.01 is for testing only, to have more frequent infections
         this.news.push(new NewsMessage(this.tickCount.toString(), "You have been infected with " + virus.Name))
+        // TODO: 1) check if infection already exists; 2) if not, add infection to list of active infections. 3) handle infections in tick method.
       }
     }
     this.effects = this.effects.filter(effect => effect.duration > 0);
