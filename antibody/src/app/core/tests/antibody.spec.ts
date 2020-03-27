@@ -48,22 +48,22 @@ describe("Antibodys", () => {
   it("TCells should fight a specific Virus", () => {
     tCell.TargetDisease = viruses[0].Name;
     console.log("Fight");
-    console.log(viruses[0]);
+    //console.log(viruses[0]);
     let initialCount = viruses[0].Count;
     let combatPower = tCell.Count * tCell.CombatPower;
     tCell.fightVirus(viruses);
-    console.log(viruses[0]);
+    //console.log(viruses[0]);
     expect(viruses[0].Count).toEqual(initialCount - combatPower);
   });
 
   it("TCells should not fight a Virus they cannot target", () => {
     tCell.TargetDisease = "SmallPox";
     console.log("DONT Fight");
-    console.log(viruses[0]);
+    //console.log(viruses[0]);
     let initialCount = viruses[0].Count;
     let combatPower = tCell.Count * tCell.CombatPower;
     tCell.fightVirus(viruses);
-    console.log(viruses[0]);
+    //console.log(viruses[0]);
     expect(viruses[0].Count).toEqual(initialCount - combatPower);
   });
 });
