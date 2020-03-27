@@ -59,9 +59,12 @@ export class TCell implements TCell {
   //Fraction of Tcells that kil la virus on a day.
   CombatPower: number = 0.1;
 
-  fightVirus(disease: Virus[]): void {
+  fight(diseases: Disease[]): void {
     let strength = this.Count * this.CombatPower;
-    for (let dis of disease) {
+    for (let dis of diseases) {
+      if (!(dis instanceof Virus)) {
+        continue;
+      }
       //Specific Tcells only fight the virus they are build for
       if (this.TargetDisease == dis.Name) {
         dis.Count = dis.Count - strength;
