@@ -1,24 +1,28 @@
 <div fxLayout="row" fxLayoutAlign="space-between" style="height: 100%;">
   <div fxFlex="4 1 auto">
     <h1>Diseases:</h1>
-    <mat-card>
+    <mat-card *ngFor="let disease of diseases">
       <mat-card-header>
-        <mat-card-title>Common Cold</mat-card-title>
+        <mat-card-title>{{ disease.Name }}</mat-card-title>
       </mat-card-header>
 
       <mat-card-content>
         <div fxLayout>
           <div fxFlex="4 1 auto">
-            <p>Bacteria: 2000</p>
+            <p>Bacteria: {{ disease.Count | round }}</p>
           </div>
           <div fxFlex="4 1 auto">
-            <p>Macrophages: 2000</p>
-            <p>T-Cells: 2000</p>
-            <p>White Cells: 2000</p>
+            <p *ngFor="let defender of disease.defenders">
+              {{ defender.name }}: {{ defender.count | round }}
+            </p>
           </div>
         </div>
 
-        <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+        <mat-progress-bar
+          color="warn"
+          mode="determinate"
+          value="{{ (disease.Deadliness * disease.Count) / 1000 }}"
+        ></mat-progress-bar>
       </mat-card-content>
     </mat-card>
   </div>
