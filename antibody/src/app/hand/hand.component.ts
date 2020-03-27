@@ -16,8 +16,8 @@ import { trigger, transition, style, animate } from "@angular/animations";
         animate("1s ease-out", style({ height: 300, opacity: 1 }))
       ]),
       transition(":leave", [
-        style({ height: 300, opacity: 1 }),
-        animate("1s ease-in", style({ height: 0, opacity: 0 }))
+        style({ height: 450, opacity: 1 }),
+        animate("1s ease-in", style({ height: 550, opacity: 0 }))
       ])
     ])
   ]
