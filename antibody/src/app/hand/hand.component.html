@@ -6,13 +6,12 @@
       </button>
     </div>
   </div>
-  <div *ngFor="let card of cards; let i = index">
+  <div
+    *ngFor="let card of cards; let i = index"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="drop($event, card)"
+  >
     <app-card [card]="card"></app-card>
-    <button mat-raised-button color="primary" (click)="playCard(card)">
-      Play
-    </button>
-    <button mat-raised-button color="primary" (click)="discardCard(card)">
-      Discard
-    </button>
   </div>
 </div>

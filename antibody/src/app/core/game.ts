@@ -136,7 +136,7 @@ export class Game {
 
   get date(): string {
     const startDate = new Date(2021, 0, 1, 0, 0, 0, 0);
-    console.log(this.tickCount / TicksPerDay);
+    //console.log(this.tickCount / TicksPerDay);
     startDate.setTime(
       startDate.getTime() + (this.tickCount / TicksPerDay) * MillisecondsPerDay
     );
