@@ -17,21 +17,21 @@ export class Defender {
 
 export class TCells extends Defender {
   name = "T-Cells"
-  count = 1000;
+  count = 0;
   production = 50;
   decay = 0.1;
 }
 
 export class Leukos extends Defender {
   name = "Leukocytes"
-  count = 200;
+  count = 0;
   production = 200;
   decay = 0.05;
 }
 
 export class Macrophages extends Defender {
   name = "Macrophages"
-  count = 80;
+  count = 0;
   production = 1;
   decay = 0.01;
 }

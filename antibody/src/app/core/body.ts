@@ -3,6 +3,7 @@ import { Disease, makeDiseaseArray } from "./diseases/diseases";
 import { TicksPerDay } from "./constants"
 import { DefensePool } from "./defense"
 import { NewsTicker } from "./newsTicker";
+import { factorDay2Tick } from './util';
 
 export class Body {
   fever: boolean = false
@@ -11,7 +12,7 @@ export class Body {
 
   diseases: Disease[];
   defensePool: DefensePool;
-  mobilizationRate: number = 0.1; // fraction of defenses that can be mobilized per day
+  mobilizationRate: number = 0.2; // fraction of defenses that can be mobilized per day
 
   newsTicker: NewsTicker;
 
@@ -27,7 +28,21 @@ export class Body {
   }
 
   mobilize() {
-    
+    const rate = 1.0 - factorDay2Tick(1.0 - this.mobilizationRate) // the subtrahend is what we want to keep per tick
+    for(let disease of this.diseases) {
+      if(disease.Count < 1) {
+        continue
+      }
+      for(let defender of disease.defenders) {
+        for(let poolDefender of this.defensePool.defenders) {
+          if (defender.name === poolDefender.name) {
+            const transfer = rate * poolDefender.count
+            defender.count += transfer
+            poolDefender.count -= transfer
+          }
+        }
+      }
+    }
   }
 
   handleInfections() {

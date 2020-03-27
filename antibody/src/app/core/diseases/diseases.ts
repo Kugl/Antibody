@@ -1,4 +1,5 @@
 import { TicksPerDay } from '../constants';
+import { Defender, TCells, Leukos } from '../defense';
 
 export class Disease {
   Name: string;
@@ -10,6 +11,8 @@ export class Disease {
   HostMaxAge: number;
   HostMinAge: number;
   Deadliness: number;
+
+  defenders: Defender[];
 
   spread() {}
   infect() {
@@ -25,7 +28,7 @@ export class Virus extends Disease {
   //Number of viruses produced by an active Host per day
   NumberPerHostCell: number;
   HostCells: number = 0;
-
+  defenders: Defender[] = [new TCells(), new Leukos()]
   infect() {
     this.Count = 1000
     this.HostCells = 5
@@ -43,6 +46,8 @@ export class Virus extends Disease {
 //Bacteria Devide and double the number after a Time x
 export class Bacteria extends Disease {
   GrowthPerDay: number;
+  
+  defenders: Defender[] = [new Leukos()]
 
   spread () {
     this.Count *= Math.pow(this.GrowthPerDay, 1/TicksPerDay)
