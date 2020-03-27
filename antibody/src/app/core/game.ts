@@ -8,7 +8,8 @@ import {
   makeVirusArray,
   makeBacteriaArray,
   Virus,
-  Bacteria
+  Bacteria,
+  Disease
 } from "./diseases/diseases";
 import { VirusInfection, BacteriaInfection } from "./infection";
 
@@ -95,6 +96,8 @@ export class Game {
         // TODO: 1) check if infection already exists; 2) if not, add infection to list of active infections. 3) handle infections in tick method.
       }
     }
+    this.mucusFlushesDiseases(this.bacteria);
+    this.mucusFlushesDiseases(this.viruses);
     this.tCellsBattleViruses();
     this.whiteCellsBattleDisease();
     this.effects = this.effects.filter(effect => effect.duration > 0);
@@ -109,6 +112,12 @@ export class Game {
   tCellsBattleViruses() {
     for (let tCell of this.tCells) {
       tCell.fightVirus(this.viruses);
+    }
+  }
+
+  mucusFlushesDiseases(diseases: Disease[]) {
+    for (let dis of diseases) {
+      dis.Count = dis.Count * (1 - this.body.mucusProduction * 0.05);
     }
   }
 
