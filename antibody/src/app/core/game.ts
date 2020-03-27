@@ -13,6 +13,7 @@ import {
 import { VirusInfection, BacteriaInfection } from "./infection";
 
 import { NewsMessage } from "./NewsMessage";
+import { WhiteBloodcell, TCell } from "./immune-system/antibodys";
 
 const TicksPerDay = 15 * 24;
 
@@ -25,6 +26,9 @@ export class Game {
   bacteria: Bacteria[];
   virusInfections: VirusInfection[];
   bacterialInfections: BacteriaInfection[];
+  // Added this to the game, as it is the same level as diseases. Move to Body?
+  whiteCells: WhiteBloodcell;
+  tCells: TCell[];
 
   effects: Effect[] = [];
 
@@ -37,6 +41,11 @@ export class Game {
     this.body = body;
     this.viruses = makeVirusArray();
     this.bacteria = makeBacteriaArray();
+
+    //Added Michael
+    this.whiteCells = new WhiteBloodcell();
+    //Game starts without TCells
+    this.tCells = [];
 
     this.hand = new Hand();
     this.deck.shuffle();
@@ -86,6 +95,12 @@ export class Game {
       }
     }
     this.effects = this.effects.filter(effect => effect.duration > 0);
+  }
+
+  //FIGHT!
+  whiteCellsBattleDisease() {
+    this.whiteCells.doBattle(this.bacteria);
+    this.whiteCells.doBattle(this.viruses);
   }
 
   playCard(card: Card) {

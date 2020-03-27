@@ -1,6 +1,6 @@
 export interface Disease {
   Name: string;
-  InitialInfectionCount: number;
+  Count: number;
   //How long is the body immune after infection [days]
   ImmunityPeriod: number;
   //Chance to be infected in Percent per Day
@@ -24,7 +24,7 @@ export interface Bacteria extends Disease {
 
 export class Influenza implements Virus {
   Name = "Influenza";
-  InitialInfectionCount = 100;
+  Count = 100;
   ImmunityPeriod = 365;
   ChanceOfInfection = 1;
   HostMaxAge = 999;
@@ -35,7 +35,7 @@ export class Influenza implements Virus {
 
 export class Measels implements Virus {
   Name = "Measels";
-  InitialInfectionCount = 100;
+  Count = 100;
   ImmunityPeriod = 999999999999999999999999;
   ChanceOfInfection = 3;
   HostMaxAge = 16;
@@ -46,7 +46,7 @@ export class Measels implements Virus {
 
 export class Corona implements Virus {
   Name = "Corona";
-  InitialInfectionCount = 100;
+  Count = 100;
   ImmunityPeriod = 450;
   ChanceOfInfection = 1;
   HostMaxAge = 999;
@@ -57,7 +57,7 @@ export class Corona implements Virus {
 
 export class CommonCold implements Bacteria {
   Name = "CommonCold";
-  InitialInfectionCount = 1000;
+  Count = 1000;
   ImmunityPeriod = 0;
   ChanceOfInfection = 5;
   HostMaxAge = 999;
@@ -68,7 +68,7 @@ export class CommonCold implements Bacteria {
 
 export class Pneumonia implements Bacteria {
   Name = "Pneumonia";
-  InitialInfectionCount = 1000;
+  Count = 1000;
   ImmunityPeriod = 0;
   ChanceOfInfection = 1;
   HostMaxAge = 999;
@@ -79,7 +79,7 @@ export class Pneumonia implements Bacteria {
 
 export class Tuberculosis implements Bacteria {
   Name = "Tuberculosis";
-  InitialInfectionCount = 1000;
+  Count = 1000;
   ImmunityPeriod = 0;
   ChanceOfInfection = 0.5;
   HostMaxAge = 999;
@@ -88,14 +88,13 @@ export class Tuberculosis implements Bacteria {
   TimeToDoubleCount = 1;
 }
 
-
 export function makeVirusArray() {
   // TODO: add more diseases from above -- but 2 or 3 is enough for prototype
-  return [new Influenza(), new Corona()]
+  return [new Influenza(), new Corona()];
 }
 
 export function makeBacteriaArray() {
-  return  [new CommonCold()]
+  return [new CommonCold()];
 }
 
 //1 TCell can Neutralzie 1 Virus
