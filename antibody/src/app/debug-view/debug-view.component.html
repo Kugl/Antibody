@@ -5,4 +5,4 @@
 <p>Cards in Deck: {{ game.deck.cards.length }}</p>
 <p>Cards in Graveyard: {{ game.deck.graveyard.length }}</p>
 <p *ngFor="let disease of game.body.diseases">{{ disease.Name }}: {{disease.Count}}</p>
-<p *ngFor="let defender of game.body.defensePool">{{ defender.Name }}: {{defender.Count}}</p>
+<p *ngFor="let defender of game.body.defensePool.defenders">{{ defender.name }}: {{defender.count}}</p>
