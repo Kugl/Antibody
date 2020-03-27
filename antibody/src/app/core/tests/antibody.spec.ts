@@ -50,7 +50,7 @@ describe("Antibodys", () => {
     tCell.TargetDisease = viruses[0].Name;
     let initialCount = viruses[0].Count;
     let combatPower = tCell.Count * tCell.CombatPower;
-    tCell.fightVirus(viruses);
+    tCell.fight(viruses);
     expect(viruses[0].Count).toEqual(initialCount - combatPower);
   });
 
@@ -58,7 +58,7 @@ describe("Antibodys", () => {
     tCell.TargetDisease = "SmallPox";
     let initialCount = viruses[0].Count;
     let combatPower = tCell.Count * tCell.CombatPower;
-    tCell.fightVirus(viruses);
+    tCell.fight(viruses);
     expect(viruses[0].Count).toEqual(initialCount);
   });
 });
