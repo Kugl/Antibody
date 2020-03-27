@@ -22,6 +22,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { DragDropModule } from "@angular/cdk/drag-drop";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
   imports: [
@@ -45,7 +46,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     //MatMenuModule,
     // MatPaginatorModule,
     MatProgressBarModule,
-    //MatProgressSpinnerModule,
+    MatProgressSpinnerModule,
     // MatRadioModule,
     MatRippleModule,
     //MatSelectModule,
@@ -82,7 +83,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     //MatMenuModule,
     //MatPaginatorModule,
     MatProgressBarModule,
-    //MatProgressSpinnerModule,
+    MatProgressSpinnerModule,
     //MatRadioModule,
     MatRippleModule,
     //MatSelectModule,

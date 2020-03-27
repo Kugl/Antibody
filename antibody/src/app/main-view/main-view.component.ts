@@ -13,6 +13,7 @@ export class MainViewComponent implements OnInit {
   defenses: DefensePool;
   diseases: Disease[];
   currentGame: Game;
+  health: number = 90;
 
   constructor(private centServ: CentralService) {
     this.currentGame = this.centServ.getGame();
