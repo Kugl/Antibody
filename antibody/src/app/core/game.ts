@@ -2,14 +2,19 @@ import { Deck } from "./deck";
 import { Card } from "./card";
 import { Body } from "./body";
 import { Effect } from "./effects/effect";
-import { Hand } from "./hand"
-import { Graveyard } from './graveyard';
-import { makeVirusArray, makeBacteriaArray, Virus, Bacteria } from './diseases/diseases'
-import { VirusInfection, BacteriaInfection } from './infection';
-import { randomBytes } from 'crypto';
-import { NewsMessage } from './NewsMessage';
+import { Hand } from "./hand";
+import { Graveyard } from "./graveyard";
+import {
+  makeVirusArray,
+  makeBacteriaArray,
+  Virus,
+  Bacteria
+} from "./diseases/diseases";
+import { VirusInfection, BacteriaInfection } from "./infection";
 
-const TicksPerDay = 15 * 24
+import { NewsMessage } from "./NewsMessage";
+
+const TicksPerDay = 15 * 24;
 
 export class Game {
   deck: Deck;
@@ -22,7 +27,7 @@ export class Game {
   bacterialInfections: BacteriaInfection[];
 
   effects: Effect[] = [];
-  
+
   news: NewsMessage[] = [];
 
   tickCount = 0;
@@ -35,8 +40,8 @@ export class Game {
 
     this.hand = new Hand();
     this.deck.shuffle();
-    while(this.hand.cards.length < 3 && this.deck.cards.length > 0) {
-      this.drawCard()
+    while (this.hand.cards.length < 3 && this.deck.cards.length > 0) {
+      this.drawCard();
     }
   }
 
@@ -46,15 +51,15 @@ export class Game {
     }
     if (this.deck.cards.length < 1) {
       alert("NO CARDS IN DECK AND GRAVEYARD");
-      return
+      return;
     }
-    const drawnCard = this.deck.drawCard()
-    this.hand.cards.push(drawnCard)
+    const drawnCard = this.deck.drawCard();
+    this.hand.cards.push(drawnCard);
   }
 
   discardCard(card: Card) {
-    this.hand.remove(card)
-    this.deck.graveyard.push(card)
+    this.hand.remove(card);
+    this.deck.graveyard.push(card);
   }
 
   /**
@@ -64,13 +69,19 @@ export class Game {
     this.tickCount += 1;
     for (let effect of this.effects) {
       effect.duration -= 1;
-      if(effect.duration == 0) {
-        effect.deactivate(this)
+      if (effect.duration == 0) {
+        effect.deactivate(this);
       }
     }
     for (let virus of this.viruses) {
-      if (Math.random() < virus.ChanceOfInfection / TicksPerDay + 0.01) { // +0.01 is for testing only, to have more frequent infections
-        this.news.push(new NewsMessage(this.tickCount.toString(), "You have been infected with " + virus.Name))
+      if (Math.random() < virus.ChanceOfInfection / TicksPerDay + 0.01) {
+        // +0.01 is for testing only, to have more frequent infections
+        this.news.push(
+          new NewsMessage(
+            this.tickCount.toString(),
+            "You have been infected with " + virus.Name
+          )
+        );
         // TODO: 1) check if infection already exists; 2) if not, add infection to list of active infections. 3) handle infections in tick method.
       }
     }
@@ -79,11 +90,11 @@ export class Game {
 
   playCard(card: Card) {
     console.log("played ", card.title);
-    for(let effect of card.effects) {
-      effect.activate(this)
+    for (let effect of card.effects) {
+      effect.activate(this);
     }
     this.effects = this.effects.concat(card.effects);
-    this.discardCard(card)
+    this.discardCard(card);
   }
 
   get Deck() {
