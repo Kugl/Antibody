@@ -11,7 +11,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 
 import { MatDialogModule } from "@angular/material/dialog";
-
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
 
@@ -22,11 +21,13 @@ import { MatRippleModule } from "@angular/material/core";
 import { MatSidenavModule } from "@angular/material/sidenav";
 
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { DragDropModule } from "@angular/cdk/drag-drop";
 
 @NgModule({
   imports: [
     // MatAutocompleteModule,
     // MatBadgeModule,
+    DragDropModule,
     MatButtonModule,
     // MatButtonToggleModule,
     MatCardModule,
@@ -63,6 +64,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
   exports: [
     //MatAutocompleteModule,
     //MatBadgeModule,
+    DragDropModule,
     MatButtonModule,
     //MatButtonToggleModule,
     MatCardModule,

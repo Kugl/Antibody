@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { Card } from "../core/card";
 import { CentralService } from "../services/central.service";
 import { Game } from "../core/game";
+import { CdkDragDrop } from "@angular/cdk/drag-drop";
 
 @Component({
   selector: "app-hand",
@@ -11,7 +12,10 @@ import { Game } from "../core/game";
 export class HandComponent implements OnInit {
   cards: Card[] = [];
   currentGame: Game;
-  constructor(private centServ: CentralService, private cdref: ChangeDetectorRef) {
+  constructor(
+    private centServ: CentralService,
+    private cdref: ChangeDetectorRef
+  ) {
     this.currentGame = this.centServ.getGame();
     this.cards = this.currentGame.hand.cards;
   }
@@ -19,9 +23,9 @@ export class HandComponent implements OnInit {
   ngOnInit(): void {}
 
   drawCard() {
-    this.centServ.drawCard()
-    this.cdref.detectChanges()
-    console.log(this.cards)
+    this.centServ.drawCard();
+    this.cdref.detectChanges();
+    console.log(this.cards);
   }
 
   playCard(card: Card) {
@@ -33,5 +37,11 @@ export class HandComponent implements OnInit {
 
   discardCard(card: Card) {
     this.centServ.discardCard(card);
+  }
+
+  drop(event: CdkDragDrop<string[]>, card: Card) {
+    if (event.distance.y < -150) {
+      this.playCard(card);
+    }
   }
 }
