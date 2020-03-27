@@ -15,7 +15,7 @@
 
   <!--<router-outlet></router-outlet>-->
 
-  <div fxLayout fxFlex="1 0 600px">
+  <div fxLayout="row" fxFlex="1 0 600px">
     <div
       fxFlex="1 1 20em"
       class="p-2"
@@ -34,9 +34,10 @@
       fxLayout="column"
       fxLayoutAlign="space-between stretch"
       class="p-2"
+      style="overflow-y: hidden"
     >
-      <app-main-view fxFlex="1 0 0"></app-main-view>
-      <app-hand fxFlex="0 1 0"></app-hand>
+      <app-main-view fxFlex="1 1 100px"></app-main-view>
+      <app-hand fxFlex="0 0 0"></app-hand>
     </div>
   </div>
   <div fxFlex="0 0 0">
