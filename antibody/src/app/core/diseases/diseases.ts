@@ -13,7 +13,7 @@ export class Disease {
 
   spread() {}
   infect() {
-    this.Count = 100000
+    this.Count = 1000
   }
 
   toString(): string {
@@ -27,7 +27,7 @@ export class Virus extends Disease {
   HostCells: number = 0;
 
   infect() {
-    this.Count = 1000000
+    this.Count = 1000
     this.HostCells = 5
   }
 

@@ -29,9 +29,9 @@ export class Body {
         this.maybeGetInfected(disease)
       }
     }
-    //this.mucusFlushesDiseases()
+    this.mucusFlushesDiseases()
     //this.tCellsBattleViruses();
-    //this.whiteCellsBattleDisease();
+    this.whiteCellsBattleDisease();
   }
 
 

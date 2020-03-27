@@ -5,7 +5,6 @@ import { Effect } from "./effects/effect";
 import { Hand } from "./hand";
 import { Graveyard } from "./graveyard";
 
-import { TicksPerDay, MillisecondsPerDay } from "./constants";
 import { NewsTicker } from "./newsTicker";
 import { Clock } from './clock';
 
