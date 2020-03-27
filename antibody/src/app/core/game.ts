@@ -114,7 +114,7 @@ export class Game {
       tCell.fightVirus(this.viruses);
     }
   }
-
+  //TODO: cahnge to non-hard coded
   mucusFlushesDiseases(diseases: Disease[]) {
     for (let dis of diseases) {
       dis.Count = dis.Count * (1 - this.body.mucusProduction * 0.05);
