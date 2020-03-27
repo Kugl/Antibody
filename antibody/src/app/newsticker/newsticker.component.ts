@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { interval, timer } from 'rxjs'
-import { NewsMessage } from '../core/NewsMessage'
+import { NewsMessage } from '../core/newsMessage'
 import { CentralService } from '../services/central.service';
 
 @Component({

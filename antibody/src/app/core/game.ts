@@ -12,10 +12,11 @@ import {
 } from "./diseases/diseases";
 import { VirusInfection, BacteriaInfection } from "./infection";
 
-import { NewsMessage } from "./NewsMessage";
+import { NewsMessage } from "./newsMessage";
 import { WhiteBloodcell, TCell } from "./immune-system/antibodys";
 
 const TicksPerDay = 15 * 24;
+const MillisecondsPerDay = 1000 * 60 * 60 * 24
 
 export class Game {
   deck: Deck;
@@ -87,7 +88,7 @@ export class Game {
         // +0.01 is for testing only, to have more frequent infections
         this.news.push(
           new NewsMessage(
-            this.tickCount.toString(),
+            this.date,
             "You have been infected with " + virus.Name
           )
         );
@@ -121,5 +122,12 @@ export class Game {
 
   get Deck() {
     return this.deck;
+  }
+
+  get date(): string {
+    const startDate = new Date(2021, 0, 1, 0, 0, 0, 0)
+    console.log(this.tickCount / TicksPerDay)
+    startDate.setTime(startDate.getTime() + this.tickCount / TicksPerDay * MillisecondsPerDay)
+    return startDate.toLocaleString()
   }
 }
