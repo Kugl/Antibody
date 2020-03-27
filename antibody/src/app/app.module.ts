@@ -16,6 +16,7 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BackdropComponent } from "./backdrop/backdrop.component";
 import { RoundPipe } from "./pipes/round.pipe";
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RoundPipe } from "./pipes/round.pipe";
     DebugViewComponent,
     NavbarComponent,
     RoundPipe,
-    BackdropComponent
+    BackdropComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
