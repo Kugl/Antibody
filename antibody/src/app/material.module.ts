@@ -13,7 +13,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
-
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatListModule } from "@angular/material/list";
 
 import { MatRippleModule } from "@angular/material/core";
@@ -44,7 +44,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     MatListModule,
     //MatMenuModule,
     // MatPaginatorModule,
-    //MatProgressBarModule,
+    MatProgressBarModule,
     //MatProgressSpinnerModule,
     // MatRadioModule,
     MatRippleModule,
@@ -81,7 +81,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     MatListModule,
     //MatMenuModule,
     //MatPaginatorModule,
-    //MatProgressBarModule,
+    MatProgressBarModule,
     //MatProgressSpinnerModule,
     //MatRadioModule,
     MatRippleModule,
