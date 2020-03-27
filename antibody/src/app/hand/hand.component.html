@@ -15,4 +15,22 @@
   >
     <app-card [card]="card"></app-card>
   </div>
+  <div>
+    <div>
+      <button mat-button disabled class="box-button">
+        {{ currentGame.Deck.graveyard.length }}
+        <button mat-icon-button>
+          <mat-icon>add</mat-icon>
+        </button>
+      </button>
+    </div>
+    <div>
+      <button mat-button disabled>
+        {{ currentGame.Deck.cards.length }}
+        <button mat-icon-button class="box-button">
+          <mat-icon>how_to_vote</mat-icon>
+        </button>
+      </button>
+    </div>
+  </div>
 </div>
