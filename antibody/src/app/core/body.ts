@@ -2,6 +2,7 @@ import { WhiteBloodcell, TCell } from "./immune-system/antibodys";
 import { Disease, makeDiseaseArray } from "./diseases/diseases";
 import { TicksPerDay } from "./constants"
 import { Game } from './game';
+import { NewsTicker } from './newsTicker';
 
 export class Body {
   fever: boolean = false
@@ -12,7 +13,7 @@ export class Body {
   whiteCells: WhiteBloodcell;
   tCells: TCell[];
 
-  game: Game;
+  newsTicker: NewsTicker;
 
   constructor() {
     this.diseases = makeDiseaseArray();
@@ -38,7 +39,7 @@ export class Body {
       // +0.01 is for testing only, to have more frequent infections
     if (Math.random() < disease.ChanceOfInfection / TicksPerDay + 0.01) {
       disease.infect()
-      this.game.publishNews("You have been infected with " + disease.Name);
+      this.newsTicker.publishNews("You have been infected with " + disease.Name);
     }
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { interval, timer } from 'rxjs'
-import { NewsMessage } from '../core/newsMessage'
+import { NewsMessage } from '../core/newsTicker'
 import { CentralService } from '../services/central.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class NewstickerComponent implements OnInit {
   readonly OPACITY_DECREASE_FACTOR = 10.0
 
   constructor(centralService: CentralService){
-    this.news = centralService.getGame().news;
+    this.news = centralService.getGame().newsTicker.news;
    }
 
   ngOnInit(): void {
