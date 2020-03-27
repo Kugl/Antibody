@@ -16,7 +16,7 @@ import { NewsMessage } from "./newsMessage";
 import { WhiteBloodcell, TCell } from "./immune-system/antibodys";
 
 const TicksPerDay = 15 * 24;
-const MillisecondsPerDay = 1000 * 60 * 60 * 24
+const MillisecondsPerDay = 1000 * 60 * 60 * 24;
 
 export class Game {
   deck: Deck;
@@ -95,6 +95,7 @@ export class Game {
         // TODO: 1) check if infection already exists; 2) if not, add infection to list of active infections. 3) handle infections in tick method.
       }
     }
+    this.tCellsBattleViruses();
     this.whiteCellsBattleDisease();
     this.effects = this.effects.filter(effect => effect.duration > 0);
   }
@@ -125,9 +126,11 @@ export class Game {
   }
 
   get date(): string {
-    const startDate = new Date(2021, 0, 1, 0, 0, 0, 0)
-    console.log(this.tickCount / TicksPerDay)
-    startDate.setTime(startDate.getTime() + this.tickCount / TicksPerDay * MillisecondsPerDay)
-    return startDate.toLocaleString()
+    const startDate = new Date(2021, 0, 1, 0, 0, 0, 0);
+    console.log(this.tickCount / TicksPerDay);
+    startDate.setTime(
+      startDate.getTime() + (this.tickCount / TicksPerDay) * MillisecondsPerDay
+    );
+    return startDate.toLocaleString();
   }
 }
