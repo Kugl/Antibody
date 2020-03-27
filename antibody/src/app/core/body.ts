@@ -1,8 +1,8 @@
 import { WhiteBloodcell, TCell } from "./immune-system/antibodys";
 import { Disease, makeDiseaseArray } from "./diseases/diseases";
 import { TicksPerDay } from "./constants"
-import { Game } from './game';
-import { NewsTicker } from './newsTicker';
+import { DefensePool } from "./defense"
+import { NewsTicker } from "./newsTicker";
 
 export class Body {
   fever: boolean = false
@@ -10,18 +10,27 @@ export class Body {
   mucusProduction: number = 0
 
   diseases: Disease[];
-  whiteCells: WhiteBloodcell;
-  tCells: TCell[];
+  defensePool: DefensePool;
+  mobilizationRate: number = 0.1; // fraction of defenses that can be mobilized per day
 
   newsTicker: NewsTicker;
 
   constructor() {
     this.diseases = makeDiseaseArray();
-    this.whiteCells = new WhiteBloodcell();
-    this.tCells = [];
+    this.defensePool = new DefensePool();
   }
 
   tick() {
+    this.handleInfections()
+    this.defensePool.grow()
+    this.mobilize()
+  }
+
+  mobilize() {
+    
+  }
+
+  handleInfections() {
     for (let disease of this.diseases) {
       if (disease.Count > 0) {
         disease.spread()
@@ -29,9 +38,6 @@ export class Body {
         this.maybeGetInfected(disease)
       }
     }
-    this.mucusFlushesDiseases()
-    //this.tCellsBattleViruses();
-    this.whiteCellsBattleDisease();
   }
 
 
@@ -40,24 +46,6 @@ export class Body {
     if (Math.random() < disease.ChanceOfInfection / TicksPerDay + 0.01) {
       disease.infect()
       this.newsTicker.publishNews("You have been infected with " + disease.Name);
-    }
-  }
-
-    //OO
-  //FIGHT!
-  whiteCellsBattleDisease() {
-    this.whiteCells.doBattle(this.diseases);
-  }
-
-  tCellsBattleViruses() {
-    for (let tCell of this.tCells) {
-      tCell.fight(this.diseases);
-    }
-  }
-  //TODO: cahnge to non-hard coded
-  mucusFlushesDiseases() {
-    for (let dis of this.diseases) {
-      dis.Count = dis.Count * (1 - this.mucusProduction * 0.05);
     }
   }
 
