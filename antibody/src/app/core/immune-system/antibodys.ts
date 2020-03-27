@@ -25,11 +25,13 @@ export class WhiteBloodcell implements WhiteBloodcell {
   Count: number = 5000;
   //Upper limit for Balancing reasons
   MaxCount: number = 500000;
+  //Fraction of cells that sacrifice themselves on a day.
+  CombatPower: number = 0.1;
 
-  doBattle(disease: Disease[]) {
+  doBattle(disease: Disease[]): void {
     //Can only fight if tehre are at least 1000
     if (this.Count > 1000) {
-      let strength = this.Count * 0.1;
+      let strength = this.Count * this.CombatPower;
       for (let dis of disease) {
         let initialCount = dis.Count;
         dis.Count = dis.Count - strength;
