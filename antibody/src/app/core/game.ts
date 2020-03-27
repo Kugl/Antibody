@@ -6,7 +6,8 @@ import { Hand } from "./hand";
 import { Graveyard } from "./graveyard";
 
 import { TicksPerDay, MillisecondsPerDay } from "./constants";
-import { NewsMessage } from "./message";
+import { NewsTicker } from "./newsTicker";
+import { Clock } from './clock';
 
 export class Game {
   deck: Deck;
@@ -16,15 +17,17 @@ export class Game {
 
   effects: Effect[] = [];
 
-  news: NewsMessage[] = [];
-
-  tickCount = 0;
+  newsTicker: NewsTicker;
+  clock: Clock;
 
   constructor(deck: Deck, body: Body) {
     this.deck = deck;
     this.body = body;
-    this.body.game = this;
+    this.clock = new Clock();
 
+    this.newsTicker = new NewsTicker(this.clock)
+    this.body.newsTicker = this.newsTicker;
+    
     this.hand = new Hand();
     this.deck.shuffle();
     while (this.hand.cards.length < 3 && this.deck.cards.length > 0) {
@@ -53,7 +56,7 @@ export class Game {
    * progresses game state by one unit of time
    */
   tick() {
-    this.tickCount += 1;
+    this.clock.tick()
     for (let effect of this.effects) {
       effect.duration -= 1;
       if (effect.duration == 0) {
@@ -62,10 +65,6 @@ export class Game {
     }
     this.effects = this.effects.filter(effect => effect.duration > 0);
     this.body.tick()
-  }
-
-  publishNews(content: string) {
-    this.news.push(new NewsMessage(this.date, content));
   }
 
   playCard(card: Card) {
@@ -79,14 +78,5 @@ export class Game {
 
   get Deck() {
     return this.deck;
-  }
-
-  get date(): string {
-    const startDate = new Date(2021, 0, 1, 0, 0, 0, 0);
-    //console.log(this.tickCount / TicksPerDay);
-    startDate.setTime(
-      startDate.getTime() + (this.tickCount / TicksPerDay) * MillisecondsPerDay
-    );
-    return startDate.toLocaleString();
   }
 }
