@@ -9,6 +9,7 @@
   <div
     *ngFor="let card of cards; let i = index"
     cdkDropList
+    [@inOutAnimation]
     cdkDropListOrientation="horizontal"
     (cdkDropListDropped)="drop($event, card)"
   >
