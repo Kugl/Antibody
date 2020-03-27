@@ -105,6 +105,12 @@ export class Game {
     this.whiteCells.doBattle(this.viruses);
   }
 
+  tCellsBattleViruses() {
+    for (let tCell of this.tCells) {
+      tCell.fightVirus(this.viruses);
+    }
+  }
+
   playCard(card: Card) {
     console.log("played ", card.title);
     for (let effect of card.effects) {
