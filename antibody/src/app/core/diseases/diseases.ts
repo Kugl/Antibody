@@ -19,6 +19,8 @@ export interface Bacteria extends Disease {
   TimeToDoubleCount: number;
 }
 
+// TODO: consider implementing diseases as instances? Could be easier to handle.
+
 export class Influenza implements Virus {
   InitialInfectionCount = 100;
   ImmunityPeriod = 365;
