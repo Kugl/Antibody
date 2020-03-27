@@ -1,54 +1,61 @@
 import { WhiteBloodcell, TCell } from "./immune-system/antibodys";
-import { Virus, Bacteria, makeVirusArray, makeBacteriaArray } from "./diseases/diseases";
+import { Disease, makeDiseaseArray } from "./diseases/diseases";
 import { TicksPerDay } from "./constants"
+import { Game } from './game';
 
 export class Body {
   fever: boolean = false
   temperature: number = 37
   mucusProduction: number = 0
 
-  viruses: Virus[];
-  bacteria: Bacteria[];
+  diseases: Disease[];
   whiteCells: WhiteBloodcell;
   tCells: TCell[];
 
+  game: Game;
+
   constructor() {
-    this.viruses = makeVirusArray();
-    this.bacteria = makeBacteriaArray();
+    this.diseases = makeDiseaseArray();
     this.whiteCells = new WhiteBloodcell();
     this.tCells = [];
   }
 
-  tick(game) {
-    for (let virus of this.viruses) {
-      if (Math.random() < virus.ChanceOfInfection / TicksPerDay + 0.01) {
-        // +0.01 is for testing only, to have more frequent infections
-        game.publishNews("You have been infected with " + virus.Name);
+  tick() {
+    for (let disease of this.diseases) {
+      if (disease.Count > 0) {
+        disease.spread()
+      } else {
+        this.maybeGetInfected(disease)
       }
     }
-    this.mucusFlushesDiseases()
-    this.tCellsBattleViruses();
-    this.whiteCellsBattleDisease();
+    //this.mucusFlushesDiseases()
+    //this.tCellsBattleViruses();
+    //this.whiteCellsBattleDisease();
+  }
+
+
+  maybeGetInfected(disease) {
+      // +0.01 is for testing only, to have more frequent infections
+    if (Math.random() < disease.ChanceOfInfection / TicksPerDay + 0.01) {
+      disease.infect()
+      this.game.publishNews("You have been infected with " + disease.Name);
+    }
   }
 
     //OO
   //FIGHT!
   whiteCellsBattleDisease() {
-    this.whiteCells.doBattle(this.bacteria);
-    this.whiteCells.doBattle(this.viruses);
+    this.whiteCells.doBattle(this.diseases);
   }
 
   tCellsBattleViruses() {
     for (let tCell of this.tCells) {
-      tCell.fightVirus(this.viruses);
+      tCell.fight(this.diseases);
     }
   }
   //TODO: cahnge to non-hard coded
   mucusFlushesDiseases() {
-    for (let dis of this.bacteria) {
-      dis.Count = dis.Count * (1 - this.mucusProduction * 0.05);
-    }
-    for (let dis of this.viruses) {
+    for (let dis of this.diseases) {
       dis.Count = dis.Count * (1 - this.mucusProduction * 0.05);
     }
   }

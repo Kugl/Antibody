@@ -1,4 +1,6 @@
-export interface Disease {
+import { TicksPerDay } from '../constants';
+
+export class Disease {
   Name: string;
   Count: number;
   //How long is the body immune after infection [days]
@@ -8,23 +10,50 @@ export interface Disease {
   HostMaxAge: number;
   HostMinAge: number;
   Deadliness: number;
+
+  spread() {}
+  infect() {
+    this.Count = 100000
+  }
+
+  toString(): string {
+    return this.Name + ": " + this.Count;
+  }
 }
 // 10 Virus infect one host cell. This cell start then producing viruses until it is destroyed
-export interface Virus extends Disease {
+export class Virus extends Disease {
   //Number of viruses produced by an active Host per day
   NumberPerHostCell: number;
+  HostCells: number = 0;
+
+  infect() {
+    this.Count = 1000000
+    this.HostCells = 5
+  }
+
+  spread() {
+    this.Count += this.NumberPerHostCell * this.HostCells / TicksPerDay;
+  }
+
+  toString(): string {
+    return this.Name + ": " + this.Count + " (" + this.HostCells + " host cells.)";
+  }
 }
 
 //Bacteria Devide and double the number after a Time x
-export interface Bacteria extends Disease {
-  TimeToDoubleCount: number;
+export class Bacteria extends Disease {
+  GrowthPerDay: number;
+
+  spread () {
+    this.Count *= Math.pow(this.GrowthPerDay, 1/TicksPerDay)
+  }
 }
 
 // TODO: consider implementing diseases as instances? Might be easier to handle. Let's see.
 
-export class Influenza implements Virus {
+export class Influenza extends Virus {
   Name = "Influenza";
-  Count = 100;
+  Count = 0;
   ImmunityPeriod = 365;
   ChanceOfInfection = 1;
   HostMaxAge = 999;
@@ -33,9 +62,9 @@ export class Influenza implements Virus {
   NumberPerHostCell = 500;
 }
 
-export class Measels implements Virus {
+export class Measels extends Virus {
   Name = "Measels";
-  Count = 100;
+  Count = 0;
   ImmunityPeriod = 999999999999999999999999;
   ChanceOfInfection = 3;
   HostMaxAge = 16;
@@ -44,9 +73,9 @@ export class Measels implements Virus {
   NumberPerHostCell = 500;
 }
 
-export class Corona implements Virus {
+export class Corona extends Virus {
   Name = "Corona";
-  Count = 100;
+  Count = 0;
   ImmunityPeriod = 450;
   ChanceOfInfection = 1;
   HostMaxAge = 999;
@@ -55,37 +84,37 @@ export class Corona implements Virus {
   NumberPerHostCell = 500;
 }
 
-export class CommonCold implements Bacteria {
+export class CommonCold extends Bacteria {
   Name = "CommonCold";
-  Count = 1000;
+  Count = 0;
   ImmunityPeriod = 0;
   ChanceOfInfection = 5;
   HostMaxAge = 999;
   HostMinAge = 0;
   Deadliness = 1;
-  TimeToDoubleCount = 1;
+  GrowthPerDay = 2;
 }
 
-export class Pneumonia implements Bacteria {
+export class Pneumonia extends Bacteria {
   Name = "Pneumonia";
-  Count = 1000;
+  Count = 0;
   ImmunityPeriod = 0;
   ChanceOfInfection = 1;
   HostMaxAge = 999;
   HostMinAge = 65;
   Deadliness = 9;
-  TimeToDoubleCount = 1;
+  GrowthPerDay = 2;
 }
 
-export class Tuberculosis implements Bacteria {
+export class Tuberculosis extends Bacteria {
   Name = "Tuberculosis";
-  Count = 1000;
+  Count = 0;
   ImmunityPeriod = 0;
   ChanceOfInfection = 0.5;
   HostMaxAge = 999;
   HostMinAge = 0;
   Deadliness = 9;
-  TimeToDoubleCount = 1;
+  GrowthPerDay = 2;
 }
 
 export function makeVirusArray() {
@@ -95,6 +124,11 @@ export function makeVirusArray() {
 
 export function makeBacteriaArray() {
   return [new CommonCold()];
+}
+
+
+export function makeDiseaseArray() {
+  return [new CommonCold(), new Influenza(), new Corona()];
 }
 
 //1 TCell can Neutralzie 1 Virus

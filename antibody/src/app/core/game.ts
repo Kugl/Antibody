@@ -23,6 +23,7 @@ export class Game {
   constructor(deck: Deck, body: Body) {
     this.deck = deck;
     this.body = body;
+    this.body.game = this;
 
     this.hand = new Hand();
     this.deck.shuffle();
@@ -60,7 +61,7 @@ export class Game {
       }
     }
     this.effects = this.effects.filter(effect => effect.duration > 0);
-    this.body.tick(this);
+    this.body.tick()
   }
 
   publishNews(content: string) {
