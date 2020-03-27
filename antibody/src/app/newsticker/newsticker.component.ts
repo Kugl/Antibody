@@ -18,4 +18,6 @@ export class NewstickerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  max = Math.max
+
 }
