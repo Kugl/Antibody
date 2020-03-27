@@ -1,5 +1,5 @@
-<div fxLayout="row" fxLayoutAlign="space-between" style="height: 100%;">
-  <div fxFlex="4 1 auto">
+<div fxLayout="row" fxLayoutAlign="space-between" fxFlexFill>
+  <div fxFlex="4 1 100%" style="overflow-y: auto">
     <h1>Diseases:</h1>
     <mat-card *ngFor="let disease of diseases">
       <mat-card-header>
@@ -26,7 +26,7 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <div fxFlex="4 1 auto">
+  <div fxFlex="4 1 100%" style="overflow-y: auto">
     <h1>Immune Response:</h1>
     <mat-card *ngFor="let defender of defenses.defenders">
       <mat-card-header>
@@ -50,7 +50,7 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <div fxFlex="1 4 auto">
+  <div fxFlex="1 4 100%">
     <h1>Health:</h1>
     <mat-progress-spinner
       value="{{ health }}"
