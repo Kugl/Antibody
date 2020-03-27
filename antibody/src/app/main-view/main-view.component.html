@@ -24,14 +24,12 @@
   </div>
   <div fxFlex="4 1 auto">
     <h1>Immune Response:</h1>
-    <mat-card>
+    <mat-card *ngFor="let defender of defenses.defenders">
       <mat-card-header>
-        <mat-card-title>Macrophages:</mat-card-title>
+        <mat-card-title>{{ defender.name }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>
-          100.000.000 (+100/h)
-        </p>
+        <p>{{ defender.count | round }} ( {{ defender.production }} /h)</p>
       </mat-card-content>
     </mat-card>
     <mat-card>
