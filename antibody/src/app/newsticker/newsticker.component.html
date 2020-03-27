@@ -1,7 +1,7 @@
 <div class="spacer" style="width: 20em">Newsflash</div>
 <div
   *ngFor="let newsItem of news?.slice().reverse(); let i = index"
-  [style.color]="'rgba(255, 255, 255, '+ max(0.3, 1.0/((i+3.0)/3.0)) + ')'"
+  [style.color]="'rgba(255, 255, 255, '+ max(MINIMUM_OPCAITY, 1.0/((i+OPACITY_DECREASE_FACTOR)/OPACITY_DECREASE_FACTOR)) + ')'"
 >
   <i>{{ newsItem.time }}</i> - {{ newsItem.content }}
 </div>
