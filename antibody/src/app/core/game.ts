@@ -6,7 +6,7 @@ import { Hand } from "./hand";
 import { Graveyard } from "./graveyard";
 
 import { TicksPerDay, MillisecondsPerDay } from "./constants";
-import { NewsMessage } from "./newsMessage";
+import { NewsMessage } from "./message";
 
 export class Game {
   deck: Deck;
