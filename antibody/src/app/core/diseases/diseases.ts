@@ -1,4 +1,5 @@
 export interface Disease {
+  Name: string;
   InitialInfectionCount: number;
   //How long is the body immune after infection [days]
   ImmunityPeriod: number;
@@ -19,9 +20,10 @@ export interface Bacteria extends Disease {
   TimeToDoubleCount: number;
 }
 
-// TODO: consider implementing diseases as instances? Could be easier to handle.
+// TODO: consider implementing diseases as instances? Might be easier to handle. Let's see.
 
 export class Influenza implements Virus {
+  Name = "Influenza";
   InitialInfectionCount = 100;
   ImmunityPeriod = 365;
   ChanceOfInfection = 1;
@@ -32,6 +34,7 @@ export class Influenza implements Virus {
 }
 
 export class Measels implements Virus {
+  Name = "Measels";
   InitialInfectionCount = 100;
   ImmunityPeriod = 999999999999999999999999;
   ChanceOfInfection = 3;
@@ -42,6 +45,7 @@ export class Measels implements Virus {
 }
 
 export class Corona implements Virus {
+  Name = "Corona";
   InitialInfectionCount = 100;
   ImmunityPeriod = 450;
   ChanceOfInfection = 1;
@@ -52,6 +56,7 @@ export class Corona implements Virus {
 }
 
 export class CommonCold implements Bacteria {
+  Name = "CommonCold";
   InitialInfectionCount = 1000;
   ImmunityPeriod = 0;
   ChanceOfInfection = 5;
@@ -62,6 +67,7 @@ export class CommonCold implements Bacteria {
 }
 
 export class Pneumonia implements Bacteria {
+  Name = "Pneumonia";
   InitialInfectionCount = 1000;
   ImmunityPeriod = 0;
   ChanceOfInfection = 1;
@@ -72,6 +78,7 @@ export class Pneumonia implements Bacteria {
 }
 
 export class Tuberculosis implements Bacteria {
+  Name = "Tuberculosis";
   InitialInfectionCount = 1000;
   ImmunityPeriod = 0;
   ChanceOfInfection = 0.5;
@@ -79,6 +86,16 @@ export class Tuberculosis implements Bacteria {
   HostMinAge = 0;
   Deadliness = 9;
   TimeToDoubleCount = 1;
+}
+
+
+export function makeVirusArray() {
+  // TODO: add more diseases from above -- but 2 or 3 is enough for prototype
+  return [new Influenza(), new Corona()]
+}
+
+export function makeBacteriaArray() {
+  return  [new CommonCold()]
 }
 
 //1 TCell can Neutralzie 1 Virus

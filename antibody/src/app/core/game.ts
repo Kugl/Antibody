@@ -4,21 +4,35 @@ import { Body } from "./body";
 import { Effect } from "./effects/effect";
 import { Hand } from "./hand"
 import { Graveyard } from './graveyard';
+import { makeVirusArray, makeBacteriaArray, Virus, Bacteria } from './diseases/diseases'
+import { VirusInfection, BacteriaInfection } from './infection';
+import { randomBytes } from 'crypto';
+import { NewsMessage } from './NewsMessage';
+
+const TicksPerDay = 15 * 24
 
 export class Game {
   deck: Deck;
   hand: Hand;
   graveyard: Graveyard;
   body: Body;
-
+  viruses: Virus[];
+  bacteria: Bacteria[];
+  virusInfections: VirusInfection[];
+  bacterialInfections: BacteriaInfection[];
 
   effects: Effect[] = [];
+  
+  news: NewsMessage[] = [];
 
   tickCount = 0;
 
   constructor(deck: Deck, body: Body) {
     this.deck = deck;
     this.body = body;
+    this.viruses = makeVirusArray();
+    this.bacteria = makeBacteriaArray();
+
     this.hand = new Hand();
     this.deck.shuffle();
     while(this.hand.cards.length < 3 && this.deck.cards.length > 0) {
@@ -52,6 +66,11 @@ export class Game {
       effect.duration -= 1;
       if(effect.duration == 0) {
         effect.deactivate(this)
+      }
+    }
+    for (let virus of this.viruses) {
+      if (Math.random() < virus.ChanceOfInfection / TicksPerDay + 0.01) { // +0.01 is for testing only, to have more frequent infections
+        this.news.push(new NewsMessage(this.tickCount.toString(), "You have been infected with " + virus.Name))
       }
     }
     this.effects = this.effects.filter(effect => effect.duration > 0);
