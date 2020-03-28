@@ -9,7 +9,13 @@
       <mat-card-content>
         <div fxLayout>
           <div fxFlex="4 1 auto">
-            <p>Bacteria: {{ disease.Count | round }}</p>
+            <ng-container *ngIf="isVirus(disease); else elseTemplate">
+              <p>Viruses: {{ disease.Count | round }}</p>
+              <p>Host Cells: {{ disease.HostCells | round }}</p>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <p>Bacteria: {{ disease.Count | round }}</p>
+            </ng-template>
           </div>
           <div fxFlex="4 1 auto">
             <p *ngFor="let defender of disease.defenders">

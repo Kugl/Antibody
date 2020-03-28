@@ -2,7 +2,7 @@ import { Component, OnInit, Pipe } from "@angular/core";
 import { CentralService } from "../services/central.service";
 import { Defender, DefensePool } from "../core/defense";
 import { Game } from "../core/game";
-import { Disease } from "../core/diseases/diseases";
+import { Disease, Virus } from "../core/diseases/diseases";
 
 @Component({
   selector: "app-main-view",
@@ -20,6 +20,10 @@ export class MainViewComponent implements OnInit {
     this.defenses = this.currentGame.body.defensePool;
     this.diseases = this.currentGame.body.diseases;
     console.log(this.defenses);
+  }
+
+  isVirus(dis: Disease) {
+    return dis instanceof Virus;
   }
 
   ngOnInit(): void {}
