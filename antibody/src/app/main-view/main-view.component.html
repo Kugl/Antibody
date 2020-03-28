@@ -64,7 +64,7 @@
     <mat-progress-spinner
       value="{{ health }}"
       mode="determinate"
-      color="accent"
+      color="{{ health > 20 ? 'accent' : 'warn' }}"
     >
     </mat-progress-spinner>
     <app-status></app-status>
