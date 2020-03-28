@@ -11,7 +11,6 @@ import { Subject } from "rxjs";
 
 export interface EffectEvent {
   Action: string;
-  effect: Effect;
 }
 
 export class Game {
@@ -67,10 +66,10 @@ export class Game {
       effect.duration -= 1;
       if (effect.duration == 0) {
         effect.deactivate(this);
-        this.EffectSubject.next({ Action: "Deactivate", effect });
       }
     }
     this.effects = this.effects.filter(effect => effect.duration > 0);
+    this.EffectSubject.next({ Action: "Deactivate" });
     this.body.tick();
   }
 
@@ -78,9 +77,9 @@ export class Game {
     console.log("played ", card.title);
     for (let effect of card.effects) {
       effect.activate(this);
-      this.EffectSubject.next({ Action: "Actiate", effect });
     }
     this.effects = this.effects.concat(card.effects);
+    this.EffectSubject.next({ Action: "Actiate" });
     this.discardCard(card);
   }
 
