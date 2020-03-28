@@ -84,12 +84,21 @@ export class Body {
   fightDiseases() {
     for (let disease of this.diseases) {
       if (disease.Count > 0) {
+        //Antibodys
         if (disease.defenders.length > 0) {
           for (let defender of disease.defenders) {
             defender.fight(disease);
           }
         }
+        //Bodily functions
+        this.mucusJettison(disease);
       }
+    }
+  }
+
+  mucusJettison(disease: Disease) {
+    for (let i = 0; i < this.mucusProduction; i++) {
+      disease.Count = disease.Count * 0.99;
     }
   }
 }
