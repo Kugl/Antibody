@@ -1,5 +1,13 @@
-<div class="container">
-  <div class="column">
+<div
+  fxLayout="row"
+  fxLayoutAlign="center end"
+  style="overflow: visible"
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  (cdkDropListDropped)="drop($event)"
+  class="drag-container"
+>
+  <div>
     <div>
       <button mat-raised-button color="primary" (click)="drawCard()">
         Draw
@@ -8,10 +16,12 @@
   </div>
   <div
     *ngFor="let card of cards; let i = index"
-    cdkDropList
     [@inOutAnimation]
-    cdkDropListOrientation="horizontal"
-    (cdkDropListDropped)="drop($event, card)"
+    style="overflow: hidden; cursor: pointer"
+    cdkDrag
+    [cdkDragData]="card"
+    class="drag-item"
+    (click)="playCard(card)"
   >
     <app-card [card]="card"></app-card>
   </div>
