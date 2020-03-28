@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { CentralService } from "src/app/services/central.service";
 import { Game } from "src/app/core/game";
 import { Effect } from "src/app/core/effects/effect";
@@ -9,25 +9,21 @@ import { Subscription } from "rxjs";
   templateUrl: "./status.component.html",
   styleUrls: ["./status.component.scss"]
 })
-export class StatusComponent implements OnInit {
+export class StatusComponent implements OnInit, OnDestroy {
   currentGame: Game;
   effects: Effect[];
   private sub: Subscription;
-  private sub2: Subscription;
 
   constructor(private centServ: CentralService) {
     this.currentGame = this.centServ.getGame();
-    this.sub = this.centServ.CardSubject.subscribe(event => {
-      if (event.Action == "Play") {
-        this.effects = this.currentGame.effects;
-      }
-    });
     this.sub = this.currentGame.EffectSubject.subscribe(event => {
-      if (event.Action == "Deactivate") {
-        this.effects = this.currentGame.effects;
-      }
+      this.effects = this.currentGame.effects;
     });
   }
 
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 }
