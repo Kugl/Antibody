@@ -53,7 +53,6 @@ export class CentralService {
   mainLoop(that) {
     let dateObject = new Date();
     let currentTime = dateObject.getTime();
-    console.log("mainloop", (currentTime - that.startTime) / that.game.clock.tickCount)
     let tickLength = that.tickLength;
     console.log(currentTime-that.lastTime)
     let timeDiff = currentTime - that.lastTime;
