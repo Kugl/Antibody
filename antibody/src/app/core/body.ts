@@ -32,6 +32,7 @@ export class Body {
     const rate = 1.0 - factorDay2Tick(1.0 - this.mobilizationRate); // the subtrahend is what we want to keep per tick
     for (let disease of this.diseases) {
       if (disease.Count < 1) {
+        this.demobilize(disease);
         continue;
       }
       for (let defender of disease.defenders) {
@@ -41,6 +42,19 @@ export class Body {
             defender.count += transfer;
             poolDefender.count -= transfer;
           }
+        }
+      }
+    }
+  }
+
+  //Moves defendres backto the pool once the disease is defeated
+  demobilize(disease: Disease) {
+    for (let defender of disease.defenders) {
+      for (let poolDefender of this.defensePool.defenders) {
+        if (defender.name === poolDefender.name) {
+          const transfer = defender.count;
+          defender.count -= transfer;
+          poolDefender.count += transfer;
         }
       }
     }
