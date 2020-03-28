@@ -1,13 +1,10 @@
 import { MucusProduction } from "../effects/mucusProduction";
 import { Card } from "../card";
 
-export function makeRunnyNoseCard() {
-  let effects = [new MucusProduction()];
-  const card = new Card(
-    "Runny Nose",
-    "assets/pictures/tissues_sm.jpg",
-    "Expel viruses via mucus.",
-    effects
-  );
-  return card;
+
+export class RunnyNoseCard extends Card {
+  title = "Runny Nose";
+  pictureURL = "assets/pictures/tissues_sm.jpg";
+  text = "Expel viruses via mucus."
+  effects = [new MucusProduction()];
 }

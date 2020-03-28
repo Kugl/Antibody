@@ -99,7 +99,17 @@ export class Macrophages extends Defender {
 }
 
 export class DefensePool {
-  defenders: Defender[] = [new TCells(), new Leukos(), new Macrophages()];
+  defenders: Defender[];
+  tCells: TCells;
+  leukos: Leukos;
+  macros: Macrophages;
+
+  constructor() {
+    this.tCells = new TCells();
+    this.leukos = new Leukos();
+    this.macros = new Macrophages();
+    this.defenders = [this.tCells, this.leukos, this.macros];
+  }
 
   grow() {
     for (let defender of this.defenders) {
