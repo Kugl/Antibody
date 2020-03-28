@@ -8,3 +8,15 @@ export interface Effect {
   activate(game: Game): void;
   deactivate(game: Game): void;
 }
+
+export class EffectFactory {
+  effectClass;
+
+  constructor(effectClass) {
+    this.effectClass = effectClass
+  }
+
+  make() {
+    return new this.effectClass();
+  }
+}

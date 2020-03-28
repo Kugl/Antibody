@@ -75,10 +75,12 @@ export class Game {
 
   playCard(card: Card) {
     console.log("played ", card.title);
-    for (let effect of card.effects) {
+    const effects = []
+    for (let effectFactory of card.effectFactories) {
+      const effect = effectFactory.make()
       effect.activate(this);
+      this.effects.push(effect)
     }
-    this.effects = this.effects.concat(card.effects);
     this.EffectSubject.next({ Action: "Actiate" });
     this.discardCard(card);
   }
