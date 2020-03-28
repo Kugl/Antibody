@@ -5,7 +5,7 @@ export function makeFeverCard() {
   let effects = [new IncreaseTemperature()];
   const card = new Card(
     "Fever",
-    "assets/pictures/thermometer.jpg",
+    "assets/pictures/thermometer_sm.jpg",
     "Increase body temperature.",
     effects
   );

@@ -5,7 +5,7 @@ export function makeRunnyNoseCard() {
   let effects = [new MucusProduction()];
   const card = new Card(
     "Runny Nose",
-    "assets/pictures/tissues.jpg",
+    "assets/pictures/tissues_sm.jpg",
     "Expel viruses via mucus.",
     effects
   );
