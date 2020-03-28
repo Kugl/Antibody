@@ -2,7 +2,7 @@
   <h3>Status:</h3>
   <div class="row" *ngFor="let effect of effects">
     <mat-progress-spinner
-      value="{{ effect.duration - 5 }}"
+      value="{{ (effect.duration / effect.maxDuration) * 100 - 2 }}"
       mode="determinate"
       color="warn"
       [diameter]="25"
