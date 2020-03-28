@@ -1,5 +1,6 @@
 import { factorDay2Tick, linearRateDay2Tick } from "./util";
 import { Disease } from "./diseases/diseases";
+import { TicksPerDay } from "./constants";
 
 export class Defender {
   name: string;
@@ -41,6 +42,24 @@ export class Leukos extends Defender {
   decay = 0.05;
   //Fraction of Tcells that kil la virus on a day.
   combatPower: number = 0.1;
+  //TODO: Macrophage method for testing. How do Leukos fight?
+  //Copied and adapted from antibody file
+  fight(disease: Disease): void {
+    //I just learned that Javascript does not throw an error when you make it divide by 0 :-)
+    if (this.count > 0) {
+      //Changed as it was causing negative numbers
+      const fightingProbability = (disease.Count + this.count) / 10000;
+      const strength = this.count * fightingProbability;
+      let initialCount = disease.Count;
+      disease.Count = disease.Count - strength;
+      if (disease.Count < 0) {
+        disease.Count = 0;
+      }
+      //For each 100 killed Virus/Bacteria a white cell has to die
+      const killed = (initialCount - disease.Count) / 100;
+      this.count = this.count - killed;
+    }
+  }
 }
 
 export class Macrophages extends Defender {
@@ -50,6 +69,23 @@ export class Macrophages extends Defender {
   decay = 0.01;
   //Fraction of Tcells that kil la virus on a day.
   combatPower: number = 0.1;
+  //Copied and adapted from antibody file
+  fight(disease: Disease): void {
+    //I just learned that Javascript does not throw an error when you make it divide by 0 :-)
+    if (this.count > 0) {
+      //Changed as it was causing negative numbers
+      const fightingProbability = (disease.Count + this.count) / 10000;
+      const strength = this.count * fightingProbability;
+      let initialCount = disease.Count;
+      disease.Count = disease.Count - strength;
+      if (disease.Count < 0) {
+        disease.Count = 0;
+      }
+      //For each 100 killed Virus/Bacteria a white cell has to die
+      const killed = (initialCount - disease.Count) / 100;
+      this.count = this.count - killed;
+    }
+  }
 }
 
 export class DefensePool {
