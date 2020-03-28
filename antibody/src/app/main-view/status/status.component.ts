@@ -13,12 +13,17 @@ export class StatusComponent implements OnInit {
   currentGame: Game;
   effects: Effect[];
   private sub: Subscription;
+  private sub2: Subscription;
 
   constructor(private centServ: CentralService) {
     this.currentGame = this.centServ.getGame();
-
     this.sub = this.centServ.CardSubject.subscribe(event => {
       if (event.Action == "Play") {
+        this.effects = this.currentGame.effects;
+      }
+    });
+    this.sub = this.currentGame.EffectSubject.subscribe(event => {
+      if (event.Action == "Deactivate") {
         this.effects = this.currentGame.effects;
       }
     });
