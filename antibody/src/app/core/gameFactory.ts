@@ -5,11 +5,13 @@ import { Body } from './body'
 import { FeverCard } from './cards/fever'
 import { RunnyNoseCard } from './cards/runnyNose'
 import { LeukocytosisCard } from './cards/leukocytosis'
+import { ExtravasationCard } from './cards/extravasation'
 
 const deckSpec = [
-  {_class: FeverCard, count: 3},
-  {_class: RunnyNoseCard, count: 3},
-  {_class: LeukocytosisCard, count: 3}
+  {_class: FeverCard, count: 2},
+  {_class: RunnyNoseCard, count: 2},
+  {_class: LeukocytosisCard, count: 2},
+  {_class: ExtravasationCard, count: 2}
 ]
 
 export function makeDefaultGame(): Game {

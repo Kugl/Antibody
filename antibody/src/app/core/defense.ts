@@ -7,6 +7,7 @@ export class Defender {
   count: number;
   production: number;
   decay: number;
+  mobilizationRate: number = 0.2;
   //Fraction of Tcells that kil la virus on a day.
   combatPower: number;
 
