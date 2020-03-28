@@ -24,8 +24,6 @@ export class CentralService {
     this.game = makeDefaultGame();
     this.startTime = new Date().getTime();
     this.lastTime = this.startTime;
-    // Game loop below
-    // TODO: proper timing logic -- simple interval will lead to variable game speeds
     const that = this;
     this.mainLoop(that)
   }
