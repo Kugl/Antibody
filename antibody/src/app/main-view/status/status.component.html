@@ -1,15 +1,15 @@
 <div class="wrap">
   <h3>Status:</h3>
   <div class="row" *ngFor="let effect of effects">
-    <div class="center">
-      <span>Mucus:</span>
-    </div>
     <mat-progress-spinner
-      value="100"
+      value="{{ effect.duration }}"
       mode="determinate"
       color="warn"
       [diameter]="25"
     >
     </mat-progress-spinner>
+    <div class="center">
+      <span> {{ effect.displayText }} </span>
+    </div>
   </div>
 </div>
