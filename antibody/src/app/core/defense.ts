@@ -42,9 +42,14 @@ export class Leukos extends Defender {
   decay = 0.05;
   //Fraction of Tcells that kil la virus on a day.
   combatPower: number = 0.1;
-  //TODO: Macrophage method for testing. How do Leukos fight?
+  //TODO: Macrophage method for testing. How do Leukos fight? This needs to be removed
   //Copied and adapted from antibody file
   fight(disease: Disease): void {
+    //Due to rounding issues the common colds last bacteria is immortal. Unelegant fix.
+    if (disease.Count < 5) {
+      disease.Count = 0;
+      return;
+    }
     //I just learned that Javascript does not throw an error when you make it divide by 0 :-)
     if (this.count > 0) {
       //Changed as it was causing negative numbers
@@ -71,6 +76,11 @@ export class Macrophages extends Defender {
   combatPower: number = 0.1;
   //Copied and adapted from antibody file
   fight(disease: Disease): void {
+    //Due to rounding issues the common colds last bacteria is immortal. Unelegant fix.
+    if (disease.Count < 5) {
+      disease.Count = 0;
+      return;
+    }
     //I just learned that Javascript does not throw an error when you make it divide by 0 :-)
     if (this.count > 0) {
       //Changed as it was causing negative numbers
