@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { FormsModule } from '@angular/forms';
 
 //Material
 import { MaterialModule } from "./material.module";
@@ -37,7 +38,8 @@ import { DialogComponent } from './dialog/dialog.component';
     MaterialModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
