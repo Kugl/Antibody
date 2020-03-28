@@ -8,7 +8,7 @@
 
       <mat-card-content>
         <div fxLayout>
-          <div fxFlex="4 1 auto">
+          <div fxFlex="8 1 auto">
             <ng-container *ngIf="isVirus(disease); else elseTemplate">
               <p>Viruses: {{ disease.Count | round }}</p>
               <p>Host Cells: {{ disease.HostCells | round }}</p>
@@ -17,10 +17,13 @@
               <p>Bacteria: {{ disease.Count | round }}</p>
             </ng-template>
           </div>
-          <div fxFlex="4 1 auto">
+          <div fxFlex="8 1 auto">
             <p *ngFor="let defender of disease.defenders">
               {{ defender.name }}: {{ defender.count | round }}
             </p>
+          </div>
+          <div fxFlex="1 4 auto">
+            <img src="assets/pictures/flu.jpg" class="image" />
           </div>
         </div>
 
@@ -32,7 +35,7 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <div fxFlex="4 1 100%" style="overflow-y: auto">
+  <div fxFlex="4 2 100%" style="overflow-y: auto">
     <h1>Immune Response:</h1>
     <mat-card *ngFor="let defender of defenses.defenders">
       <mat-card-header>

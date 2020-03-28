@@ -23,3 +23,6 @@ extravasation.png
 Dr. med. Mario Schubert, Heidelberg, Germany
 CC0 (public domain)
 https://en.wikipedia.org/wiki/Inflammation#/media/File:NeutrophilerAktion.svg
+
+flu.jpg:
+https://phil.cdc.gov/Details.aspx?pid=23226
