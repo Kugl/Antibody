@@ -1,5 +1,5 @@
-import { TicksPerDay } from '../constants';
-import { Defender, TCells, Leukos } from '../defense';
+import { TicksPerDay } from "../constants";
+import { Defender, TCells, Leukos } from "../defense";
 
 export class Disease {
   Name: string;
@@ -16,7 +16,7 @@ export class Disease {
 
   spread() {}
   infect() {
-    this.Count = 1000
+    this.Count = 3000;
   }
 
   toString(): string {
@@ -28,29 +28,31 @@ export class Virus extends Disease {
   //Number of viruses produced by an active Host per day
   NumberPerHostCell: number;
   HostCells: number = 0;
-  defenders: Defender[] = [new TCells(), new Leukos()]
+  defenders: Defender[] = [new TCells(), new Leukos()];
   infect() {
-    this.Count = 1000
-    this.HostCells = 5
+    this.Count = 2000;
+    this.HostCells = 20;
   }
 
   spread() {
-    this.Count += this.NumberPerHostCell * this.HostCells / TicksPerDay;
+    this.Count += (this.NumberPerHostCell * this.HostCells) / TicksPerDay;
   }
 
   toString(): string {
-    return this.Name + ": " + this.Count + " (" + this.HostCells + " host cells.)";
+    return (
+      this.Name + ": " + this.Count + " (" + this.HostCells + " host cells.)"
+    );
   }
 }
 
 //Bacteria Devide and double the number after a Time x
 export class Bacteria extends Disease {
   GrowthPerDay: number;
-  
-  defenders: Defender[] = [new Leukos()]
 
-  spread () {
-    this.Count *= Math.pow(this.GrowthPerDay, 1/TicksPerDay)
+  defenders: Defender[] = [new Leukos()];
+
+  spread() {
+    this.Count *= Math.pow(this.GrowthPerDay, 1 / TicksPerDay);
   }
 }
 
@@ -130,7 +132,6 @@ export function makeVirusArray() {
 export function makeBacteriaArray() {
   return [new CommonCold()];
 }
-
 
 export function makeDiseaseArray() {
   return [new CommonCold(), new Influenza(), new Corona()];
