@@ -98,7 +98,7 @@ export class Body {
 
   mucusJettison(disease: Disease) {
     for (let i = 0; i < this.mucusProduction; i++) {
-      disease.Count = disease.Count * 0.99;
+      disease.Count = disease.Count * 0.998;
     }
   }
 }
