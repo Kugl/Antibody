@@ -10,13 +10,11 @@ export interface Effect {
 }
 
 export class EffectFactory {
-  effectClass;
-
-  constructor(effectClass) {
-    this.effectClass = effectClass
+  constructor(private effectClass: any, private args?: string[]) {
+    this.effectClass = effectClass;
   }
 
   make() {
-    return new this.effectClass();
+    return new this.effectClass(...this.args);
   }
 }
