@@ -5,5 +5,6 @@ export class MobilizeTCellsCard extends Card {
   title = "Mobilize TCells";
   pictureURL = "assets/pictures/cards/lymphocytes.jpg";
   text = "Increase TCell Mobilization x5.";
-  effects = [new MobilizeEffect("tCells", "T-Cell")];
+  effectFactories = [new EffectFactory(MobilizeEffect("tCells", "T-Cell"))];
+  //effects = [new MobilizeEffect("tCells", "T-Cell")];
 }
