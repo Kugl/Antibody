@@ -48,6 +48,7 @@ export class TCells extends Defender {
     // memorize
     const newMemTCells = (this.count * this.memorizationRate) / TicksPerDay;
     disease.memTCells.count += newMemTCells;
+    this.count -= newMemTCells;
   }
 }
 
