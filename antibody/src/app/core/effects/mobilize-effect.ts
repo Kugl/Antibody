@@ -3,7 +3,7 @@ import { Game } from "../game";
 import { TicksPerDay } from "../constants";
 
 export class MobilizeEffect implements Effect {
-  displayText = "Increase $ { targetDefenderName } Mobilization Rate x5";
+  displayText = "Increase" + this.targetDefenderName + "Mobilization Rate x5";
   action = "";
   duration = TicksPerDay * 1;
   readonly maxDuration = TicksPerDay * 1;

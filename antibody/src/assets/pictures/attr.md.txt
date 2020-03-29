@@ -26,3 +26,6 @@ https://en.wikipedia.org/wiki/Inflammation#/media/File:NeutrophilerAktion.svg
 
 flu.jpg:
 https://phil.cdc.gov/Details.aspx?pid=23226
+
+lymphocytes.jpg
+https://phil.cdc.gov/Details.aspx?pid=21379
