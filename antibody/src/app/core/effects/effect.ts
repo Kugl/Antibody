@@ -9,6 +9,7 @@ export interface Effect {
   deactivate(game: Game): void;
 }
 
+//reworked it but do not like the fact, that the called constructor needs to be chaecked manually
 export class EffectFactory {
   constructor(private effectClass: any, private args?: string[]) {
     this.effectClass = effectClass;
