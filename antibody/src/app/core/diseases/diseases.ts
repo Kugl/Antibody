@@ -1,5 +1,5 @@
 import { TicksPerDay } from "../constants";
-import { Defender, TCells, Leukos } from "../defense";
+import { Defender, TCells, Leukos, MemoryTCells } from "../defense";
 
 export class Disease {
   Name: string;
@@ -12,7 +12,9 @@ export class Disease {
   HostMinAge: number;
   Deadliness: number;
 
-  defenders: Defender[];
+  defenders: Defender[] = [];
+
+  memTCells: MemoryTCells; // placeholder
 
   spread() {}
   infect() {
@@ -29,6 +31,8 @@ export class Virus extends Disease {
   NumberPerHostCell: number;
   HostCells: number = 0;
   defenders: Defender[] = [new TCells(), new Leukos()];
+  memTCells: MemoryTCells;
+
   infect() {
     this.Count = 2000;
     this.HostCells = 20;
@@ -67,6 +71,12 @@ export class Influenza extends Virus {
   HostMinAge = 0;
   Deadliness = 5;
   NumberPerHostCell = 500;
+
+  constructor() {
+    super();
+    this.memTCells = new MemoryTCells(this);
+    this.defenders.push(this.memTCells);
+  }
 }
 
 export class Measels extends Virus {
@@ -78,6 +88,12 @@ export class Measels extends Virus {
   HostMinAge = 0;
   Deadliness = 5;
   NumberPerHostCell = 500;
+
+  constructor() {
+    super();
+    this.memTCells = new MemoryTCells(this);
+    this.defenders.push(this.memTCells);
+  }
 }
 
 export class Corona extends Virus {
@@ -89,6 +105,12 @@ export class Corona extends Virus {
   HostMinAge = 0;
   Deadliness = 7;
   NumberPerHostCell = 500;
+
+  constructor() {
+    super();
+    this.memTCells = new MemoryTCells(this);
+    this.defenders.push(this.memTCells);
+  }
 }
 
 export class CommonCold extends Bacteria {

@@ -30,10 +30,26 @@ export class Defender {
 export class TCells extends Defender {
   name = "T-Cells";
   count = 0;
-  production = 50;
+  production = 500;
   decay = 0.1;
+  memorizationRate = 0.1;
   //Fraction of Tcells that kil la virus on a day.
   combatPower: number = 0.1;
+
+  fight(disease: Disease): void {
+    let strength = (this.count * this.combatPower) / TicksPerDay;
+    const initialCount = disease.Count;
+    disease.Count = disease.Count - strength;
+    if (disease.Count < 0) {
+      disease.Count = 0;
+    }
+    const killed = (initialCount - disease.Count) / 100;
+    this.count = this.count - killed;
+    // memorize
+    const newMemTCells = (this.count * this.memorizationRate) / TicksPerDay;
+    disease.memTCells.count += newMemTCells;
+    this.count -= newMemTCells;
+  }
 }
 
 export class Leukos extends Defender {
@@ -64,6 +80,35 @@ export class Leukos extends Defender {
       //For each 100 killed Virus/Bacteria a white cell has to die
       const killed = (initialCount - disease.Count) / 100;
       this.count = this.count - killed;
+    }
+  }
+}
+
+export class MemoryTCells extends Defender {
+  disease: Disease;
+  count = 0;
+  production = 0;
+  decay = 0.1;
+  memorizationRate = 0.5;
+  //Fraction of Tcells that kil la virus on a day.
+  combatPower: number = 0.1;
+
+  constructor(disease: Disease) {
+    super();
+    this.name = "T-Memory " + disease.Name;
+    this.disease = disease;
+  }
+
+  fight(disease: Disease) {
+    //Specific Tcells only fight the virus they are build for
+    if (disease !== this.disease) {
+      return;
+    }
+
+    let strength = this.count * this.combatPower;
+    disease.Count = disease.Count - strength;
+    if (disease.Count < 0) {
+      disease.Count = 0;
     }
   }
 }
@@ -104,12 +149,25 @@ export class DefensePool {
   tCells: TCells;
   leukos: Leukos;
   macros: Macrophages;
+  memTCells: Map<Disease, MemoryTCells>;
 
   constructor() {
     this.tCells = new TCells();
     this.leukos = new Leukos();
     this.macros = new Macrophages();
+    this.memTCells = new Map();
     this.defenders = [this.tCells, this.leukos, this.macros];
+  }
+
+  demobilizeMemTCells(disease: Disease) {
+    const count = disease.memTCells.count;
+    if (!this.memTCells.has(disease)) {
+      const memTCells = new MemoryTCells(disease);
+      this.memTCells.set(disease, memTCells);
+      this.defenders.push(memTCells);
+    }
+    this.memTCells.get(disease).count += count;
+    disease.memTCells.count = 0;
   }
 
   grow() {

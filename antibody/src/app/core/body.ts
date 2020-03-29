@@ -1,7 +1,7 @@
 import { WhiteBloodcell, TCell } from "./immune-system/antibodys";
-import { Disease, makeDiseaseArray } from "./diseases/diseases";
+import { Disease, makeDiseaseArray, Virus } from "./diseases/diseases";
 import { TicksPerDay } from "./constants";
-import { DefensePool } from "./defense";
+import { DefensePool, Defender } from "./defense";
 import { NewsTicker } from "./newsTicker";
 import { factorDay2Tick } from "./util";
 
@@ -37,7 +37,7 @@ export class Body {
       for (let defender of disease.defenders) {
         for (let poolDefender of this.defensePool.defenders) {
           if (defender.name === poolDefender.name) {
-            const rate = poolDefender.mobilizationRate / TicksPerDay; // the subtrahend is what we want to keep per tick
+            const rate = poolDefender.mobilizationRate / TicksPerDay;
             const transfer = rate * poolDefender.count;
             defender.count += transfer;
             poolDefender.count -= transfer;
@@ -57,6 +57,10 @@ export class Body {
           poolDefender.count += transfer;
         }
       }
+    }
+    if (disease instanceof Virus) {
+      this.defensePool.demobilizeMemTCells(disease);
+      disease.memTCells.count = 0;
     }
   }
 
