@@ -15,6 +15,10 @@ export class EffectFactory {
   }
 
   make() {
-    return new this.effectClass(...this.args);
+    if (typeof this.args !== "undefined") {
+      return new this.effectClass(...this.args);
+    } else {
+      return new this.effectClass();
+    }
   }
 }
