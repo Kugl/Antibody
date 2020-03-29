@@ -1,4 +1,7 @@
 <p>TickCount: {{ game.clock.tickCount }}</p>
+<label for='ticklengthinput'>Tick Length</label>
+<input id='ticklengthinput' type=number [(ngModel)]="centralService.tickLength">
+<p>---</p>
 <p>Datetime: {{ game.clock.date }}</p>
 <p>Temperature: {{ game.body.temperature }}</p>
 <p>Cards on Hand: {{ game.hand.cards.length }}</p>
