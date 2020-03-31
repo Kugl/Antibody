@@ -9,6 +9,7 @@ export class Body {
   fever: boolean = false;
   temperature: number = 37;
   mucusProduction: number = 0;
+  mobilizationTrigger: boolean = false;
 
   diseases: Disease[];
   defensePool: DefensePool;
@@ -29,18 +30,21 @@ export class Body {
   }
 
   mobilize() {
-    for (let disease of this.diseases) {
-      if (disease.Count < 1) {
-        this.demobilize(disease);
-        continue;
-      }
-      for (let defender of disease.defenders) {
-        for (let poolDefender of this.defensePool.defenders) {
-          if (defender.name === poolDefender.name) {
-            const rate = poolDefender.mobilizationRate / TicksPerDay;
-            const transfer = rate * poolDefender.count;
-            defender.count += transfer;
-            poolDefender.count -= transfer;
+    //Changed Mobilization to have a Trigger.
+    if (this.mobilizationTrigger) {
+      for (let disease of this.diseases) {
+        if (disease.Count < 1) {
+          this.demobilize(disease);
+          continue;
+        }
+        for (let defender of disease.defenders) {
+          for (let poolDefender of this.defensePool.defenders) {
+            if (defender.name === poolDefender.name) {
+              const rate = poolDefender.mobilizationRate / TicksPerDay;
+              const transfer = rate * poolDefender.count;
+              defender.count += transfer;
+              poolDefender.count -= transfer;
+            }
           }
         }
       }

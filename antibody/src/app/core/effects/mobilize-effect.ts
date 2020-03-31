@@ -15,9 +15,11 @@ export class MobilizeEffect implements Effect {
 
   activate(game: Game) {
     game.body.defensePool[this.targetDefender].mobilizationRate *= 5;
+    game.body.mobilizationTrigger = true;
   }
 
   deactivate(game: Game) {
     game.body.defensePool[this.targetDefender].mobilizationRate /= 5;
+    game.body.mobilizationTrigger = false;
   }
 }
