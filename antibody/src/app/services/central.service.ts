@@ -15,7 +15,7 @@ export interface CardPlayedEvent {
 export class CentralService {
   game: Game;
 
-  tickLength = 200;
+  tickLength = 250;
   lastTime: number;
 
   CardSubject = new Subject<CardPlayedEvent>();
@@ -32,7 +32,7 @@ export class CentralService {
     this.openDialog({
       description: "Welcome!",
       picture: "assets/pictures/corona.jpg",
-      text: "The game will begin shortly"
+      text: `In this game you take over the job of the immune System. Your task is to coordiante the immune defense and protect the body from diseases. Play cards to trigger defensive Actions`
     });
   }
 
