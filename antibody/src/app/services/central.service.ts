@@ -3,6 +3,8 @@ import { makeDefaultGame } from "../core/gameFactory";
 import { Game } from "../core/game";
 import { Card } from "../core/card";
 import { Subject } from "rxjs";
+import { MatDialog } from "@angular/material/dialog";
+import { EventMessage, DialogComponent } from "../dialog/dialog.component";
 
 export interface CardPlayedEvent {
   Action: string;
@@ -20,12 +22,17 @@ export class CentralService {
 
   startTime: number;
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     this.game = makeDefaultGame();
     this.startTime = new Date().getTime();
     this.lastTime = this.startTime;
     const that = this;
     this.mainLoop(that);
+    this.openDialog({
+      description: "Welcome!",
+      picture: "assets/pictures/corona.jpg",
+      text: "The game will begin shortly"
+    });
   }
 
   getGame() {
@@ -63,5 +70,12 @@ export class CentralService {
     } else {
       setTimeout(() => that.mainLoop(that), Math.min(1000, tickLength / 3));
     }
+  }
+  openDialog(data: EventMessage) {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {});
   }
 }

@@ -1,19 +1,9 @@
-<h2 mat-dialog-title>Corona Outbreak!</h2>
-
-<div mat-dialog-content>
-  <img
-    mat-card-image
-    class="image-container"
-    src="assets/pictures/corona.jpg"
-  />
-
-  <p>
-    The Shiba Inu is the smallest of the six original and distinct spitz breeds
-    of dog from Japan. A small, agile dog that copes very well with mountainous
-    terrain, the Shiba Inu was originally bred for hunting.
-  </p>
-</div>
-
+<h2 mat-dialog-title>{{ eventM.description }}</h2>
+<img mat-card-image src="{{ eventM.picture }}" />
+<p>
+  Text:
+  {{ eventM.text }}
+</p>
 <div mat-dialog-actions>
   <button class="mat-raised-button" (click)="close()">
     Close

@@ -33,7 +33,11 @@ export class NewstickerComponent implements OnInit {
   }*/
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: {}
+      data: {
+        description: "New Outbreak!",
+        picture: "aaa",
+        Text: "This is the Text!"
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {});
