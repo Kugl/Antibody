@@ -28,6 +28,7 @@ export class CentralService {
     this.lastTime = this.startTime;
     const that = this;
     this.mainLoop(that);
+    //Displays a welcome message
     this.openDialog({
       description: "Welcome!",
       picture: "assets/pictures/corona.jpg",
@@ -75,7 +76,10 @@ export class CentralService {
     const dialogRef = this.dialog.open(DialogComponent, {
       data
     });
-
     dialogRef.afterClosed().subscribe(result => {});
+    /*
+    dialogRef.afterClosed().subscribe(() => {
+      this.mainLoop(this);
+    });*/
   }
 }
