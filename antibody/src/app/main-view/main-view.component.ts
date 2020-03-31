@@ -8,7 +8,7 @@ import {
 import { CentralService } from "../services/central.service";
 import { Defender, DefensePool } from "../core/defense";
 import { Game } from "../core/game";
-import { Disease, Virus } from "../core/diseases/diseases";
+import { Disease, Virus, Bacteria } from "../core/diseases/diseases";
 
 @Component({
   selector: "app-main-view",
@@ -43,6 +43,9 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
 
   isVirus(dis: Disease) {
     return dis instanceof Virus;
+  }
+  isBacteria(dis: Disease) {
+    return dis instanceof Bacteria;
   }
 
   ngOnInit(): void {}

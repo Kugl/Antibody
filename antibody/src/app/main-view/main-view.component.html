@@ -1,41 +1,43 @@
 <div fxLayout="row" fxLayoutAlign="space-between" fxFlexFill>
   <div fxFlex="4 1 100%" style="overflow-y: auto">
     <h1>Diseases:</h1>
-    <mat-card *ngFor="let disease of diseases">
-      <mat-card-header>
-        <mat-card-title>{{ disease.Name }}</mat-card-title>
-      </mat-card-header>
+    <div *ngFor="let disease of diseases">
+      <mat-card *ngIf="disease.Count > 0">
+        <mat-card-header>
+          <mat-card-title>{{ disease.Name }}</mat-card-title>
+        </mat-card-header>
 
-      <mat-card-content>
-        <div fxLayout>
-          <div fxFlex="8 1 auto">
-            <ng-container *ngIf="isVirus(disease); else elseTemplate">
-              <p>Viruses: {{ disease.Count | round }}</p>
-              <!--
+        <mat-card-content>
+          <div fxLayout>
+            <div fxFlex="8 1 auto">
+              <ng-container *ngIf="isVirus(disease); else elseTemplate">
+                <p>Viruses: {{ disease.Count | round }}</p>
+                <!--
               <p>Host Cells: {{ disease.HostCells | round }}</p>
               -->
-            </ng-container>
-            <ng-template #elseTemplate>
-              <p>Bacteria: {{ disease.Count | round }}</p>
-            </ng-template>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <p>Bacteria: {{ disease.Count | round }}</p>
+              </ng-template>
+            </div>
+            <div fxFlex="8 1 auto">
+              <p *ngFor="let defender of disease.defenders">
+                {{ defender.name }}: {{ defender.count | round }}
+              </p>
+            </div>
+            <div fxFlex="1 4 auto">
+              <img src="assets/pictures/flu.jpg" class="image" />
+            </div>
           </div>
-          <div fxFlex="8 1 auto">
-            <p *ngFor="let defender of disease.defenders">
-              {{ defender.name }}: {{ defender.count | round }}
-            </p>
-          </div>
-          <div fxFlex="1 4 auto">
-            <img src="assets/pictures/flu.jpg" class="image" />
-          </div>
-        </div>
 
-        <mat-progress-bar
-          color="warn"
-          mode="determinate"
-          value="{{ (disease.Deadliness * disease.Count) / 1000 }}"
-        ></mat-progress-bar>
-      </mat-card-content>
-    </mat-card>
+          <mat-progress-bar
+            color="warn"
+            mode="determinate"
+            value="{{ (disease.Deadliness * disease.Count) / 1000 }}"
+          ></mat-progress-bar>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
   <div fxFlex="4 1 100%" style="overflow-y: auto">
     <h1>Immune Response:</h1>
