@@ -15,7 +15,7 @@ export interface CardPlayedEvent {
 export class CentralService {
   game: Game;
 
-  tickLength = 250;
+  tickLength = 210;
   lastTime: number;
 
   CardSubject = new Subject<CardPlayedEvent>();
