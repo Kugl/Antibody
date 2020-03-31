@@ -11,7 +11,9 @@
           <div fxFlex="8 1 auto">
             <ng-container *ngIf="isVirus(disease); else elseTemplate">
               <p>Viruses: {{ disease.Count | round }}</p>
+              <!--
               <p>Host Cells: {{ disease.HostCells | round }}</p>
+              -->
             </ng-container>
             <ng-template #elseTemplate>
               <p>Bacteria: {{ disease.Count | round }}</p>
