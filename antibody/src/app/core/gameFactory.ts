@@ -10,7 +10,7 @@ import { MobilizeTCellsCard } from "./cards/mobilizeTCells";
 import { IncreaseTCellProdCard } from "./cards/increaseTCellProd";
 
 const deckSpec = [
-  { _class: FeverCard, count: 2 },
+  //{ _class: FeverCard, count: 2 },
   { _class: RunnyNoseCard, count: 2 },
   { _class: LeukocytosisCard, count: 2 },
   { _class: ExtravasationCard, count: 2 },

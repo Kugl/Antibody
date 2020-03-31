@@ -45,7 +45,7 @@
     <h1>Immune Response:</h1>
     <div *ngFor="let defender of defenses.defenders">
       <mat-card *ngIf="defender.count > 0">
-        <mat-card-header>
+        <mat-card-header matTooltip="{{ defender.tooltip }}">
           <mat-card-title>{{ defender.name }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>

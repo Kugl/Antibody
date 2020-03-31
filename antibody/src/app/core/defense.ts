@@ -10,6 +10,7 @@ export class Defender {
   mobilizationRate: number = 0.2;
   //Fraction of Tcells that kil la virus on a day.
   combatPower: number;
+  tooltip: string;
 
   grow() {
     const tickSurvival = factorDay2Tick(1.0 - this.decay);
@@ -35,6 +36,8 @@ export class TCells extends Defender {
   memorizationRate = 0.1;
   //Fraction of Tcells that kil la virus on a day.
   combatPower: number = 0.1;
+  tooltip =
+    "TCells can only fight Viruses. If a disease is defated a fraction of them converts to memory cells, which activate if the disease comes back";
 
   fight(disease: Disease): void {
     let strength = (this.count * this.combatPower) / TicksPerDay;
@@ -57,6 +60,8 @@ export class Leukos extends Defender {
   count = 0;
   production = 200;
   decay = 0.05;
+  tooltip =
+    "Leukos are the multipurpose army of the immune system equally effective against viruses and Bacteria. However they die after killing a certain number of attackers.";
   //Fraction of Tcells that kil la virus on a day.
   combatPower: number = 0.1;
   //TODO: Macrophage method for testing. How do Leukos fight? This needs to be removed
@@ -90,6 +95,8 @@ export class MemoryTCells extends Defender {
   production = 0;
   decay = 0.1;
   memorizationRate = 0.5;
+  tooltip =
+    "T-Memory cells can only target a specific disease. They are very effective in fighting that disease but lie dormant if the disease is not active.";
   //Fraction of Tcells that kil la virus on a day.
   combatPower: number = 0.1;
 
@@ -118,6 +125,8 @@ export class Macrophages extends Defender {
   count = 0;
   production = 1;
   decay = 0.01;
+  tooltip =
+    "Macropahges mobilize and grow slowly however are very effective once they enter battle.";
   //Fraction of Tcells that kil la virus on a day.
   combatPower: number = 0.1;
   //Copied and adapted from antibody file

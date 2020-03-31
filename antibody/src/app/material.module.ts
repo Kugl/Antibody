@@ -5,7 +5,7 @@ import {
   MAT_DATE_LOCALE
 } from "@angular/material/core";
 import { MatIconRegistry } from "@angular/material/icon";
-
+import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatButtonModule } from "@angular/material/button";
 
 import { MatCardModule } from "@angular/material/card";
@@ -57,8 +57,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     // MatSortModule,
     // MatTableModule,
     //MatTabsModule,
-    MatToolbarModule
-    //MatTooltipModule,
+    MatToolbarModule,
+    MatTooltipModule
     //MatTreeModule,
     //MatNativeDateModule
   ],
@@ -94,8 +94,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     //MatSortModule,
     //MatTableModule,
     // MatTabsModule,
-    MatToolbarModule
-    //MatTooltipModule,
+    MatToolbarModule,
+    MatTooltipModule
     //MatTreeModule,
     //MatNativeDateModule
   ],
