@@ -21,9 +21,11 @@
               </ng-template>
             </div>
             <div fxFlex="8 1 auto">
-              <p *ngFor="let defender of disease.defenders">
-                {{ defender.name }}: {{ defender.count | round }}
-              </p>
+              <div *ngFor="let defender of disease.defenders">
+                <p *ngIf="defender.count > 1">
+                  {{ defender.name }}: {{ defender.count | round }}
+                </p>
+              </div>
             </div>
             <div fxFlex="1 4 auto">
               <img src="assets/pictures/flu.jpg" class="image" />
