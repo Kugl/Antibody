@@ -22,7 +22,8 @@
       class="p-2"
       style="overflow-y: scroll; overflow-x: hidden"
     >
-      <div>
+      <button (click)="enableDebug()" mat-raised-button>Toggle Debug</button>
+      <div *ngIf="debug">
         <app-debug-view></app-debug-view>
       </div>
       <div>
@@ -36,7 +37,10 @@
       fxLayoutAlign="space-between stretch"
       class="p-2"
     >
-      <app-main-view fxFlex="1 1 100%" style="overflow: hidden;"></app-main-view>
+      <app-main-view
+        fxFlex="1 1 100%"
+        style="overflow: hidden;"
+      ></app-main-view>
       <app-hand fxFlex="0 0 0"></app-hand>
     </div>
   </div>

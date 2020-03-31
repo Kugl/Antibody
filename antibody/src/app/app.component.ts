@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
-import { DebugViewComponent } from './debug-view/debug-view.component'
+import { Component } from "@angular/core";
+import { DebugViewComponent } from "./debug-view/debug-view.component";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  title = 'antibody';
+  debug = false;
+  title = "antibody";
+
+  enableDebug() {
+    this.debug = !this.debug;
+  }
 }
