@@ -73,10 +73,13 @@ export class CentralService {
     }
   }
   openDialog(data: EventMessage) {
+    this.tickLength = 10000;
     const dialogRef = this.dialog.open(DialogComponent, {
       data
     });
-    dialogRef.afterClosed().subscribe(result => {});
+    dialogRef.afterClosed().subscribe(result => {
+      this.tickLength = 210;
+    });
     /*
     dialogRef.afterClosed().subscribe(() => {
       this.mainLoop(this);
