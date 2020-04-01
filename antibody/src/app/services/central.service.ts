@@ -4,7 +4,8 @@ import { Game } from "../core/game";
 import { Card } from "../core/card";
 import { Subject } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
-import { EventMessage, DialogComponent } from "../dialog/dialog.component";
+import { DialogComponent } from "../dialog/dialog.component";
+import { EventMessage } from "../core/body";
 
 export interface CardPlayedEvent {
   Action: string;
@@ -33,6 +34,9 @@ export class CentralService {
       description: "Welcome!",
       picture: "assets/pictures/corona.jpg",
       text: `In this game you take over the job of the immune System. Your task is to coordiante the immune defense and protect the body from diseases. Play cards to trigger defensive Actions`
+    });
+    this.game.body.BodyEventSubject.subscribe(event => {
+      this.openDialog(event);
     });
   }
 

@@ -4,12 +4,20 @@ import { TicksPerDay } from "./constants";
 import { DefensePool, Defender } from "./defense";
 import { NewsTicker } from "./newsTicker";
 import { factorDay2Tick } from "./util";
+import { Subject } from "rxjs";
 
+export interface EventMessage {
+  description: string;
+  picture?: string;
+  text: string;
+}
 export class Body {
   fever: boolean = false;
   temperature: number = 37;
   mucusProduction: number = 0;
   mobilizationTrigger: boolean = false;
+
+  BodyEventSubject = new Subject<EventMessage>();
 
   diseases: Disease[];
   defensePool: DefensePool;
@@ -82,9 +90,17 @@ export class Body {
     // +0.01 is for testing only, to have more frequent infections
     if (Math.random() < disease.ChanceOfInfection / TicksPerDay + 0.01) {
       disease.infect();
-      this.newsTicker.publishNews(
-        "You have been infected with " + disease.Name
-      );
+      let message = "You have been infected with " + disease.Name;
+      let messageText =
+        "You have been infected with " +
+        disease.Name +
+        "! Strengthen the growth of Antibodys by playing cards and mobilize defnders to the area of infection";
+      this.newsTicker.publishNews(message);
+      this.BodyEventSubject.next({
+        description: message,
+        picture: "",
+        text: messageText
+      });
     }
   }
 

@@ -1,12 +1,8 @@
 import { Component, OnInit, Inject, Optional } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { EventMessage } from "../core/body";
 
-export interface EventMessage {
-  description: string;
-  picture?: string;
-  text: string;
-}
 @Component({
   selector: "app-dialog",
   templateUrl: "./dialog.component.html",
