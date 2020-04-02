@@ -8,6 +8,7 @@ import { Graveyard } from "./graveyard";
 import { NewsTicker } from "./newsTicker";
 import { Clock } from "./clock";
 import { Subject } from "rxjs";
+import { TicksPerDay } from "./constants";
 
 export interface EffectEvent {
   Action: string;
@@ -25,9 +26,14 @@ export class Game {
   newsTicker: NewsTicker;
   clock: Clock;
 
+  ticksUntilNextCard: number;
+  cardsPerDay: number;
+
   constructor(deck: Deck, body: Body) {
     this.deck = deck;
     this.body = body;
+    this.cardsPerDay = 3;
+    this.ticksUntilNextCard = TicksPerDay / this.cardsPerDay;
     this.clock = new Clock();
 
     this.newsTicker = new NewsTicker(this.clock);
@@ -71,15 +77,37 @@ export class Game {
     this.effects = this.effects.filter(effect => effect.duration > 0);
     this.EffectSubject.next({ Action: "Deactivate" });
     this.body.tick();
+    this.ticksUntilNextCard -= 1;
+    if (this.ticksUntilNextCard == 0) {
+      this.nextCard();
+      this.ticksUntilNextCard = TicksPerDay / this.cardsPerDay;
+    }
+  }
+
+  /**
+   * As a ratio, how much time left until getting the next card.
+   */
+  get nextCardTimeRatio() {
+    return this.ticksUntilNextCard / (TicksPerDay / this.cardsPerDay);
+  }
+
+  nextCard() {
+    if (this.hand.cards.length < this.hand.slots) {
+      this.drawCard();
+    } else {
+      const cardToRemove = this.hand.getRandomCard();
+      this.discardCard(cardToRemove);
+      this.drawCard();
+    }
   }
 
   playCard(card: Card) {
     console.log("played ", card.title);
-    const effects = []
+    const effects = [];
     for (let effectFactory of card.effectFactories) {
-      const effect = effectFactory.make()
+      const effect = effectFactory.make();
       effect.activate(this);
-      this.effects.push(effect)
+      this.effects.push(effect);
     }
     this.EffectSubject.next({ Action: "Actiate" });
     this.discardCard(card);

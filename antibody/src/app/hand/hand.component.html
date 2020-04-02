@@ -43,4 +43,13 @@
       </button>
     </div>
   </div>
+  <div>
+    <h1>Next Card</h1>
+    <mat-progress-spinner
+      value="{{ currentGame.nextCardTimeRatio * 100 }}"
+      mode="determinate"
+      color="{{ currentGame.nextCardTimeRatio > 0.2 ? 'accent' : 'warn' }}"
+    >
+    </mat-progress-spinner>
+  </div>
 </div>

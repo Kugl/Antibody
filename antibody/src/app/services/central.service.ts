@@ -7,6 +7,8 @@ import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "../dialog/dialog.component";
 import { EventMessage } from "../core/body";
 
+const BaseTickLength = 200;
+
 export interface CardPlayedEvent {
   Action: string;
   card?: Card;
@@ -16,7 +18,7 @@ export interface CardPlayedEvent {
 export class CentralService {
   game: Game;
 
-  tickLength = 210;
+  tickLength = BaseTickLength;
   lastTime: number;
 
   CardSubject = new Subject<CardPlayedEvent>();
@@ -82,7 +84,12 @@ export class CentralService {
       data
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.tickLength = 210;
+      this.tickLength = BaseTickLength;
+      // to prevent the main loop from trying to catch up on missed ticks:
+      this.lastTime = Math.max(
+        this.lastTime,
+        new Date().getTime() - BaseTickLength
+      );
     });
     /*
     dialogRef.afterClosed().subscribe(() => {
