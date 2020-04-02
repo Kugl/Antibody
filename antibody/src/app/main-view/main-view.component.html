@@ -42,7 +42,15 @@
         <mat-card-title>{{ defender.name }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>{{ defender.count | round }} ( {{ defender.production }} /h)</p>
+        <p>
+          {{ defender.count | round }} (
+          <span
+            title="Production: {{
+              defender.productionPerHour | round
+            }}, Decay: {{ defender.decayPerHour | round }}"
+            >{{ defender.growthPerHour | round }} /h)</span
+          >
+        </p>
       </mat-card-content>
     </mat-card>
   </div>

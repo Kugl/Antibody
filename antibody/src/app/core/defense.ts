@@ -1,6 +1,7 @@
 import { factorDay2Tick, linearRateDay2Tick } from "./util";
 import { Disease } from "./diseases/diseases";
-import { TicksPerDay } from "./constants";
+import { TicksPerDay, TicksPerHour } from "./constants";
+import { tick } from "@angular/core/testing";
 
 export class Defender {
   name: string;
@@ -11,10 +12,34 @@ export class Defender {
   //Fraction of Tcells that kil la virus on a day.
   combatPower: number;
 
-  grow() {
-    const tickSurvival = factorDay2Tick(1.0 - this.decay);
+  get growPerTick() {
+    return this.productionPerTick - this.decayPerTick;
+  }
+
+  get productionPerTick() {
     const tickProduction = linearRateDay2Tick(this.production);
-    this.count = this.count * tickSurvival + tickProduction;
+    return tickProduction;
+  }
+
+  get decayPerTick() {
+    const tickSurvival = factorDay2Tick(1.0 - this.decay);
+    return this.count - this.count * tickSurvival;
+  }
+
+  get decayPerHour() {
+    return this.decayPerTick * TicksPerHour;
+  }
+
+  get productionPerHour() {
+    return this.productionPerTick * TicksPerHour;
+  }
+
+  get growthPerHour() {
+    return this.growPerTick * TicksPerHour;
+  }
+
+  grow() {
+    this.count = this.count + this.growPerTick;
   }
   //TODO: Adapt to accopunt for different fighting styles
   fight(disease: Disease): void {
