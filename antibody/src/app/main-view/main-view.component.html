@@ -20,6 +20,14 @@
           <div fxFlex="8 1 auto">
             <p *ngFor="let defender of disease.defenders">
               {{ defender.name }}: {{ defender.count | round }}
+              <span
+                title="Mobilization: {{
+                  defender.receivedMoblizedPerHour | number: '1.1-1'
+                }}, Combat Loss: {{
+                  defender.combatLossesPerHour | number: '1.1-1'
+                }}"
+                >({{ defender.combatDeltaPerHour | number: "1.1-1" }} /h)</span
+              >
             </p>
           </div>
           <div fxFlex="1 4 auto">
@@ -43,12 +51,12 @@
       </mat-card-header>
       <mat-card-content>
         <p>
-          {{ defender.count | round }} (
+          {{ defender.count | round }}
           <span
             title="Production: {{
-              defender.productionPerHour | round
-            }}, Decay: {{ defender.decayPerHour | round }}"
-            >{{ defender.growthPerHour | round }} /h)</span
+              defender.productionPerHour | number: '1.1-1'
+            }}, Decay: {{ defender.decayPerHour | number: '1.1-1' }}"
+            >({{ defender.growthPerHour | number: "1.1-1" }} /h)</span
           >
         </p>
       </mat-card-content>

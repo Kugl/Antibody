@@ -22,8 +22,8 @@ export class Body {
   }
 
   tick() {
+    this.defensePool.tick();
     this.handleInfections();
-    this.defensePool.grow();
     this.mobilize();
     this.fightDiseases();
   }
@@ -37,10 +37,7 @@ export class Body {
       for (let defender of disease.defenders) {
         for (let poolDefender of this.defensePool.defenders) {
           if (defender.name === poolDefender.name) {
-            const rate = poolDefender.mobilizationRate / TicksPerDay;
-            const transfer = rate * poolDefender.count;
-            defender.count += transfer;
-            poolDefender.count -= transfer;
+            poolDefender.mobilize(defender);
           }
         }
       }
@@ -70,6 +67,9 @@ export class Body {
         disease.spread();
       } else {
         this.maybeGetInfected(disease);
+      }
+      for (let defender of disease.defenders) {
+        defender.tickInit();
       }
     }
   }
