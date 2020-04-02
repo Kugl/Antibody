@@ -1,6 +1,7 @@
 import { factorDay2Tick, linearRateDay2Tick } from "./util";
 import { Disease } from "./diseases/diseases";
-import { TicksPerDay } from "./constants";
+import { TicksPerDay, TicksPerHour } from "./constants";
+import { tick } from "@angular/core/testing";
 
 export class Defender {
   name: string;
@@ -12,11 +13,78 @@ export class Defender {
   combatPower: number;
   tooltip: string;
 
-  grow() {
-    const tickSurvival = factorDay2Tick(1.0 - this.decay);
-    const tickProduction = linearRateDay2Tick(this.production);
-    this.count = this.count * tickSurvival + tickProduction;
+  mobilizedLastTick: number;
+  receivedMobilizedLastTick: number;
+  combatLossesLastTick: number;
+
+  tickInit() {
+    this.mobilizedLastTick = 0;
+    this.receivedMobilizedLastTick = 0;
+    this.combatLossesLastTick = 0;
   }
+
+  get mobilizationPerTick() {
+    return (this.count * this.mobilizationRate) / TicksPerDay;
+  }
+
+  get combatDeltaPerTick() {
+    return this.receivedMobilizedLastTick - this.combatLossesLastTick;
+  }
+
+  get combatLossesPerHour() {
+    return this.combatLossesLastTick * TicksPerHour;
+  }
+
+  get receivedMoblizedPerHour() {
+    return this.receivedMobilizedLastTick * TicksPerHour;
+  }
+
+  get combatDeltaPerHour() {
+    return this.combatDeltaPerTick * TicksPerHour;
+  }
+
+  mobilize(target: Defender) {
+    const count = this.mobilizationPerTick;
+    this.mobilizedLastTick += count;
+    this.count -= count;
+    target.receiveMobilized(count);
+  }
+
+  receiveMobilized(count: number) {
+    this.count += count;
+    this.receivedMobilizedLastTick += count;
+  }
+
+  get growthPerTick() {
+    return this.productionPerTick - this.decayPerTick;
+  }
+
+  get productionPerTick() {
+    const tickProduction = linearRateDay2Tick(this.production);
+    return tickProduction;
+  }
+
+  get decayPerTick() {
+    const tickSurvival = factorDay2Tick(1.0 - this.decay);
+    return this.count - this.count * tickSurvival;
+  }
+
+  get decayPerHour() {
+    return this.decayPerTick * TicksPerHour;
+  }
+
+  get productionPerHour() {
+    return this.productionPerTick * TicksPerHour;
+  }
+
+  get growthPerHour() {
+    return this.growthPerTick * TicksPerHour;
+  }
+
+  grow() {
+    this.count = this.count + this.growthPerTick;
+  }
+
   //TODO: Adapt to accopunt for different fighting styles
   fight(disease: Disease): void {
     let strength = this.count * this.combatPower;
@@ -48,6 +116,7 @@ export class TCells extends Defender {
     }
     const killed = (initialCount - disease.Count) / 100;
     this.count = this.count - killed;
+    this.combatLossesLastTick += killed;
     // memorize
     const newMemTCells = (this.count * this.memorizationRate) / TicksPerDay;
     disease.memTCells.count += newMemTCells;
@@ -84,6 +153,7 @@ export class Leukos extends Defender {
       }
       //For each 100 killed Virus/Bacteria a white cell has to die
       const killed = (initialCount - disease.Count) / 100;
+      this.combatLossesLastTick += killed;
       this.count = this.count - killed;
     }
   }
@@ -148,6 +218,7 @@ export class Macrophages extends Defender {
       }
       //For each 100 killed Virus/Bacteria a white cell has to die
       const killed = (initialCount - disease.Count) / 100;
+      this.combatLossesLastTick += killed;
       this.count = this.count - killed;
     }
   }
@@ -168,6 +239,13 @@ export class DefensePool {
     this.defenders = [this.tCells, this.leukos, this.macros];
   }
 
+  tick() {
+    for (let defender of this.defenders) {
+      defender.tickInit();
+      defender.grow();
+    }
+  }
+
   demobilizeMemTCells(disease: Disease) {
     const count = disease.memTCells.count;
     if (!this.memTCells.has(disease)) {
@@ -177,11 +255,5 @@ export class DefensePool {
     }
     this.memTCells.get(disease).count += count;
     disease.memTCells.count = 0;
-  }
-
-  grow() {
-    for (let defender of this.defenders) {
-      defender.grow();
-    }
   }
 }
