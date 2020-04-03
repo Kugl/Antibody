@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from "@angular/forms";
 
 //Material
 import { MaterialModule } from "./material.module";
@@ -17,7 +17,8 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BackdropComponent } from "./backdrop/backdrop.component";
 import { RoundPipe } from "./pipes/round.pipe";
-import { DialogComponent } from './dialog/dialog.component';
+import { DialogComponent } from "./dialog/dialog.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DialogComponent } from './dialog/dialog.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     MaterialModule,
     AppRoutingModule,
     BrowserAnimationsModule,

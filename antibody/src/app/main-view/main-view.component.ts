@@ -9,6 +9,8 @@ import { CentralService } from "../services/central.service";
 import { Defender, DefensePool } from "../core/defense";
 import { Game } from "../core/game";
 import { Disease, Virus, Bacteria } from "../core/diseases/diseases";
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-main-view",
@@ -22,11 +24,27 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
   totalDeadliness: number = 0;
   health: number = 100;
 
-  constructor(private centServ: CentralService) {
+  constructor(
+    private centServ: CentralService,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ) {
     this.currentGame = this.centServ.getGame();
     this.defenses = this.currentGame.body.defensePool;
     this.diseases = this.currentGame.body.diseases;
     console.log(this.defenses);
+    this.matIconRegistry.addSvgIcon(
+      "cust_up_2x",
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        "../assets/icons/keyboard_arrow_up-24px2.svg"
+      )
+    );
+    this.matIconRegistry.addSvgIcon(
+      "cust_up_3x",
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        "../assets/icons/keyboard_arrow_up-24px3.svg"
+      )
+    );
   }
 
   ngAfterContentChecked() {
@@ -50,3 +68,5 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
 
   ngOnInit(): void {}
 }
+//keyboard_arrow_up
+//arrow_upward
