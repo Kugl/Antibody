@@ -74,6 +74,7 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
 
   ngAfterContentChecked() {
     this.sumDeadliness();
+    this.orderDeadly();
     this.health = 100 - this.totalDeadliness;
   }
 
@@ -92,6 +93,20 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
   }
 
   ngOnInit(): void {}
+
+  orderDeadly() {
+    if (this.diseases.length === 0) return;
+
+    this.diseases.sort((a: Disease, b: Disease) => {
+      if (a.Count * a.Deadliness < b.Count * b.Deadliness) {
+        return 1;
+      } else if (a.Count * a.Deadliness > b.Count * b.Deadliness) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  }
 }
 //keyboard_arrow_up
 //arrow_upward

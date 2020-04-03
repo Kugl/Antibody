@@ -3,7 +3,7 @@ import { Game } from "../game";
 import { TicksPerDay } from "../constants";
 
 export class IncreaseDefenderProduction implements Effect {
-  displayText = "Increase" + this.targetDefenderName + "Production x5";
+  displayText = "Increase " + this.targetDefenderName + " Production x5";
   action = "";
   duration = TicksPerDay * 1;
   readonly maxDuration = TicksPerDay * 1;
