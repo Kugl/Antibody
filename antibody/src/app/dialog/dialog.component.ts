@@ -20,6 +20,8 @@ export class DialogComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: EventMessage
   ) {
     this.eventM = data;
+    //Close immidiately for Testing
+    this.close();
   }
 
   ngOnInit() {}
