@@ -1,31 +1,29 @@
-import { Component, HostListener, OnInit } from '@angular/core'
-
+import { Component, HostListener, OnInit } from "@angular/core";
 
 interface Layer {
-  amount: number,
-  moveDepth: number,
-  displayDepth: number,
+  amount: number;
+  moveDepth: number;
+  displayDepth: number;
   items: {
-    baseX: number,
-    baseY: number
-  }[]
+    baseX: number;
+    baseY: number;
+  }[];
 }
 
 @Component({
-  selector: 'app-backdrop',
-  templateUrl: './backdrop.component.html',
-  styleUrls: ['./backdrop.component.scss']
+  selector: "app-backdrop",
+  templateUrl: "./backdrop.component.html",
+  styleUrls: ["./backdrop.component.scss"]
 })
 export class BackdropComponent implements OnInit {
-  e: MouseEvent | {x: number, y:number} = {x:0, y:0}
+  e: MouseEvent | { x: number; y: number } = { x: 0, y: 0 };
 
-  readonly imageBaseSize = 200
+  readonly imageBaseSize = 200;
 
-  @HostListener('window:mousemove', ['$event'])
+  @HostListener("window:mousemove", ["$event"])
   handleMouseMove(event: MouseEvent) {
     // this.e = event
   }
-
 
   layers: Layer[] = [
     {
@@ -52,12 +50,12 @@ export class BackdropComponent implements OnInit {
       displayDepth: 6,
       items: []
     },
-    {
+    /*{
       amount: 8,
       moveDepth: 4,
       displayDepth: 4,
       items: []
-    },
+    },*/
     {
       amount: 5,
       moveDepth: 3,
@@ -70,31 +68,29 @@ export class BackdropComponent implements OnInit {
       displayDepth: 2,
       items: []
     },
-    {
+    /*{
       amount: 1,
       moveDepth: 2.4,
       displayDepth: 2.4,
       items: []
-    },
+    },*/
     {
       amount: 1,
       moveDepth: 2.6,
       displayDepth: 2.6,
       items: []
     }
-  ]
+  ];
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    this.populateLayers()
+    this.populateLayers();
   }
-
 
   populateLayers() {
     function r() {
-        return Math.floor(Math.random() * 100)
+      return Math.floor(Math.random() * 100);
     }
 
     this.layers.forEach(layer => {
@@ -102,8 +98,8 @@ export class BackdropComponent implements OnInit {
         layer.items.push({
           baseX: r(),
           baseY: r()
-        })
+        });
       }
-    })
+    });
   }
 }
