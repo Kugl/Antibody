@@ -74,6 +74,7 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
 
   ngAfterContentChecked() {
     this.sumDeadliness();
+    //TODO: Refactor t oa place where istsorts less often
     this.orderDeadly();
     this.health = 100 - this.totalDeadliness;
   }
