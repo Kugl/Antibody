@@ -71,6 +71,7 @@ export class Influenza extends Virus {
   HostMinAge = 0;
   Deadliness = 5;
   NumberPerHostCell = 500;
+  pictureURL = "assets/pictures/flu.png";
 
   constructor() {
     super();
@@ -105,6 +106,7 @@ export class Corona extends Virus {
   HostMinAge = 0;
   Deadliness = 7;
   NumberPerHostCell = 500;
+  pictureURL = "assets/pictures/corona.png";
 
   constructor() {
     super();
@@ -122,6 +124,7 @@ export class CommonCold extends Bacteria {
   HostMinAge = 0;
   Deadliness = 1;
   GrowthPerDay = 2;
+  pictureURL = "assets/pictures/bacteria.png";
 }
 
 export class Pneumonia extends Bacteria {
