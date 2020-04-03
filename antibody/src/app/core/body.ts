@@ -41,10 +41,6 @@ export class Body {
     //Changed Mobilization to have a Trigger.
     if (this.mobilizationTrigger) {
       for (let disease of this.diseases) {
-        if (disease.Count < 1) {
-          this.demobilize(disease);
-          continue;
-        }
         for (let defender of disease.defenders) {
           for (let poolDefender of this.defensePool.defenders) {
             if (defender.name === poolDefender.name) {
@@ -75,9 +71,10 @@ export class Body {
 
   handleInfections() {
     for (let disease of this.diseases) {
-      if (disease.Count > 0) {
+      if (disease.Count >= 1) {
         disease.spread();
       } else {
+        this.demobilize(disease);
         this.maybeGetInfected(disease);
       }
       for (let defender of disease.defenders) {
