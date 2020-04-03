@@ -7,14 +7,18 @@ import { Graveyard } from "./graveyard";
 
 import { NewsTicker } from "./newsTicker";
 import { Clock } from "./clock";
-import { Subject } from "rxjs";
+import { interval, Subject } from 'rxjs'
 import { TicksPerDay } from "./constants";
+import { take } from 'rxjs/operators'
 
 export interface EffectEvent {
   Action: string;
 }
 
 export class Game {
+  readonly INITIAL_CARDS_DRAWN = 3
+  readonly INITIAL_CARD_DRAW_INTERVAL = 1000
+
   deck: Deck;
   hand: Hand;
   graveyard: Graveyard;
@@ -41,9 +45,13 @@ export class Game {
 
     this.hand = new Hand();
     this.deck.shuffle();
-    while (this.hand.cards.length < 3 && this.deck.cards.length > 0) {
-      this.drawCard();
-    }
+    interval(this.INITIAL_CARD_DRAW_INTERVAL)
+      .pipe(
+        take(this.INITIAL_CARDS_DRAWN)
+      )
+      .subscribe(() => {
+        this.drawCard();
+      })
   }
 
   drawCard() {
