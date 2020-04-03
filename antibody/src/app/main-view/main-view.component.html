@@ -55,69 +55,96 @@
   <div fxFlex="4 1 100%" style="overflow-y: auto">
     <h1>Immune Response:</h1>
     <div *ngFor="let defender of defenses.defenders">
-      <mat-card *ngIf="defender.count > 0">
-        <mat-card-header matTooltip="{{ defender.tooltip }}">
-          <mat-card-title>{{ defender.name }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <div>
-            {{ defender.count | round }}
-            <span
-              title="Production: {{
-                defender.productionPerHour | number: '1.1-1'
-              }}, Decay: {{ defender.decayPerHour | number: '1.1-1' }}"
-              >({{ defender.growthPerHour | number: "1.1-1" }} /h)
-            </span>
-            <span [ngSwitch]="true">
-              <mat-icon
-                color="accent"
-                svgIcon="cust_up"
-                *ngSwitchCase="
-                  10 > defender.growthPerHour && defender.growthPerHour > 0
-                "
-              ></mat-icon>
-              <mat-icon
-                color="accent"
-                svgIcon="cust_up_2x"
-                *ngSwitchCase="
-                  100 > defender.growthPerHour && defender.growthPerHour > 10
-                "
-              ></mat-icon>
-              <mat-icon
-                color="accent"
-                svgIcon="cust_up_3x"
-                *ngSwitchCase="defender.growthPerHour > 100"
-              ></mat-icon>
-              <mat-icon
-                color="warn"
-                svgIcon="cust_down"
-                *ngSwitchCase="
-                  -10 < defender.growthPerHour && defender.growthPerHour < 0
-                "
-              ></mat-icon>
-              <mat-icon
-                color="warn"
-                svgIcon="cust_down_2x"
-                *ngSwitchCase="
-                  -100 < defender.growthPerHour && defender.growthPerHour < -10
-                "
-              ></mat-icon>
-              <mat-icon
-                color="warn"
-                svgIcon="cust_down_3x"
-                *ngSwitchCase="defender.growthPerHour < -100"
-              ></mat-icon>
-              <p *ngSwitchDefault></p>
-            </span>
-            <!--
+      <ng-container *ngIf="!isTmemory(defender)">
+        <mat-card *ngIf="defender.count > 0">
+          <mat-card-header matTooltip="{{ defender.tooltip }}">
+            <mat-card-title>{{ defender.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div>
+              {{ defender.count | round }}
+              <span
+                title="Production: {{
+                  defender.productionPerHour | number: '1.1-1'
+                }}, Decay: {{ defender.decayPerHour | number: '1.1-1' }}"
+                >({{ defender.growthPerHour | number: "1.1-1" }} /h)
+              </span>
+              <span [ngSwitch]="true">
+                <mat-icon
+                  color="accent"
+                  svgIcon="cust_up"
+                  *ngSwitchCase="
+                    10 > defender.growthPerHour && defender.growthPerHour > 0
+                  "
+                ></mat-icon>
+                <mat-icon
+                  color="accent"
+                  svgIcon="cust_up_2x"
+                  *ngSwitchCase="
+                    100 > defender.growthPerHour && defender.growthPerHour > 10
+                  "
+                ></mat-icon>
+                <mat-icon
+                  color="accent"
+                  svgIcon="cust_up_3x"
+                  *ngSwitchCase="defender.growthPerHour > 100"
+                ></mat-icon>
+                <mat-icon
+                  color="warn"
+                  svgIcon="cust_down"
+                  *ngSwitchCase="
+                    -10 < defender.growthPerHour && defender.growthPerHour < 0
+                  "
+                ></mat-icon>
+                <mat-icon
+                  color="warn"
+                  svgIcon="cust_down_2x"
+                  *ngSwitchCase="
+                    -100 < defender.growthPerHour &&
+                    defender.growthPerHour < -10
+                  "
+                ></mat-icon>
+                <mat-icon
+                  color="warn"
+                  svgIcon="cust_down_3x"
+                  *ngSwitchCase="defender.growthPerHour < -100"
+                ></mat-icon>
+                <p *ngSwitchDefault></p>
+              </span>
+              <!--
             <mat-icon color="warn" svgIcon="cust_down"></mat-icon>
             <mat-icon color="warn" svgIcon="cust_down_2x"></mat-icon>
             <mat-icon color="warn" svgIcon="cust_down_3x"></mat-icon>
-            -->
-          </div>
-        </mat-card-content>
-      </mat-card>
+            --></div>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
     </div>
+    <mat-card>
+      <mat-card-header matTooltip="">
+        <mat-card-title>T-Memory</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let defender of defenses.defenders">
+          <ng-container *ngIf="isTmemory(defender) && defender.count > 0">
+            <div>
+              {{ defender.name }} :
+              {{ defender.count | round }}
+              <span
+                title="Production: {{
+                  defender.productionPerHour | number: '1.1-1'
+                }}, Decay: {{ defender.decayPerHour | number: '1.1-1' }}"
+                >({{ defender.growthPerHour | number: "1.1-1" }} /h)
+              </span>
+              <!--
+            <mat-icon color="warn" svgIcon="cust_down"></mat-icon>
+            <mat-icon color="warn" svgIcon="cust_down_2x"></mat-icon>
+            <mat-icon color="warn" svgIcon="cust_down_3x"></mat-icon>
+            --></div>
+          </ng-container>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
   <div fxFlex="1 4 100%">
     <h1>Health:</h1>

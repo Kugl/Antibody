@@ -6,7 +6,7 @@ import {
   AfterContentChecked
 } from "@angular/core";
 import { CentralService } from "../services/central.service";
-import { Defender, DefensePool } from "../core/defense";
+import { Defender, DefensePool, MemoryTCells } from "../core/defense";
 import { Game } from "../core/game";
 import { Disease, Virus, Bacteria } from "../core/diseases/diseases";
 import { MatIconRegistry } from "@angular/material/icon";
@@ -75,7 +75,7 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
   ngAfterContentChecked() {
     this.sumDeadliness();
     //TODO: Refactor t oa place where istsorts less often
-    this.orderDeadly();
+    //this.orderDeadly();
     this.health = 100 - this.totalDeadliness;
   }
 
@@ -91,6 +91,10 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
   }
   isBacteria(dis: Disease) {
     return dis instanceof Bacteria;
+  }
+
+  isTmemory(dis: Defender) {
+    return dis instanceof MemoryTCells;
   }
 
   ngOnInit(): void {}
