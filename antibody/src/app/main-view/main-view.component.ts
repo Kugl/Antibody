@@ -37,37 +37,37 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
     this.matIconRegistry.addSvgIcon(
       "cust_up",
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "../assets/icons/keyboard_arrow-24px.svg"
+        "/assets/icons/keyboard_arrow-24px.svg"
       )
     );
     this.matIconRegistry.addSvgIcon(
       "cust_up_2x",
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "../assets/icons/keyboard_arrow_up-24px2.svg"
+        "/assets/icons/keyboard_arrow_up-24px2.svg"
       )
     );
     this.matIconRegistry.addSvgIcon(
       "cust_up_3x",
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "../assets/icons/keyboard_arrow_up-24px3.svg"
+        "/assets/icons/keyboard_arrow_up-24px3.svg"
       )
     );
     this.matIconRegistry.addSvgIcon(
       "cust_down",
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "../assets/icons/keyboard_arrow_down-24px.svg"
+        "/assets/icons/keyboard_arrow_down-24px.svg"
       )
     );
     this.matIconRegistry.addSvgIcon(
       "cust_down_2x",
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "../assets/icons/keyboard_arrow_down-24px2.svg"
+        "/assets/icons/keyboard_arrow_down-24px2.svg"
       )
     );
     this.matIconRegistry.addSvgIcon(
       "cust_down_3x",
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "../assets/icons/keyboard_arrow_down-24px3.svg"
+        "/assets/icons/keyboard_arrow_down-24px3.svg"
       )
     );
   }
