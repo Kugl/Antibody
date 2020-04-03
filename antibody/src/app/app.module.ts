@@ -19,6 +19,7 @@ import { BackdropComponent } from "./backdrop/backdrop.component";
 import { RoundPipe } from "./pipes/round.pipe";
 import { DialogComponent } from "./dialog/dialog.component";
 import { HttpClientModule } from "@angular/common/http";
+import { IconComponent } from './main-view/icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HttpClientModule } from "@angular/common/http";
     NavbarComponent,
     RoundPipe,
     BackdropComponent,
-    DialogComponent
+    DialogComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,

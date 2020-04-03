@@ -35,6 +35,9 @@
                     }}
                     /h)</span
                   >
+                  <app-icon
+                    [theNumber]="defender.combatDeltaPerHour"
+                  ></app-icon>
                 </p>
               </div>
             </div>
@@ -69,59 +72,16 @@
                 }}, Decay: {{ defender.decayPerHour | number: '1.1-1' }}"
                 >({{ defender.growthPerHour | number: "1.1-1" }} /h)
               </span>
-              <span [ngSwitch]="true">
-                <mat-icon
-                  color="accent"
-                  svgIcon="cust_up"
-                  *ngSwitchCase="
-                    10 > defender.growthPerHour && defender.growthPerHour > 0
-                  "
-                ></mat-icon>
-                <mat-icon
-                  color="accent"
-                  svgIcon="cust_up_2x"
-                  *ngSwitchCase="
-                    100 > defender.growthPerHour && defender.growthPerHour > 10
-                  "
-                ></mat-icon>
-                <mat-icon
-                  color="accent"
-                  svgIcon="cust_up_3x"
-                  *ngSwitchCase="defender.growthPerHour > 100"
-                ></mat-icon>
-                <mat-icon
-                  color="warn"
-                  svgIcon="cust_down"
-                  *ngSwitchCase="
-                    -10 < defender.growthPerHour && defender.growthPerHour < 0
-                  "
-                ></mat-icon>
-                <mat-icon
-                  color="warn"
-                  svgIcon="cust_down_2x"
-                  *ngSwitchCase="
-                    -100 < defender.growthPerHour &&
-                    defender.growthPerHour < -10
-                  "
-                ></mat-icon>
-                <mat-icon
-                  color="warn"
-                  svgIcon="cust_down_3x"
-                  *ngSwitchCase="defender.growthPerHour < -100"
-                ></mat-icon>
-                <p *ngSwitchDefault></p>
-              </span>
-              <!--
-            <mat-icon color="warn" svgIcon="cust_down"></mat-icon>
-            <mat-icon color="warn" svgIcon="cust_down_2x"></mat-icon>
-            <mat-icon color="warn" svgIcon="cust_down_3x"></mat-icon>
-            --></div>
+              <app-icon [theNumber]="defender.growthPerHour"></app-icon>
+            </div>
           </mat-card-content>
         </mat-card>
       </ng-container>
     </div>
     <mat-card>
-      <mat-card-header matTooltip="">
+      <mat-card-header
+        matTooltip="T-Memory cells can only target a specific disease. They are very effective in fighting that disease but lie dormant if the disease is not active."
+      >
         <mat-card-title>T-Memory</mat-card-title>
       </mat-card-header>
       <mat-card-content>
@@ -136,11 +96,7 @@
                 }}, Decay: {{ defender.decayPerHour | number: '1.1-1' }}"
                 >({{ defender.growthPerHour | number: "1.1-1" }} /h)
               </span>
-              <!--
-            <mat-icon color="warn" svgIcon="cust_down"></mat-icon>
-            <mat-icon color="warn" svgIcon="cust_down_2x"></mat-icon>
-            <mat-icon color="warn" svgIcon="cust_down_3x"></mat-icon>
-            --></div>
+            </div>
           </ng-container>
         </div>
       </mat-card-content>

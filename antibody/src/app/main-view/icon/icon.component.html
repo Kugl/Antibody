@@ -1,0 +1,33 @@
+<span [ngSwitch]="true">
+  <mat-icon
+    color="accent"
+    svgIcon="cust_up"
+    *ngSwitchCase="10 > theNumber && theNumber > 0"
+  ></mat-icon>
+  <mat-icon
+    color="accent"
+    svgIcon="cust_up_2x"
+    *ngSwitchCase="100 > theNumber && theNumber > 10"
+  ></mat-icon>
+  <mat-icon
+    color="accent"
+    svgIcon="cust_up_3x"
+    *ngSwitchCase="theNumber > 100"
+  ></mat-icon>
+  <mat-icon
+    color="warn"
+    svgIcon="cust_down"
+    *ngSwitchCase="-10 < theNumber && theNumber < 0"
+  ></mat-icon>
+  <mat-icon
+    color="warn"
+    svgIcon="cust_down_2x"
+    *ngSwitchCase="-100 < theNumber && theNumber < -10"
+  ></mat-icon>
+  <mat-icon
+    color="warn"
+    svgIcon="cust_down_3x"
+    *ngSwitchCase="theNumber < -100"
+  ></mat-icon>
+  <p *ngSwitchDefault></p>
+</span>
