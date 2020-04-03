@@ -68,12 +68,52 @@
               }}, Decay: {{ defender.decayPerHour | number: '1.1-1' }}"
               >({{ defender.growthPerHour | number: "1.1-1" }} /h)
             </span>
-            <mat-icon color="accent" svgIcon="cust_up"></mat-icon>
-            <mat-icon color="accent" svgIcon="cust_up_2x"></mat-icon>
-            <mat-icon color="accent" svgIcon="cust_up_3x"></mat-icon>
-            <mat-icon color="accent" svgIcon="cust_down"></mat-icon>
-            <mat-icon color="accent" svgIcon="cust_down_2x"></mat-icon>
-            <mat-icon color="accent" svgIcon="cust_down_3x"></mat-icon>
+            <span [ngSwitch]="true">
+              <mat-icon
+                color="accent"
+                svgIcon="cust_up"
+                *ngSwitchCase="
+                  10 > defender.growthPerHour && defender.growthPerHour > 0
+                "
+              ></mat-icon>
+              <mat-icon
+                color="accent"
+                svgIcon="cust_up_2x"
+                *ngSwitchCase="
+                  100 > defender.growthPerHour && defender.growthPerHour > 10
+                "
+              ></mat-icon>
+              <mat-icon
+                color="accent"
+                svgIcon="cust_up_3x"
+                *ngSwitchCase="defender.growthPerHour > 100"
+              ></mat-icon>
+              <mat-icon
+                color="warn"
+                svgIcon="cust_down"
+                *ngSwitchCase="
+                  -10 < defender.growthPerHour && defender.growthPerHour < 0
+                "
+              ></mat-icon>
+              <mat-icon
+                color="warn"
+                svgIcon="cust_down_2x"
+                *ngSwitchCase="
+                  -100 < defender.growthPerHour && defender.growthPerHour < -10
+                "
+              ></mat-icon>
+              <mat-icon
+                color="warn"
+                svgIcon="cust_down_3x"
+                *ngSwitchCase="defender.growthPerHour < -100"
+              ></mat-icon>
+              <p *ngSwitchDefault></p>
+            </span>
+            <!--
+            <mat-icon color="warn" svgIcon="cust_down"></mat-icon>
+            <mat-icon color="warn" svgIcon="cust_down_2x"></mat-icon>
+            <mat-icon color="warn" svgIcon="cust_down_3x"></mat-icon>
+            -->
           </div>
         </mat-card-content>
       </mat-card>
