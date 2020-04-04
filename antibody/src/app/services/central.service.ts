@@ -7,6 +7,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "../dialog/dialog.component";
 import { EventMessage } from "../core/body";
 import { GoogleAnalyticsService } from "./analytics.service";
+import { GoogleAnalyService } from "./analytics2.service";
 
 const BaseTickLength = 200;
 
@@ -28,7 +29,8 @@ export class CentralService {
 
   constructor(
     private dialog: MatDialog,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private service2: GoogleAnalyService
   ) {
     this.game = makeDefaultGame();
     this.startTime = new Date().getTime();
@@ -59,6 +61,7 @@ export class CentralService {
     this.game.playCard(card);
     this.CardSubject.next({ Action: "Play", card });
     this.googleAnalyticsService.gtag({ event: "CardPlayed", card: card.title });
+    this.service2.eventEmitter("add_to_cart", "shop", "cart", "click", 10);
   }
 
   discardCard(card: Card) {
