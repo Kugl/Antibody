@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 declare let gtag: Function;
 
 @Injectable({ providedIn: "root" })
-export class GoogleAnalyService {
+export class GoogleAnalyticsService {
   public eventEmitter(
     eventName: string,
     eventCategory: string,
