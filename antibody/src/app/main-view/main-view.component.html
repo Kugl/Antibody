@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="space-between" fxFlexFill>
-  <div fxFlex="4 1 100%" style="overflow-y: auto">
+  <div fxFlex="4 1 100%" style="overflow-y: auto;">
     <h1>Diseases:</h1>
     <div *ngFor="let disease of diseases">
       <mat-card *ngIf="disease.Count > 0">
@@ -55,7 +55,7 @@
       </mat-card>
     </div>
   </div>
-  <div fxFlex="4 1 100%" style="overflow-y: auto">
+  <div fxFlex="4 1 100%" style="overflow-y: auto;">
     <h1>Immune Response:</h1>
     <div *ngFor="let defender of defenses.defenders">
       <ng-container *ngIf="!isTmemory(defender)">
@@ -110,6 +110,8 @@
       color="{{ health > 20 ? 'accent' : 'warn' }}"
     >
     </mat-progress-spinner>
+    <h1>Energy</h1>
+    <p>{{ this.currentGame.body.energy | round }}</p>
     <app-status></app-status>
   </div>
 </div>

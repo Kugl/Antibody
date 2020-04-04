@@ -7,6 +7,7 @@ export class LeukocytosisCard extends Card {
   pictureURL = "assets/pictures/leukos.jpg";
   text = "Increase Leukocyte Production x5.";
   effectFactories = [
-    new EffectFactory(IncreaseDefenderProduction, ["leukos", "Leukocyte"])
+    new EffectFactory(IncreaseDefenderProduction, ["leukos", "Leukocyte"]),
   ];
+  energyCost = 50;
 }

@@ -1,7 +1,7 @@
 <div
   fxLayout="row"
   fxLayoutAlign="center end"
-  style="overflow: visible"
+  style="overflow: visible;"
   cdkDropList
   cdkDropListOrientation="horizontal"
   (cdkDropListDropped)="drop($event)"
@@ -17,7 +17,7 @@
   <div
     *ngFor="let card of cards; let i = index"
     [@inOutAnimation]
-    style="overflow: hidden; cursor: pointer"
+    style="overflow: hidden; cursor: pointer;"
     cdkDrag
     [cdkDragData]="card"
     class="drag-item"

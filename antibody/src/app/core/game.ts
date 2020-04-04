@@ -80,7 +80,7 @@ export class Game {
         effect.deactivate(this);
       }
     }
-    this.effects = this.effects.filter(effect => effect.duration > 0);
+    this.effects = this.effects.filter((effect) => effect.duration > 0);
     this.EffectSubject.next({ Action: "Deactivate" });
     this.body.tick();
     this.ticksUntilNextCard -= 1;
@@ -108,6 +108,9 @@ export class Game {
   }
 
   playCard(card: Card) {
+    if (card.energyCost > this.body.energy) {
+      return;
+    }
     console.log("played ", card.title);
     const effects = [];
     for (let effectFactory of card.effectFactories) {
@@ -115,6 +118,7 @@ export class Game {
       effect.activate(this);
       this.effects.push(effect);
     }
+    this.body.energy -= card.energyCost;
     this.EffectSubject.next({ Action: "Actiate" });
     this.discardCard(card);
   }

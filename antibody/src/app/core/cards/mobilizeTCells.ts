@@ -7,4 +7,5 @@ export class MobilizeTCellsCard extends Card {
   pictureURL = "assets/pictures/cards/lymphomob.jpg";
   text = "Mobilize defenders to fight diseases with a focus on TCells";
   effectFactories = [new EffectFactory(MobilizeEffect, ["tCells", "T-Cell"])];
+  energyCost = 50;
 }

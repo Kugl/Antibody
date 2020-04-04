@@ -3,7 +3,7 @@ import {
   OnInit,
   Pipe,
   OnChanges,
-  AfterContentChecked
+  AfterContentChecked,
 } from "@angular/core";
 import { CentralService } from "../services/central.service";
 import { Defender, DefensePool, MemoryTCells } from "../core/defense";
@@ -15,7 +15,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 @Component({
   selector: "app-main-view",
   templateUrl: "./main-view.component.html",
-  styleUrls: ["./main-view.component.scss"]
+  styleUrls: ["./main-view.component.scss"],
 })
 export class MainViewComponent implements OnInit, AfterContentChecked {
   defenses: DefensePool;

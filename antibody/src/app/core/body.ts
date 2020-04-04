@@ -22,12 +22,17 @@ export class Body {
   diseases: Disease[];
   defensePool: DefensePool;
   mobilizationRate: number = 0.2; // fraction of defenses that can be mobilized per day
-
   newsTicker: NewsTicker;
+
+  maxEnergy = 100;
+  energy: number;
+  energyRate: number; // how much energy is recovered per day
 
   constructor() {
     this.diseases = makeDiseaseArray();
     this.defensePool = new DefensePool();
+    this.energy = 100;
+    this.energyRate = 100;
   }
 
   tick() {
@@ -35,6 +40,14 @@ export class Body {
     this.handleInfections();
     this.mobilize();
     this.fightDiseases();
+    this.increaseEnergy();
+  }
+
+  increaseEnergy() {
+    this.energy = Math.min(
+      this.maxEnergy,
+      this.energy + this.energyRate / TicksPerDay
+    );
   }
 
   mobilize() {
@@ -96,7 +109,7 @@ export class Body {
       this.BodyEventSubject.next({
         description: message,
         picture: "",
-        text: messageText
+        text: messageText,
       });
     }
   }

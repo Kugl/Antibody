@@ -7,4 +7,5 @@ export class ExtravasationCard extends Card {
   pictureURL = "assets/pictures/extravasation.png";
   text = "Mobilize defenders to fight diseases with a focus on Leukocytes";
   effectFactories = [new EffectFactory(MobilizeEffect, ["tCells", "T-Cell"])];
+  energyCost = 30;
 }

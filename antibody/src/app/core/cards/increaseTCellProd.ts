@@ -7,6 +7,7 @@ export class IncreaseTCellProdCard extends Card {
   pictureURL = "assets/pictures/cards/lymphocytes.jpg";
   text = "Increase TCell Production x5.";
   effectFactories = [
-    new EffectFactory(IncreaseDefenderProduction, ["tCells", "T-Cells"])
+    new EffectFactory(IncreaseDefenderProduction, ["tCells", "T-Cells"]),
   ];
+  energyCost = 30;
 }
