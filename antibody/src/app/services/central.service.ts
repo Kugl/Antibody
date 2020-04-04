@@ -6,6 +6,7 @@ import { Subject } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "../dialog/dialog.component";
 import { EventMessage } from "../core/body";
+import { GoogleAnalyticsService } from "./analytics.service";
 
 const BaseTickLength = 200;
 
@@ -25,7 +26,10 @@ export class CentralService {
 
   startTime: number;
 
-  constructor(private dialog: MatDialog) {
+  constructor(
+    private dialog: MatDialog,
+    private googleAnalyticsService: GoogleAnalyticsService
+  ) {
     this.game = makeDefaultGame();
     this.startTime = new Date().getTime();
     this.lastTime = this.startTime;
@@ -35,9 +39,9 @@ export class CentralService {
     this.openDialog({
       description: "Welcome!",
       picture: "assets/pictures/corona.jpg",
-      text: `In this game you take over the job of the immune System. Your task is to coordiante the immune defense and protect the body from diseases. Play cards to trigger defensive Actions`
+      text: `In this game you take over the job of the immune System. Your task is to coordiante the immune defense and protect the body from diseases. Play cards to trigger defensive Actions`,
     });
-    this.game.body.BodyEventSubject.subscribe(event => {
+    this.game.body.BodyEventSubject.subscribe((event) => {
       this.openDialog(event);
     });
   }
@@ -54,6 +58,12 @@ export class CentralService {
   playCard(card: Card) {
     this.game.playCard(card);
     this.CardSubject.next({ Action: "Play", card });
+    this.googleAnalyticsService.eventEmitter(
+      "CardPlayed",
+      card.title,
+      "Play",
+      1
+    );
   }
 
   discardCard(card: Card) {
@@ -81,9 +91,9 @@ export class CentralService {
   openDialog(data: EventMessage) {
     this.tickLength = 10000;
     const dialogRef = this.dialog.open(DialogComponent, {
-      data
+      data,
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.tickLength = BaseTickLength;
       // to prevent the main loop from trying to catch up on missed ticks:
       this.lastTime = Math.max(
