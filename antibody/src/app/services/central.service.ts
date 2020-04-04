@@ -58,15 +58,15 @@ export class CentralService {
   playCard(card: Card) {
     this.game.playCard(card);
     this.CardSubject.next({ Action: "Play", card });
-    this.googleAnalyticsService.eventEmitter(
+    /*this.googleAnalyticsService.eventEmitter(
       "add_to_cart",
       "shop",
       "cart",
       "click",
       10
-    );
+    );*/
     this.googleAnalyticsService.eventEmitter(
-      card.title,
+      "card_title",
       "cards",
       "card_play",
       "play",
