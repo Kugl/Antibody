@@ -6,18 +6,7 @@ declare let ga: Function; // Declare ga as a function
 export class GoogleAnalyticsService {
   constructor() {}
 
-  //create our event emitter to send our data to Google Analytics
-  public eventEmitter(
-    eventCategory: string,
-    eventAction: string,
-    eventLabel: string = null,
-    eventValue: number = null
-  ) {
-    ga("send", "event", {
-      eventCategory: eventCategory,
-      eventLabel: eventLabel,
-      eventAction: eventAction,
-      eventValue: eventValue,
-    });
+  gtag(event: Object) {
+    (<any>window).dataLayer.push(event);
   }
 }

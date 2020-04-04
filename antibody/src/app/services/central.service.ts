@@ -58,12 +58,7 @@ export class CentralService {
   playCard(card: Card) {
     this.game.playCard(card);
     this.CardSubject.next({ Action: "Play", card });
-    this.googleAnalyticsService.eventEmitter(
-      "CardPlayed",
-      card.title,
-      "Play",
-      1
-    );
+    this.googleAnalyticsService.gtag({ event: "CardPlayed", card: card.title });
   }
 
   discardCard(card: Card) {
