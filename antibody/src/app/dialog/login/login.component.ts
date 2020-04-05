@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
     private dialogRef: MatDialogRef<LoginComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    //Prevents closing by clicking outside the dialog
     dialogRef.disableClose = true;
     //this.inputData = data;
   }
