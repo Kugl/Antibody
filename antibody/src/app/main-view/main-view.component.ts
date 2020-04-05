@@ -5,6 +5,7 @@ import { Game } from "../core/game";
 import { Disease, Virus, Bacteria } from "../core/diseases/diseases";
 
 import { TicksPerYear, TicksPerDay } from "../core/constants";
+import { Body } from "../core/body";
 
 @Component({
   selector: "app-main-view",
@@ -15,34 +16,24 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
   defenses: DefensePool;
   diseases: Disease[];
   currentGame: Game;
-  totalDeadliness: number = 0;
-  health: number = 100;
+  body: Body;
   gameOver: boolean = false;
   //Counting a year per "day" as games would be very long otherwise
   ticksPerYear: number = TicksPerDay;
 
   constructor(private centServ: CentralService) {
     this.currentGame = this.centServ.getGame();
+    this.body = this.currentGame.body;
     this.defenses = this.currentGame.body.defensePool;
     this.diseases = this.currentGame.body.diseases;
     console.log(this.defenses);
   }
 
   ngAfterContentChecked() {
-    this.sumDeadliness();
-    //TODO: Refactor t oa place where it sorts less often
     this.orderDeadly();
-    this.health = 100 - this.totalDeadliness;
-    if (this.totalDeadliness > 100 && this.gameOver == false) {
+    if (this.body.isDead && this.gameOver == false) {
       this.gameOver = true;
       this.centServ.openGameOverDialog();
-    }
-  }
-
-  sumDeadliness() {
-    this.totalDeadliness = 0;
-    for (let disease of this.diseases) {
-      this.totalDeadliness += (disease.Deadliness * disease.Count) / 2000;
     }
   }
 

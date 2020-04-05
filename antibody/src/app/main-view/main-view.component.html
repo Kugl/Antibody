@@ -105,9 +105,9 @@
   <div fxFlex="1 4 100%">
     <h2>Health:</h2>
     <mat-progress-spinner
-      value="{{ health }}"
+      value="{{ body.health }}"
       mode="determinate"
-      color="{{ health > 20 ? 'accent' : 'warn' }}"
+      color="{{ body.health > 20 ? 'accent' : 'warn' }}"
     >
     </mat-progress-spinner>
     <h2>Age: {{ currentGame.clock.tickCount / ticksPerYear | round }}</h2>
