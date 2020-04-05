@@ -78,6 +78,12 @@ export class HandComponent implements OnInit {
   ) {
     this.currentGame = this.centServ.getGame();
     this.cards = this.currentGame.hand.cards;
+    this.currentGame.ErrorSubject.subscribe((event) => {
+      console.log("Subject Triggerd");
+      if ((event.Action = "Energy")) {
+        this.openSnackBar("Not Enough Energy!");
+      }
+    });
   }
 
   ngOnInit(): void {}
@@ -109,7 +115,7 @@ export class HandComponent implements OnInit {
 
   openSnackBar(message: string) {
     this._snackBar.open(message, "", {
-      duration: 200000,
+      duration: 1500,
       verticalPosition: "bottom",
       panelClass: "snackbar",
     });

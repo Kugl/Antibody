@@ -25,6 +25,7 @@ export class Game {
   body: Body;
 
   EffectSubject = new Subject<EffectEvent>();
+  ErrorSubject = new Subject<EffectEvent>();
   effects: Effect[] = [];
 
   newsTicker: NewsTicker;
@@ -109,6 +110,8 @@ export class Game {
 
   playCard(card: Card) {
     if (card.energyCost > this.body.energy) {
+      console.log("Energy Low");
+      this.ErrorSubject.next({ Action: "Energy" });
       return;
     }
     console.log("played ", card.title);
