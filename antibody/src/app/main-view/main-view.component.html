@@ -103,14 +103,15 @@
     </mat-card>
   </div>
   <div fxFlex="1 4 100%">
-    <h1>Health:</h1>
+    <h2>Health:</h2>
     <mat-progress-spinner
       value="{{ health }}"
       mode="determinate"
       color="{{ health > 20 ? 'accent' : 'warn' }}"
     >
     </mat-progress-spinner>
-    <h1>Energy</h1>
+    <h2>Age: {{ currentGame.clock.tickCount / ticksPerYear | round }}</h2>
+    <h2>Energy</h2>
     <p>{{ this.currentGame.body.energy | round }}</p>
     <app-status></app-status>
   </div>
