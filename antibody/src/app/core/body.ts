@@ -26,6 +26,8 @@ export class Body {
   mobilizationRate: number = 0.2; // fraction of defenses that can be mobilized per day
   newsTicker: NewsTicker;
 
+  totalDeadliness: number;
+
   maxEnergy = 100;
   energy: number;
   energyRate: number; // how much energy is recovered per day
@@ -35,6 +37,7 @@ export class Body {
     this.defensePool = new DefensePool();
     this.energy = 100;
     this.energyRate = 100;
+    this.totalDeadliness = 0;
   }
 
   tick() {
@@ -43,6 +46,23 @@ export class Body {
     this.mobilize();
     this.fightDiseases();
     this.increaseEnergy();
+    this.updateHealth();
+  }
+
+  updateHealth() {
+    let deadliness = 0;
+    for (let disease of this.diseases) {
+      deadliness += (disease.Deadliness * disease.Count) / 2000;
+    }
+    this.totalDeadliness = deadliness;
+  }
+
+  get health() {
+    return 100 - this.totalDeadliness;
+  }
+
+  get isDead() {
+    return this.health <= 0;
   }
 
   increaseEnergy() {

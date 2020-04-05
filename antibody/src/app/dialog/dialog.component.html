@@ -1,8 +1,10 @@
 <h2 mat-dialog-title>{{ eventM.description }}</h2>
-<img mat-card-image src="{{ eventM.picture }}" />
-<p>
-  {{ eventM.text }}
-</p>
+<mat-dialog-content>
+  <p>
+    {{ eventM.text }}
+  </p>
+  <img mat-card-image src="{{ eventM.picture }}" />
+</mat-dialog-content>
 <div mat-dialog-actions>
   <button mat-raised-button color="warn" (click)="close()">
     Close
