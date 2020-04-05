@@ -20,7 +20,7 @@ export class DialogComponent implements OnInit {
   ) {
     this.eventM = data;
     //Close immidiately for Testing
-    this.close();
+    //this.close();
   }
 
   ngOnInit() {}

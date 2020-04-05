@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Welcome to the Antibody Game!</h2>
+<br />
+<p>
+  Enter your Nickname to get started:
+</p>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nickname:</mat-label>
+    <input matInput placeholder="" />
+  </mat-form-field>
+</form>
+
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="close()">
+    Start
+  </button>
+</div>

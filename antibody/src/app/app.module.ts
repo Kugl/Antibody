@@ -21,6 +21,7 @@ import { DialogComponent } from "./dialog/dialog.component";
 import { HttpClientModule } from "@angular/common/http";
 import { IconComponent } from './main-view/icon/icon.component';
 import { GameOverComponent } from './dialog/game-over/game-over.component';
+import { LoginComponent } from './dialog/login/login.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { GameOverComponent } from './dialog/game-over/game-over.component';
     BackdropComponent,
     DialogComponent,
     IconComponent,
-    GameOverComponent
+    GameOverComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

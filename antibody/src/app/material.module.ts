@@ -7,7 +7,7 @@ import {
 import { MatIconRegistry } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatButtonModule } from "@angular/material/button";
-
+import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
 
 import { MatDialogModule } from "@angular/material/dialog";
@@ -43,7 +43,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     // MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
-    //  MatInputModule,
+    MatInputModule,
     MatListModule,
     //MatMenuModule,
     // MatPaginatorModule,
@@ -80,7 +80,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     //MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
-    // MatInputModule,
+    MatInputModule,
     MatListModule,
     //MatMenuModule,
     //MatPaginatorModule,
