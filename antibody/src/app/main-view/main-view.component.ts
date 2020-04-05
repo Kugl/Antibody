@@ -3,8 +3,7 @@ import { CentralService } from "../services/central.service";
 import { Defender, DefensePool, MemoryTCells } from "../core/defense";
 import { Game } from "../core/game";
 import { Disease, Virus, Bacteria } from "../core/diseases/diseases";
-import { MatIconRegistry } from "@angular/material/icon";
-import { DomSanitizer } from "@angular/platform-browser";
+
 import { TicksPerYear, TicksPerDay } from "../core/constants";
 
 @Component({

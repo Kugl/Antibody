@@ -25,3 +25,18 @@
 .mat-progress-spinner {
   margin: 5px;
 }
+
+// .mat-snack-bar-container {
+// max-width: 100px !important;
+// }
+
+.snackbar {
+  margin-left: 285px !important;
+  // margin-left: auto !important; // center align from left
+  // margin-right: auto !important; // center align from right
+  padding-left: 115px !important;
+  text-align: center !important;
+  max-width: 10px !important;
+  background-color: #1c1c1c;
+  color: #ffffff;
+}

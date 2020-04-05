@@ -1,4 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  ViewEncapsulation,
+} from "@angular/core";
 import { Card } from "../core/card";
 import { CentralService } from "../services/central.service";
 import { Game } from "../core/game";
@@ -11,11 +16,13 @@ import {
   sequence,
   group,
 } from "@angular/animations";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-hand",
   templateUrl: "./hand.component.html",
   styleUrls: ["./hand.component.scss"],
+  encapsulation: ViewEncapsulation.None,
   animations: [
     trigger("inOutAnimation", [
       transition(":enter", [
@@ -66,7 +73,8 @@ export class HandComponent implements OnInit {
   currentGame: Game;
   constructor(
     private centServ: CentralService,
-    private cdref: ChangeDetectorRef
+    private cdref: ChangeDetectorRef,
+    private _snackBar: MatSnackBar
   ) {
     this.currentGame = this.centServ.getGame();
     this.cards = this.currentGame.hand.cards;
@@ -97,5 +105,13 @@ export class HandComponent implements OnInit {
     } else {
       moveItemInArray(this.cards, event.previousIndex, event.currentIndex);
     }
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, "", {
+      duration: 200000,
+      verticalPosition: "bottom",
+      panelClass: "snackbar",
+    });
   }
 }

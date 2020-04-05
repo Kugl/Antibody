@@ -15,7 +15,7 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatListModule } from "@angular/material/list";
-
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 
 import { MatRippleModule } from "@angular/material/core";
@@ -55,7 +55,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatSidenavModule,
     //MatSliderModule,//
     // MatSlideToggleModule,
-    // MatSnackBarModule,
+    MatSnackBarModule,
     // MatSortModule,
     // MatTableModule,
     //MatTabsModule,
@@ -92,7 +92,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatSidenavModule,
     //MatSliderModule,
     //MatSlideToggleModule,
-    //MatSnackBarModule,
+    MatSnackBarModule,
     //MatSortModule,
     //MatTableModule,
     // MatTabsModule,
