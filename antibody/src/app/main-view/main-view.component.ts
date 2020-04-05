@@ -22,58 +22,16 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
   //Counting a year per "day" as games would be very long otherwise
   ticksPerYear: number = TicksPerDay;
 
-  constructor(
-    private centServ: CentralService,
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
-  ) {
+  constructor(private centServ: CentralService) {
     this.currentGame = this.centServ.getGame();
     this.defenses = this.currentGame.body.defensePool;
     this.diseases = this.currentGame.body.diseases;
     console.log(this.defenses);
-    //Include custom Icons
-    //TODO: Refactor into Icon component
-    this.matIconRegistry.addSvgIcon(
-      "cust_up",
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "assets/icons/keyboard_arrow-24px.svg"
-      )
-    );
-    this.matIconRegistry.addSvgIcon(
-      "cust_up_2x",
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "assets/icons/keyboard_arrow_up-24px2.svg"
-      )
-    );
-    this.matIconRegistry.addSvgIcon(
-      "cust_up_3x",
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "assets/icons/keyboard_arrow_up-24px3.svg"
-      )
-    );
-    this.matIconRegistry.addSvgIcon(
-      "cust_down",
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "assets/icons/keyboard_arrow_down-24px.svg"
-      )
-    );
-    this.matIconRegistry.addSvgIcon(
-      "cust_down_2x",
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "assets/icons/keyboard_arrow_down-24px2.svg"
-      )
-    );
-    this.matIconRegistry.addSvgIcon(
-      "cust_down_3x",
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "assets/icons/keyboard_arrow_down-24px3.svg"
-      )
-    );
   }
 
   ngAfterContentChecked() {
     this.sumDeadliness();
-    //TODO: Refactor t oa place where istsorts less often
+    //TODO: Refactor t oa place where it sorts less often
     this.orderDeadly();
     this.health = 100 - this.totalDeadliness;
     if (this.totalDeadliness > 100 && this.gameOver == false) {
