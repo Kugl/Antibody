@@ -5,6 +5,7 @@ import { Game } from "../core/game";
 import { Disease, Virus, Bacteria } from "../core/diseases/diseases";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
+import { TicksPerYear, TicksPerDay } from "../core/constants";
 
 @Component({
   selector: "app-main-view",
@@ -18,6 +19,8 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
   totalDeadliness: number = 0;
   health: number = 100;
   gameOver: boolean = false;
+  //Counting a year per "day" as games would be very long otherwise
+  ticksPerYear: number = TicksPerDay;
 
   constructor(
     private centServ: CentralService,
