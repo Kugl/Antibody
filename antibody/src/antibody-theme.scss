@@ -1,6 +1,10 @@
+// $antibody-primary: mat-palette($mat-indigo, 700, 300, 900);
+// $antibody-accent: mat-palette($mat-light-blue);
+// $antibody-warn: mat-palette($mat-deep-orange, A200);
+
 $antibody-primary: mat-palette($mat-indigo, 700, 300, 900);
-$antibody-accent: mat-palette($mat-light-blue);
-$antibody-warn: mat-palette($mat-deep-orange, A200);
+$antibody-accent: mat-palette($mat-pink, A900);
+$antibody-warn: mat-palette($mat-pink, A700);
 
 $antibody-theme: mat-dark-theme(
   $antibody-primary,

@@ -16,15 +16,22 @@
   @include angular-material-theme($antibody-theme);
 }
 
+//More custom Theming
+.mat-card {
+  background-color: #1d1e33;
+}
+.mat-dialog-container {
+  background-color: #1d1e33;
+}
+
 html,
 body {
   height: 100%;
   margin: 0;
 
-  background-color: #232323;
+  //background-color: #232323;
+  background-color: #0a0e21;
   color: white;
 
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
-
