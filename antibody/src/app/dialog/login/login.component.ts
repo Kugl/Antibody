@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
     //Prevents closing by clicking outside the dialog
     dialogRef.disableClose = true;
     //this.inputData = data;
+    //Close immidiately for Testing
+    //this.close();
   }
 
   ngOnInit(): void {}

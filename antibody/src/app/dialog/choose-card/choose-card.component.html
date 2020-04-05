@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>
+  You have defeated XXX .Choose a Card to add to your deck
+</h2>
+<div fxLayout="row" fxLayoutAlign="center end">
+  <div
+    *ngFor="let card of cards; let i = index"
+    class="cardbox"
+    (click)="close()"
+  >
+    <app-card [card]="card"></app-card>
+  </div>
+</div>

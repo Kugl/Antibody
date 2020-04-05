@@ -22,6 +22,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { IconComponent } from './main-view/icon/icon.component';
 import { GameOverComponent } from './dialog/game-over/game-over.component';
 import { LoginComponent } from './dialog/login/login.component';
+import { ChooseCardComponent } from './dialog/choose-card/choose-card.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LoginComponent } from './dialog/login/login.component';
     DialogComponent,
     IconComponent,
     GameOverComponent,
-    LoginComponent
+    LoginComponent,
+    ChooseCardComponent
   ],
   imports: [
     BrowserModule,

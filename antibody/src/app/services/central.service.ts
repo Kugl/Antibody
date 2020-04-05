@@ -8,6 +8,7 @@ import { DialogComponent } from "../dialog/dialog.component";
 import { EventMessage } from "../core/body";
 import { GoogleAnalyticsService } from "./analytics2.service";
 import { GameOverComponent } from "../dialog/game-over/game-over.component";
+import { ChooseCardComponent } from "../dialog/choose-card/choose-card.component";
 
 const BaseTickLength = 200;
 
@@ -36,6 +37,7 @@ export class CentralService {
     this.lastTime = this.startTime;
     const that = this;
     this.mainLoop(that);
+    this.openGameChooseCardDialog();
     //Displays a welcome message
     this.openDialog({
       description: "Welcome!",
@@ -104,8 +106,18 @@ export class CentralService {
     this.openGenericDialog(godialogRef);
   }
 
+  openGameChooseCardDialog() {
+    const gcarddialogRef = this.dialog.open(ChooseCardComponent, {
+      data: { game: this.game },
+    });
+    this.openGenericDialog(gcarddialogRef);
+  }
+
   openGenericDialog(
-    dialogRef: MatDialogRef<DialogComponent | GameOverComponent, any>
+    dialogRef: MatDialogRef<
+      DialogComponent | GameOverComponent | ChooseCardComponent,
+      any
+    >
   ) {
     this.tickLength = 10000;
     dialogRef.afterClosed().subscribe((result) => {
