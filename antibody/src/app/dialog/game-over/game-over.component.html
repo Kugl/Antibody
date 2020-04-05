@@ -6,16 +6,14 @@
 <p>
   However you have defeated a total of:
 </p>
+<p *ngFor="let disease of this.game.body.diseases">
+  {{ disease.Name }}: {{ disease.defeatedCount | round }}
+</p>
 
 <p>
-  XXX Viruses
+  You reached the venerable age of
 </p>
-<p>
-  XXX Bacteria
-</p>
-<p>
-  You reached the venerable age of XXX years
-</p>
+
 <div mat-dialog-actions>
   <button mat-raised-button (click)="reset()">
     Ok

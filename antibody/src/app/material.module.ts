@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule } from "@angular/core";
 import {
   MAT_LABEL_GLOBAL_OPTIONS,
   MatNativeDateModule,
-  MAT_DATE_LOCALE
+  MAT_DATE_LOCALE,
 } from "@angular/material/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
@@ -15,6 +15,8 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatListModule } from "@angular/material/list";
+
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 import { MatRippleModule } from "@angular/material/core";
 
@@ -32,7 +34,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatButtonModule,
     // MatButtonToggleModule,
     MatCardModule,
-    // MatCheckboxModule,
+    MatCheckboxModule,
     // MatChipsModule,
     //MatStepperModule,
     // MatDatepickerModule,
@@ -58,7 +60,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     // MatTableModule,
     //MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
     //MatTreeModule,
     //MatNativeDateModule
   ],
@@ -69,7 +71,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatButtonModule,
     //MatButtonToggleModule,
     MatCardModule,
-    //MatCheckboxModule,
+    MatCheckboxModule,
     //MatChipsModule,
     // MatStepperModule,
     //MatDatepickerModule,
@@ -95,11 +97,11 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     //MatTableModule,
     // MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
     //MatTreeModule,
     //MatNativeDateModule
   ],
-  providers: []
+  providers: [],
 })
 export class MaterialModule {
   constructor(public matIconRegistry: MatIconRegistry) {
@@ -109,7 +111,7 @@ export class MaterialModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: MaterialModule,
-      providers: [MatIconRegistry]
+      providers: [MatIconRegistry],
     };
   }
 }

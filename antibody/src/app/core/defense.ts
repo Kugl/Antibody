@@ -89,10 +89,7 @@ export class Defender {
   fight(disease: Disease): void {
     let strength = this.count * this.combatPower;
     //Specific Tcells only fight the virus they are build for
-    disease.Count = disease.Count - strength;
-    if (disease.Count < 0) {
-      disease.Count = 0;
-    }
+    disease.die(Math.min(strength, disease.Count));
   }
 }
 
@@ -110,10 +107,7 @@ export class TCells extends Defender {
   fight(disease: Disease): void {
     let strength = (this.count * this.combatPower) / TicksPerDay;
     const initialCount = disease.Count;
-    disease.Count = disease.Count - strength;
-    if (disease.Count < 0) {
-      disease.Count = 0;
-    }
+    disease.die(Math.min(strength, disease.Count));
     const killed = (initialCount - disease.Count) / 100;
     this.count = this.count - killed;
     this.combatLossesLastTick += killed;
@@ -147,10 +141,7 @@ export class Leukos extends Defender {
       const fightingProbability = (disease.Count + this.count) / 10000;
       const strength = this.count * fightingProbability;
       let initialCount = disease.Count;
-      disease.Count = disease.Count - strength;
-      if (disease.Count < 0) {
-        disease.Count = 0;
-      }
+      disease.die(Math.min(strength, disease.Count));
       //For each 100 killed Virus/Bacteria a white cell has to die
       const killed = (initialCount - disease.Count) / 100;
       this.combatLossesLastTick += killed;
@@ -183,10 +174,7 @@ export class MemoryTCells extends Defender {
     }
 
     let strength = this.count * this.combatPower;
-    disease.Count = disease.Count - strength;
-    if (disease.Count < 0) {
-      disease.Count = 0;
-    }
+    disease.die(Math.min(strength, disease.Count));
   }
 }
 
@@ -212,10 +200,7 @@ export class Macrophages extends Defender {
       const fightingProbability = (disease.Count + this.count) / 10000;
       const strength = this.count * fightingProbability;
       let initialCount = disease.Count;
-      disease.Count = disease.Count - strength;
-      if (disease.Count < 0) {
-        disease.Count = 0;
-      }
+      disease.die(Math.min(strength, disease.Count));
       //For each 100 killed Virus/Bacteria a white cell has to die
       const killed = (initialCount - disease.Count) / 100;
       this.combatLossesLastTick += killed;

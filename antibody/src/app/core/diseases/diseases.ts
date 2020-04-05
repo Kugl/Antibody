@@ -12,11 +12,18 @@ export class Disease {
   HostMinAge: number;
   Deadliness: number;
 
+  defeatedCount = 0;
+
   defenders: Defender[] = [];
 
   memTCells: MemoryTCells; // placeholder
 
-  spread() {}
+  die(count: number) {
+    this.Count -= count;
+    this.defeatedCount += count;
+  }
+
+  spread(spreadFactor: number) {}
   infect() {
     this.Count = 3000;
   }
@@ -38,8 +45,9 @@ export class Virus extends Disease {
     this.HostCells = 20;
   }
 
-  spread() {
-    this.Count += (this.NumberPerHostCell * this.HostCells) / TicksPerDay;
+  spread(spreadFactor: number) {
+    this.Count +=
+      (spreadFactor * (this.NumberPerHostCell * this.HostCells)) / TicksPerDay;
   }
 
   toString(): string {
@@ -55,8 +63,8 @@ export class Bacteria extends Disease {
 
   defenders: Defender[] = [new Leukos()];
 
-  spread() {
-    this.Count *= Math.pow(this.GrowthPerDay, 1 / TicksPerDay);
+  spread(spreadFactor: number) {
+    this.Count *= Math.pow(this.GrowthPerDay * spreadFactor, 1 / TicksPerDay);
   }
 }
 

@@ -1,6 +1,14 @@
+<mat-checkbox [(ngModel)]="game.body.superDeadlyMode"
+  >Super Deadly Mode</mat-checkbox
+>
+
 <p>TickCount: {{ game.clock.tickCount }}</p>
-<label for='ticklengthinput'>Tick Length</label>
-<input id='ticklengthinput' type=number [(ngModel)]="centralService.tickLength">
+<label for="ticklengthinput">Tick Length</label>
+<input
+  id="ticklengthinput"
+  type="number"
+  [(ngModel)]="centralService.tickLength"
+/>
 <p>---</p>
 <p>Datetime: {{ game.clock.date }}</p>
 <p>Temperature: {{ game.body.temperature }}</p>
@@ -8,8 +16,12 @@
 <p>Cards in Deck: {{ game.deck.cards.length }}</p>
 <p>Cards in Graveyard: {{ game.deck.graveyard.length }}</p>
 <div *ngFor="let disease of game.body.diseases">
-  <p>{{ disease.Name }}: {{disease.Count}}</p>
-  <p *ngFor="let defender of disease.defenders">{{ defender.name }}: {{defender.count}}</p>
+  <p>{{ disease.Name }}: {{ disease.Count }}</p>
+  <p *ngFor="let defender of disease.defenders">
+    {{ defender.name }}: {{ defender.count }}
+  </p>
 </div>
 <h3>Pool</h3>
-<p *ngFor="let defender of game.body.defensePool.defenders">{{ defender.name }}: {{defender.count}}</p>
+<p *ngFor="let defender of game.body.defensePool.defenders">
+  {{ defender.name }}: {{ defender.count }}
+</p>
