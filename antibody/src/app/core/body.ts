@@ -17,6 +17,8 @@ export class Body {
   mucusProduction: number = 0;
   mobilizationTrigger: boolean = false;
 
+  superDeadlyMode = false; // for testing -- increases infection spread
+
   BodyEventSubject = new Subject<EventMessage>();
 
   diseases: Disease[];
@@ -85,7 +87,8 @@ export class Body {
   handleInfections() {
     for (let disease of this.diseases) {
       if (disease.Count >= 1) {
-        disease.spread();
+        const spreadFactor = this.superDeadlyMode ? 100 : 1;
+        disease.spread(spreadFactor);
       } else {
         this.demobilize(disease);
         this.maybeGetInfected(disease);
@@ -98,13 +101,16 @@ export class Body {
 
   maybeGetInfected(disease) {
     // +0.01 is for testing only, to have more frequent infections
-    if (Math.random() < disease.ChanceOfInfection / TicksPerDay + 0.01) {
+    if (
+      Math.random() < disease.ChanceOfInfection / TicksPerDay + 0.01 ||
+      this.superDeadlyMode
+    ) {
       disease.infect();
       let message = "You have been infected with " + disease.Name;
       let messageText =
         "You have been infected with " +
         disease.Name +
-        "! Strengthen the growth of Antibodys by playing cards and mobilize defnders to the area of infection";
+        "! Strengthen the growth of Antibodys by playing cards and mobilize defenders to the area of infection";
       this.newsTicker.publishNews(message);
       this.BodyEventSubject.next({
         description: message,

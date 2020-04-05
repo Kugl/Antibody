@@ -99,7 +99,7 @@ export class CentralService {
   }
   openGameOverDialog() {
     const godialogRef = this.dialog.open(GameOverComponent, {
-      data: {},
+      data: { game: this.game },
     });
     this.openGenericDialog(godialogRef);
   }
