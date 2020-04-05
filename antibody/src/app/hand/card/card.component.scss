@@ -1,4 +1,24 @@
 .play-card {
-  max-width: 200px;
+  max-width: 210px;
   height: 280px;
+}
+
+.circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 14px;
+  color: #fff;
+  line-height: 35px;
+  text-align: center;
+  background: #000;
+  //background: #303f9f;
+  margin-bottom: 10px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.mat-card-subtitle {
+  margin-bottom: 8px;
 }

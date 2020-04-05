@@ -1,6 +1,25 @@
 <mat-card class="play-card">
+  <img mat-card-image src="{{ card.pictureURL }}" />
+  <div mat-card-avatar class="circle">
+    {{ card.energyCost }}
+  </div>
   <mat-card-header>
     <mat-card-title>{{ card.title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{ card.text }}
+    </p>
+  </mat-card-content>
+</mat-card>
+
+<!-- OLD Design
+<mat-card class="play-card">
+  <mat-card-header>
+
+
+    <mat-card-title>{{ card.title }}</mat-card-title>
+
     <mat-card-subtitle>{{ card.energyCost }} Energy</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image src="{{ card.pictureURL }}" />
@@ -10,3 +29,4 @@
     </p>
   </mat-card-content>
 </mat-card>
+-->
