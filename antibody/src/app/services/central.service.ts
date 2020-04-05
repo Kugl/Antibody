@@ -42,7 +42,7 @@ export class CentralService {
     this.openDialog({
       description: "Welcome!",
       picture: "assets/pictures/corona.jpg",
-      text: `In this game you take over the job of the immune System. Your task is to coordiante the immune defense and protect the body from diseases. Play cards to trigger defensive Actions`,
+      text: `In this game you take over the job of the immune system. Your task is to coordinate the immune defense and protect the body from diseases. Play cards to trigger defensive actions.`,
     });
     //Opens dialog upon infection
     this.game.body.BodyEventSubject.subscribe((event) => {
