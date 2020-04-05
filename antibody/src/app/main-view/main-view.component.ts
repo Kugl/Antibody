@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Pipe,
-  OnChanges,
-  AfterContentChecked,
-} from "@angular/core";
+import { Component, OnInit, AfterContentChecked } from "@angular/core";
 import { CentralService } from "../services/central.service";
 import { Defender, DefensePool, MemoryTCells } from "../core/defense";
 import { Game } from "../core/game";
@@ -23,6 +17,7 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
   currentGame: Game;
   totalDeadliness: number = 0;
   health: number = 100;
+  gameOver: boolean = false;
 
   constructor(
     private centServ: CentralService,
@@ -34,6 +29,7 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
     this.diseases = this.currentGame.body.diseases;
     console.log(this.defenses);
     //Include custom Icons
+    //TODO: Refactor into Icon component
     this.matIconRegistry.addSvgIcon(
       "cust_up",
       this.domSanitizer.bypassSecurityTrustResourceUrl(
@@ -77,6 +73,10 @@ export class MainViewComponent implements OnInit, AfterContentChecked {
     //TODO: Refactor t oa place where istsorts less often
     this.orderDeadly();
     this.health = 100 - this.totalDeadliness;
+    if (this.totalDeadliness > 100 && this.gameOver == false) {
+      this.gameOver = true;
+      this.centServ.openGameOverDialog();
+    }
   }
 
   sumDeadliness() {

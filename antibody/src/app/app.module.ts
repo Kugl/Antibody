@@ -20,6 +20,7 @@ import { RoundPipe } from "./pipes/round.pipe";
 import { DialogComponent } from "./dialog/dialog.component";
 import { HttpClientModule } from "@angular/common/http";
 import { IconComponent } from './main-view/icon/icon.component';
+import { GameOverComponent } from './dialog/game-over/game-over.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { IconComponent } from './main-view/icon/icon.component';
     RoundPipe,
     BackdropComponent,
     DialogComponent,
-    IconComponent
+    IconComponent,
+    GameOverComponent
   ],
   imports: [
     BrowserModule,

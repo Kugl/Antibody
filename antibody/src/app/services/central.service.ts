@@ -7,6 +7,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "../dialog/dialog.component";
 import { EventMessage } from "../core/body";
 import { GoogleAnalyticsService } from "./analytics2.service";
+import { GameOverComponent } from "../dialog/game-over/game-over.component";
 
 const BaseTickLength = 200;
 
@@ -41,6 +42,7 @@ export class CentralService {
       picture: "assets/pictures/corona.jpg",
       text: `In this game you take over the job of the immune System. Your task is to coordiante the immune defense and protect the body from diseases. Play cards to trigger defensive Actions`,
     });
+    //Opens dialog upon infection
     this.game.body.BodyEventSubject.subscribe((event) => {
       this.openDialog(event);
     });
@@ -106,5 +108,21 @@ export class CentralService {
     dialogRef.afterClosed().subscribe(() => {
       this.mainLoop(this);
     });*/
+  }
+  //TODO: Refactor into gneeric Open Dialog
+  openGameOverDialog() {
+    console.log("OpenDialog");
+    this.tickLength = 10000;
+    const godialogRef = this.dialog.open(GameOverComponent, {
+      data: {},
+    });
+    godialogRef.afterClosed().subscribe((result) => {
+      this.tickLength = BaseTickLength;
+      // to prevent the main loop from trying to catch up on missed ticks:
+      this.lastTime = Math.max(
+        this.lastTime,
+        new Date().getTime() - BaseTickLength
+      );
+    });
   }
 }

@@ -1,18 +1,17 @@
 import { Component, OnInit, Inject, Optional } from "@angular/core";
-import { FormGroup, FormBuilder } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { EventMessage } from "../core/body";
 
 @Component({
   selector: "app-dialog",
   templateUrl: "./dialog.component.html",
-  styleUrls: ["./dialog.component.scss"]
+  styleUrls: ["./dialog.component.scss"],
 })
 export class DialogComponent implements OnInit {
   eventM: EventMessage = {
     description: "",
     picture: "",
-    text: ""
+    text: "",
   };
 
   constructor(
@@ -21,7 +20,7 @@ export class DialogComponent implements OnInit {
   ) {
     this.eventM = data;
     //Close immidiately for Testing
-    this.close();
+    //this.close();
   }
 
   ngOnInit() {}
