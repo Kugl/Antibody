@@ -3,7 +3,7 @@ import { makeDefaultGame } from "../core/gameFactory";
 import { Game } from "../core/game";
 import { Card } from "../core/card";
 import { Subject } from "rxjs";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { DialogComponent } from "../dialog/dialog.component";
 import { EventMessage } from "../core/body";
 import { GoogleAnalyticsService } from "./analytics2.service";
@@ -92,31 +92,23 @@ export class CentralService {
     }
   }
   openDialog(data: EventMessage) {
-    this.tickLength = 10000;
     const dialogRef = this.dialog.open(DialogComponent, {
       data,
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      this.tickLength = BaseTickLength;
-      // to prevent the main loop from trying to catch up on missed ticks:
-      this.lastTime = Math.max(
-        this.lastTime,
-        new Date().getTime() - BaseTickLength
-      );
-    });
-    /*
-    dialogRef.afterClosed().subscribe(() => {
-      this.mainLoop(this);
-    });*/
+    this.openGenericDialog(dialogRef);
   }
-  //TODO: Refactor into gneeric Open Dialog
   openGameOverDialog() {
-    console.log("OpenDialog");
-    this.tickLength = 10000;
     const godialogRef = this.dialog.open(GameOverComponent, {
       data: {},
     });
-    godialogRef.afterClosed().subscribe((result) => {
+    this.openGenericDialog(godialogRef);
+  }
+
+  openGenericDialog(
+    dialogRef: MatDialogRef<DialogComponent | GameOverComponent, any>
+  ) {
+    this.tickLength = 10000;
+    dialogRef.afterClosed().subscribe((result) => {
       this.tickLength = BaseTickLength;
       // to prevent the main loop from trying to catch up on missed ticks:
       this.lastTime = Math.max(
