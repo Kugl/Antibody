@@ -10,7 +10,7 @@ import { GoogleAnalyticsService } from "./analytics2.service";
 import { GameOverComponent } from "../dialog/game-over/game-over.component";
 import { ChooseCardComponent } from "../dialog/choose-card/choose-card.component";
 
-const BaseTickLength = 200;
+const BaseTickLength = 150;
 
 export interface CardPlayedEvent {
   Action: string;
