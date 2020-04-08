@@ -74,7 +74,7 @@ export class Influenza extends Virus {
   Name = "Influenza";
   Count = 0;
   ImmunityPeriod = 365;
-  ChanceOfInfection = 1;
+  ChanceOfInfection = 0.01;
   HostMaxAge = 999;
   HostMinAge = 0;
   Deadliness = 5;
@@ -109,7 +109,7 @@ export class Corona extends Virus {
   Name = "Corona";
   Count = 0;
   ImmunityPeriod = 450;
-  ChanceOfInfection = 1;
+  ChanceOfInfection = 0.01;
   HostMaxAge = 999;
   HostMinAge = 0;
   Deadliness = 7;
@@ -127,7 +127,7 @@ export class CommonCold extends Bacteria {
   Name = "CommonCold";
   Count = 0;
   ImmunityPeriod = 0;
-  ChanceOfInfection = 5;
+  ChanceOfInfection = 0.05;
   HostMaxAge = 999;
   HostMinAge = 0;
   Deadliness = 1;
