@@ -37,12 +37,12 @@ export class CentralService {
     this.lastTime = this.startTime;
     const that = this;
     this.mainLoop(that);
-    this.openGameChooseCardDialog();
+    //this.openGameChooseCardDialog();
     //Displays a welcome message
     this.openDialog({
       description: "Welcome!",
       picture: "assets/pictures/blood.jpg",
-      text: `In this game you take over the job of the immune system. Your task is to coordinate the immune defense and protect the body from diseases. Play cards to trigger defensive actions.`,
+      text: `In this game you take over the job of the immune system. Your task is to coordinate the immune defense and protect the body from diseases. Play cards from your hand on the bottom of the screen to trigger defensive actions.`,
     });
     //Opens dialog upon infection
     this.game.body.BodyEventSubject.subscribe((event) => {
