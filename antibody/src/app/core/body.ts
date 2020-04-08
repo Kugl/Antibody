@@ -121,8 +121,9 @@ export class Body {
 
   maybeGetInfected(disease) {
     // +0.01 is for testing only, to have more frequent infections
+    //removed additional infection chance
     if (
-      Math.random() < disease.ChanceOfInfection / TicksPerDay + 0.01 ||
+      Math.random() < disease.ChanceOfInfection / TicksPerDay ||
       this.superDeadlyMode
     ) {
       disease.infect();
